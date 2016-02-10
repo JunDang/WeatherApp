@@ -12,7 +12,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
     
     var BackgroundScrollView: UIScrollView!
     var ForegroundScrollView: UIScrollView!
-    var horizontalScrollView: UIScrollView!
+    //var horizontalScrollView: UIScrollView!
     var backgroundImageView: UIImageView!
     var screenHeight: CGFloat!
     var blurredImageView: UIImageView!
@@ -24,12 +24,15 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
     let screenWidth: CGFloat = UIScreen.mainScreen().bounds.width
     var locationLabel: UILabel?
     var temperatureLabel: UILabel?
+    var feelsLikeTemperature: UILabel?
     var hiLabel: UILabel?
     var lowLabel: UILabel?
     var weathericon2: UIImageView?
     var weathericon2Label: UILabel?
     var weatherDescription: UILabel?
     var weatherTableViewController: WeatherTableViewController?
+    let screenSize: CGRect = UIScreen.mainScreen().bounds
+    let gradientLayer = CAGradientLayer()
     
     override func viewDidLoad() {
         
@@ -37,12 +40,15 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         
         //background
         
-        self.view.backgroundColor = UIColor.redColor()
-        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        self.view.backgroundColor = UIColor.blackColor()
+        //let screenSize: CGRect = UIScreen.mainScreen().bounds
         screenHeight = screenSize.height
         backgroundImageView = UIImageView(image: UIImage(named: "bg"))
         backgroundImageView?.contentMode = UIViewContentMode.ScaleAspectFill
-        backgroundImageView?.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: screenHeight*3)
+        //backgroundImageView?.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: screenHeight)
+        backgroundImageView?.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: screenHeight*2)
+        backgroundImageView!.setNeedsDisplay()
+        
         
         //add background ScrollView
         
@@ -58,12 +64,15 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         
         blurredImageView = UIImageView(image: UIImage(named: "bg"))
         blurredImageView?.contentMode = UIViewContentMode.ScaleAspectFill
-        blurredImageView?.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: screenHeight*3)
+        blurredImageView?.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: screenHeight*2)
+        //blurredImageView?.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: screenHeight)
         blurredImageView!.alpha = 0
         blurredImageView?.setImageToBlur(UIImage(named: "bg"), blurRadius: 10, completionBlock: nil)
         blurredImageView.translatesAutoresizingMaskIntoConstraints = false
+        blurredImageView!.setNeedsDisplay()
         BackgroundScrollView.addSubview(blurredImageView)
         view.addSubview(BackgroundScrollView)
+        self.BackgroundScrollView.delegate = self
         
         let heightBScrollView = NSLayoutConstraint(item: BackgroundScrollView,
             attribute: .Height, relatedBy: .Equal, toItem: self.view,
@@ -75,7 +84,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         
         let heightBImageView = NSLayoutConstraint(item: backgroundImageView,
             attribute: .Height, relatedBy: .Equal, toItem: BackgroundScrollView,
-            attribute: .Height, multiplier: 1, constant: screenHeight*2)
+            attribute: .Height, multiplier: 1, constant: 0) //constant: screenHeight
         let widthBImageView = NSLayoutConstraint(item: backgroundImageView,
             attribute: .Width, relatedBy: .Equal, toItem: BackgroundScrollView,
             attribute: .Width, multiplier: 1, constant: 0)
@@ -83,7 +92,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         
         let heightBlurredImageView = NSLayoutConstraint(item: blurredImageView,
             attribute: .Height, relatedBy: .Equal, toItem: BackgroundScrollView,
-            attribute: .Height, multiplier: 1, constant: screenHeight*2)
+            attribute: .Height, multiplier: 1, constant: 0)//constant: screenHeight
         
         let widthBlurredImageView = NSLayoutConstraint(item: blurredImageView,
             attribute: .Width, relatedBy: .Equal, toItem: BackgroundScrollView,
@@ -91,29 +100,43 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         NSLayoutConstraint.activateConstraints([heightBlurredImageView, widthBlurredImageView])
         
         //containerView
-        let containerSize1 = CGSize(width: view.bounds.width, height: screenHeight)
-        containerView1 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: screenHeight), size:containerSize1))
+        let containerSize1 = CGSize(width: view.bounds.width, height: screenHeight*0.9)
+        containerView1 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: screenHeight + 5), size:containerSize1))
         containerView1?.backgroundColor = UIColor.blueColor()
         containerView1!.setNeedsDisplay()
         containerView1!.translatesAutoresizingMaskIntoConstraints = false
         let fheight1 = containerView1?.frame.height
-        let cheight2 = fheight1! + screenHeight + 10
-       
+        //let cheight2 = fheight1! + screenHeight + 10
+       /*
         let containerSize2 = CGSize(width: view.bounds.width, height: screenHeight+300)
         containerView2 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: cheight2), size:containerSize2))
         containerView2?.backgroundColor = UIColor.clearColor()
+       */
+        //add mask to backgroundScrollView
+        let maskLayer = CALayer()
+        maskLayer.frame = screenSize
+        //maskLayer.contents = UIImage(named: "bg")?.CGImage
+        maskLayer.contentsGravity = kCAGravityCenter
+        maskLayer.backgroundColor = UIColor.blackColor().CGColor
+        maskLayer.opacity = 0.2
+        maskLayer.hidden = false
+        maskLayer.masksToBounds = false
+        BackgroundScrollView.layer.addSublayer(maskLayer)
         
+
         // ForegroundScrollView
         
         ForegroundScrollView = UIScrollView(frame: view.bounds)
         ForegroundScrollView.backgroundColor = UIColor.clearColor()
-        let fheight2 = containerView2?.frame.height
-        let foreHeight = fheight1! + fheight2! + screenHeight + 50
+        //let fheight2 = containerView2?.frame.height
+       // let foreHeight = fheight1! + fheight2! + screenHeight + 50
+        let foreHeight = fheight1!  + screenHeight + 50
         ForegroundScrollView.contentSize = CGSize(width: screenWidth, height: foreHeight)
         ForegroundScrollView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         ForegroundScrollView.translatesAutoresizingMaskIntoConstraints = false
+        //ForegroundScrollView.layer.addSublayer(maskLayer)
         ForegroundScrollView.addSubview(containerView1!)
-        ForegroundScrollView.addSubview(containerView2!)
+        //ForegroundScrollView.addSubview(containerView2!)
         view.addSubview(ForegroundScrollView)
         
         ForegroundScrollView.delegate = self
@@ -130,48 +153,81 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         displayContentController(weatherTableViewController)
         
         //add location label
-        locationLabel = UILabel(frame: CGRectMake(150, 50, 100, 60))
-        let fontLocation = UIFont(name: "Arial", size: 20.0)
+        locationLabel = UILabel(frame: CGRectMake(150, 30, 100, 60))
+        let fontLocation = UIFont(name: "HelveticaNeue-Bold", size: 20.0)
         locationLabel!.font = fontLocation
-        locationLabel!.backgroundColor = UIColor.blueColor()
-        locationLabel!.textColor = UIColor.redColor()
+        locationLabel!.backgroundColor = UIColor.clearColor()
+        locationLabel!.textColor = UIColor.whiteColor()
         locationLabel!.textAlignment = NSTextAlignment.Center
         ForegroundScrollView.addSubview(locationLabel!)
         
         //add temperature label
         temperatureLabel = UILabel(frame: CGRectMake(13, screenHeight-130, 200, 200))
-        let fontTemperatureLabel = UIFont(name: "Arial", size: 80.0)
+        let fontTemperatureLabel = UIFont(name: "HelveticaNeue", size: 80.0)
         temperatureLabel!.font = fontTemperatureLabel
         temperatureLabel!.backgroundColor = UIColor.clearColor()
-        temperatureLabel!.textColor = UIColor.redColor()
+        temperatureLabel!.textColor = UIColor.whiteColor()
         temperatureLabel!.text = "20\u{00B0}"
         ForegroundScrollView.addSubview(temperatureLabel!)
         
-        //up arrow
+        /*//up arrow
         let upArrow = UIImageView(frame: CGRectMake(13, screenHeight-90, 25, 25))
         upArrow.image = UIImage(named: "Up-25")
-        self.ForegroundScrollView.addSubview(upArrow)
+        self.ForegroundScrollView.addSubview(upArrow)*/
         
-        //high temperature label
-        hiLabel = UILabel(frame: CGRectMake(34, screenHeight-117, 80, 80))
-        hiLabel!.backgroundColor = UIColor.clearColor()
-        hiLabel!.textColor = UIColor.blackColor()
-        hiLabel!.text = "20\u{00B0}"
-        hiLabel!.font = UIFont(name: "HelveticaNeue-UltraLight", size: 15)
-        ForegroundScrollView.addSubview(hiLabel!)
+        //max temperature description
+        let maxTemperature = UILabel(frame: CGRectMake(60, screenHeight-117, 80, 80))
+        maxTemperature.backgroundColor = UIColor.clearColor()
+        maxTemperature.textColor = UIColor.whiteColor()
+        maxTemperature.text = "max:"
+        maxTemperature.font = UIFont(name: "HelveticaNeue-Bold", size: 10)
+        self.ForegroundScrollView.addSubview(maxTemperature)
+
+        //low temperature label
+        lowLabel = UILabel(frame: CGRectMake(37, screenHeight-117, 80, 80))
+        lowLabel!.backgroundColor = UIColor.clearColor()
+        lowLabel!.textColor = UIColor.whiteColor()
+        lowLabel!.text = "20\u{00B0}"
+        lowLabel!.font = UIFont(name: "HelveticaNeue-Bold", size: 15)
+        ForegroundScrollView.addSubview(lowLabel!)
         
-        //Down arrow
+        /*//Down arrow
         let downArrow = UIImageView(frame: CGRectMake(60, screenHeight-90, 25, 25))
         downArrow.image = UIImage(named: "Down-25")
-        self.ForegroundScrollView.addSubview(downArrow)
+        self.ForegroundScrollView.addSubview(downArrow)*/
         
-        //low temperature label
-        lowLabel = UILabel(frame: CGRectMake(80, screenHeight-117, 80, 80))
-        lowLabel!.backgroundColor = UIColor.clearColor()
-        lowLabel!.textColor = UIColor.blackColor()
+        //min temperature description
+        let minTemperature = UILabel(frame: CGRectMake(12, screenHeight-117, 80, 80))
+        minTemperature.backgroundColor = UIColor.clearColor()
+        minTemperature.textColor = UIColor.whiteColor()
+        minTemperature.text = "min:"
+        minTemperature.font = UIFont(name: "HelveticaNeue-Bold", size: 10)
+        self.ForegroundScrollView.addSubview(minTemperature)
+     
+        //high temperature label
+        hiLabel = UILabel(frame: CGRectMake(87, screenHeight-117, 80, 80))
+        hiLabel!.backgroundColor = UIColor.clearColor()
+        hiLabel!.textColor = UIColor.whiteColor()
         //lowLabel!.text = "20\u{00B0}"
-        lowLabel!.font = UIFont(name: "HelveticaNeue-UltraLight", size: 15)
-        self.ForegroundScrollView.addSubview(lowLabel!)
+        hiLabel!.font = UIFont(name: "HelveticaNeue-Bold", size: 15)
+        self.ForegroundScrollView.addSubview(hiLabel!)
+        
+        //Feels like
+        
+        let feelsLike = UILabel(frame: CGRectMake(110, screenHeight-117, 80, 80))
+        feelsLike.backgroundColor = UIColor.clearColor()
+        feelsLike.textColor = UIColor.whiteColor()
+        feelsLike.text = "Feels like:"
+        feelsLike.font = UIFont(name: "HelveticaNeue-Bold", size: 10)
+        self.ForegroundScrollView.addSubview(feelsLike)
+        
+        //FeelsLikeTemperature
+        feelsLikeTemperature = UILabel(frame: CGRectMake(155, screenHeight-117, 80, 80))
+        feelsLikeTemperature!.backgroundColor = UIColor.clearColor()
+        feelsLikeTemperature!.textColor = UIColor.whiteColor()
+        feelsLikeTemperature!.font = UIFont(name: "HelveticaNeue-Bold", size: 10)
+        self.ForegroundScrollView.addSubview(feelsLikeTemperature!)
+
         //weathericon2Label
         weathericon2Label = UILabel(frame: CGRectMake(13, screenHeight-120, 30, 30))
         weathericon2Label!.backgroundColor = UIColor.clearColor()
@@ -188,13 +244,22 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         //add weather description
         weatherDescription = UILabel(frame: CGRectMake(50, screenHeight-150, 200, 100))
         weatherDescription!.backgroundColor = UIColor.clearColor()
-        weatherDescription!.textColor = UIColor.blackColor()
-        weatherDescription!.font = UIFont(name: "HelveticaNeue-UltraLight", size: 15)
-        
-        
+        weatherDescription!.textColor = UIColor.whiteColor()
+        weatherDescription!.font = UIFont(name: "HelveticaNeue-Bold", size: 15)
         self.ForegroundScrollView.addSubview(weatherDescription!)
-        
-        //WeatherDataService().retrieveWeatherInfo(43.7000, longitude: -79.4000)
+        //add segmented controll
+        // Initialize
+        let items = ["Table", "Graph", "Summary", "Air Quality"]
+        let customSC = UISegmentedControl(items: items)
+        customSC.selectedSegmentIndex = 0
+        customSC.frame = CGRectMake(screenSize.minX + 10, screenHeight + 5,
+            screenSize.width - 20, screenSize.height*0.05)
+        customSC.layer.cornerRadius = 5.0  // Don't let background bleed
+        customSC.backgroundColor = UIColor.blackColor()
+        customSC.tintColor = UIColor.whiteColor()
+        customSC.addTarget(self, action: "changeDisplay:", forControlEvents: .ValueChanged)
+        self.ForegroundScrollView.addSubview(customSC)
+        //WeatherDataService().retrieveWeatherInfo(43.7000, longitude   : -79.4000)
         /* let newYork = CLLocation(latitude: 40.7127, longitude: -74.0059)
         WeatherService().retrieveWeatherInfo(newYork) { (weather, error) -> Void in
         dispatch_async(dispatch_get_main_queue(), {
@@ -214,7 +279,13 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         }*/
         viewModel = WeatherViewModel()
         viewModel?.startLocationService()
-        
+        /*Flickr().searchFlickrForTerm("rain") {(FlickrSearchResults, error) -> Void in
+            dispatch_async(dispatch_get_main_queue(), {
+                print("Hello world")
+
+            })
+        }*/
+        print(screenSize)
     }
        override func didReceiveMemoryWarning() {
         
@@ -259,7 +330,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         
     }
     
-    // MARK: ViewModel
+    // ViewModel
     var viewModel: WeatherViewModel? {
         didSet {
             viewModel?.location.observe {
@@ -273,6 +344,34 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
                 if  !self.weathericon2Label!.text!.isEmpty {
                    self.weathericon2!.image = UIImage(named: "\(self.weathericon2Label!.text!)")
                    self.weatherDescription!.text = "\(self.weathericon2Label!.text!)"
+
+                    Flickr().searchFlickrForTerm(self.weathericon2Label!.text!) {(backgroundImage, error) -> Void in
+                        dispatch_async(dispatch_get_main_queue(), {
+                          
+                            if error != nil {
+                                print("The flickr service is not working.")
+                                return
+                            }
+                            if backgroundImage == nil {
+                                return
+                            }
+                            
+                            //let resizedImage = Flickr().imageResize(backgroundImage!, sizeChange: CGSizeMake(self.screenSize.width, self.screenSize.height))
+                            //let resizedImage = Flickr().sizeToFill(backgroundImage!, size: self.screenSize.size)
+                            print("calledImage")
+                            self.backgroundImageView.image = backgroundImage
+                            self.backgroundImageView?.contentMode = UIViewContentMode.ScaleAspectFill
+                            self.backgroundImageView?.frame = CGRect(x: 0, y: 0, width: self.screenWidth, height: self.screenHeight)
+                            self.blurredImageView.image  = backgroundImage
+                            self.blurredImageView?.contentMode = UIViewContentMode.ScaleAspectFill
+                            self.blurredImageView?.frame = CGRect(x: 0, y: 0, width: self.screenWidth, height: self.screenHeight)
+                            self.blurredImageView!.alpha = 0
+                            self.blurredImageView?.setImageToBlur(backgroundImage, blurRadius: 10, completionBlock: nil)
+                          
+                        })
+                    }
+
+                    
                 }
                 
             }
@@ -289,6 +388,11 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
                 [unowned self] in
                 self.lowLabel!.text = $0
             }
+            viewModel?.feelsLikeTemperature.observe {
+                [unowned self] in
+                self.feelsLikeTemperature!.text = $0
+            }
+
             
             viewModel?.dailyForecasts.observe {
                 [unowned self] in
@@ -303,6 +407,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
             }
         }
     }
-
     
-   }
+   
+
+ }

@@ -47,5 +47,12 @@
 	<string>Location is required to retrieve the weather info for your current place.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Location is always needed to retrieve the weather info for your current place.</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>

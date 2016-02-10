@@ -14,6 +14,7 @@ struct WeatherBuilder {
     var currentTemperature: String?
     var currentTemperatureHigh: String?
     var currentTemperatureLow: String?
+    var feelsLikeTemperature: String?
     
     var hourlyForecasts: [HourlyForecast]?
     var dailyForecasts: [DailyForecast]?
@@ -25,6 +26,7 @@ struct WeatherBuilder {
             currentTemperature: currentTemperature!,
             currentTemperatureHigh: currentTemperatureHigh!,
             currentTemperatureLow: currentTemperatureLow!,
+            feelsLikeTemperature: feelsLikeTemperature!,
             hourlyForecasts: hourlyForecasts!,
             dailyForecasts: dailyForecasts!)
     }

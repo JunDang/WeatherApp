@@ -1,8 +1,8 @@
 //
-//  WeatherServiceProtocol.swift
+//  ServiceProtocol.swift
 //  WeatherApp
 //
-//  Created by Yuan Yinhuan on 16/1/14.
+//  Created by Yuan Yinhuan on 16/2/6.
 //  Copyright © 2016年 Jun Jun. All rights reserved.
 //
 
@@ -16,3 +16,8 @@ protocol WeatherServiceProtocol {
 }
 
 
+typealias FlickrImageCompletionHandler = (UIImage?, Error?) -> Void
+
+protocol FlickrServiceProtocol {
+    func searchFlickrForTerm(searchTerm: String, completionHandler: FlickrImageCompletionHandler)
+}

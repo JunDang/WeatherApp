@@ -22,7 +22,7 @@ class WeatherViewModel {
     let currentTemperature: Observable<String>
     let currentTemperatureHigh: Observable<String>
     let currentTemperatureLow: Observable<String>
-    
+    let feelsLikeTemperature: Observable<String>
     
     let hourlyForecasts: Observable<[HourlyForecast]>
     let dailyForecasts: Observable<[DailyForecast]>
@@ -41,6 +41,8 @@ class WeatherViewModel {
         currentTemperature = Observable(EmptyString)
         currentTemperatureHigh = Observable(EmptyString)
         currentTemperatureLow = Observable(EmptyString)
+        feelsLikeTemperature = Observable(EmptyString)
+        
         hourlyForecasts = Observable([])
         dailyForecasts = Observable([])
     }
@@ -66,6 +68,7 @@ class WeatherViewModel {
         self.currentTemperature.value = weather.currentTemperature
         self.currentTemperatureHigh.value = weather.currentTemperatureHigh
         self.currentTemperatureLow.value = weather.currentTemperatureLow
+        self.feelsLikeTemperature.value = weather.feelsLikeTemperature
         //hourly forecast
         self.hourlyForecasts.value = weather.hourlyForecasts
         //daily forecast
@@ -94,6 +97,8 @@ class WeatherViewModel {
         self.currentTemperature.value = self.EmptyString
         self.currentTemperatureHigh.value = self.EmptyString
         self.currentTemperatureLow.value = self.EmptyString
+        self.feelsLikeTemperature.value = self.EmptyString
+        
         self.hourlyForecasts.value = []
         self.dailyForecasts.value = []
     }
@@ -102,8 +107,7 @@ class WeatherViewModel {
 // MARK: LocationServiceDelegate
 extension WeatherViewModel: LocationServiceDelegate {
     func locationDidUpdate(service: LocationService, location: CLLocation) {
-        print("location1")
-        weatherService.retrieveWeatherInfo(location) { (weather, error) -> Void in
+          weatherService.retrieveWeatherInfo(location) { (weather, error) -> Void in
             dispatch_async(dispatch_get_main_queue(), {
                 if let unwrappedError = error {
                     print(unwrappedError)

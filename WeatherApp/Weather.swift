@@ -14,6 +14,7 @@ struct Weather {
     let currentTemperature: String
     let currentTemperatureHigh: String
     let currentTemperatureLow: String
+    let feelsLikeTemperature: String
    
     
     let hourlyForecasts: [HourlyForecast]
