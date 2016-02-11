@@ -23,7 +23,7 @@ class WeatherTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView!.frame = CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height*0.72)
+        tableView!.frame = CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height)
         tableView!.backgroundColor = UIColor.clearColor()
         tableView!.delegate = self
         tableView!.dataSource = self

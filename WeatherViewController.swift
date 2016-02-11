@@ -102,19 +102,33 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         NSLayoutConstraint.activateConstraints([heightBlurredImageView, widthBlurredImageView])
         
         //containerView
-        let containerSize1 = CGSize(width: view.bounds.width, height: screenHeight*0.9)
+        let containerSize1 = CGSize(width: view.bounds.width, height: screenHeight)
         containerView1 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: screenHeight + 5), size:containerSize1))
         containerView1?.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
         containerView1!.setNeedsDisplay()
         containerView1!.translatesAutoresizingMaskIntoConstraints = false
         let fheight1 = containerView1?.frame.height
         //let cheight2 = fheight1! + screenHeight + 10
-       /*
-        let containerSize2 = CGSize(width: view.bounds.width, height: screenHeight+300)
-        containerView2 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: cheight2), size:containerSize2))
-        containerView2?.backgroundColor = UIColor.clearColor()
-       */
-        //add mask to backgroundScrollView
+       
+        let containerSize2 = CGSize(width: view.bounds.width, height: screenHeight)
+        containerView2 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: screenHeight + 5), size:containerSize2))
+        containerView2?.backgroundColor = UIColor.redColor().colorWithAlphaComponent(0.5)
+        containerView2!.setNeedsDisplay()
+        containerView2!.translatesAutoresizingMaskIntoConstraints = false
+        //let fheight2 = containerView2?.frame.height
+        let containerSize3 = CGSize(width: view.bounds.width, height: screenHeight)
+        containerView3 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: screenHeight + 5), size:containerSize3))
+        containerView3?.backgroundColor = UIColor.greenColor().colorWithAlphaComponent(0.5)
+        containerView3!.setNeedsDisplay()
+        containerView3!.translatesAutoresizingMaskIntoConstraints = false
+       // let fheight3 = containerView3?.frame.height
+        let containerSize4 = CGSize(width: view.bounds.width, height: screenHeight)
+        containerView4 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: screenHeight + 5), size:containerSize4))
+        containerView4?.backgroundColor = UIColor.blueColor().colorWithAlphaComponent(0.5)
+        containerView4!.setNeedsDisplay()
+        containerView4!.translatesAutoresizingMaskIntoConstraints = false
+
+       //add mask to backgroundScrollView
         let maskLayer = CALayer()
         maskLayer.frame = screenSize
         //maskLayer.contents = UIImage(named: "bg")?.CGImage
@@ -137,8 +151,14 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         ForegroundScrollView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         ForegroundScrollView.translatesAutoresizingMaskIntoConstraints = false
         //ForegroundScrollView.layer.addSublayer(maskLayer)
+        containerView2!.alpha = 0
+        containerView3!.alpha = 0
+        containerView4!.alpha = 0
+        ForegroundScrollView.addSubview(containerView4!)
+        ForegroundScrollView.addSubview(containerView3!)
+        ForegroundScrollView.addSubview(containerView2!)
         ForegroundScrollView.addSubview(containerView1!)
-        //ForegroundScrollView.addSubview(containerView2!)
+
         view.addSubview(ForegroundScrollView)
         
         ForegroundScrollView.delegate = self
@@ -152,11 +172,9 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         NSLayoutConstraint.activateConstraints([heightForegroundScrollView, widthForegroundScrollView])
       
         //let weatherTableViewController: WeatherTableViewController = WeatherTableViewController()
-        weatherTableViewController = WeatherTableViewController()
-        //displayContentController(weatherTableViewController!)
         
         //add location label
-        locationLabel = UILabel(frame: CGRectMake(150, 30, 100, 60))
+        locationLabel = UILabel(frame: CGRectMake(screenWidth/2-80, 30, 100, 60))
         let fontLocation = UIFont(name: "HelveticaNeue-Bold", size: 20.0)
         locationLabel!.font = fontLocation
         locationLabel!.backgroundColor = UIColor.clearColor()
@@ -262,9 +280,14 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         segmentedControll.tintColor = UIColor.whiteColor()
         segmentedControll.addTarget(self, action: "changeDisplay:", forControlEvents: .ValueChanged)
         self.ForegroundScrollView.addSubview(segmentedControll)
+        weatherTableViewController = WeatherTableViewController()
         forecastGraphs = Graphs()
         forecastSummary = Summary()
         airQuality = AirQuality()
+        displayContentController(weatherTableViewController!)
+        displayGraphs(forecastGraphs!)
+        displaySummary(forecastSummary!)
+        displayAirQuality(airQuality!)
 
         viewModel = WeatherViewModel()
         viewModel?.startLocationService()
@@ -302,7 +325,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         
     }
     
-    func changeDisplay(sender: UISegmentedControl) {
+   /* func changeDisplay(sender: UISegmentedControl) {
         print("change display handler is called.")
         
         switch sender.selectedSegmentIndex {
@@ -315,6 +338,34 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
             displayAirQuality(airQuality!)
         default:
             displayContentController(weatherTableViewController!)
+        }
+    }
+*/
+    func changeDisplay(sender: UISegmentedControl) {
+        print("change display handler is called.")
+        switch sender.selectedSegmentIndex {
+           case 0:
+                self.containerView1!.alpha = 1
+                self.containerView2!.alpha = 0
+                self.containerView3!.alpha = 0
+                self.containerView4!.alpha = 0
+           case 1:
+                self.containerView1!.alpha = 0
+                self.containerView2!.alpha = 1
+                self.containerView3!.alpha = 0
+                self.containerView4!.alpha = 0
+           case 2:
+                self.containerView1!.alpha = 0
+                self.containerView2!.alpha = 0
+                self.containerView3!.alpha = 1
+                self.containerView4!.alpha = 0
+           case 3:
+                self.containerView1!.alpha = 0
+                self.containerView2!.alpha = 0
+                self.containerView3!.alpha = 0
+                self.containerView4!.alpha = 1
+           default:
+                break
         }
     }
 
@@ -331,28 +382,28 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         
     }
     func displayGraphs(forecastGraphs: Graphs) {
-            containerView1!.frame.size.height = forecastGraphs.view.frame.height
-            containerView1!.frame.size.width = forecastGraphs.view.frame.width
+            containerView2!.frame.size.height = forecastGraphs.view.frame.height
+            containerView2!.frame.size.width = forecastGraphs.view.frame.width
             self.addChildViewController(forecastGraphs)
-            self.containerView1!.addSubview(forecastGraphs.view)
+            self.containerView2!.addSubview(forecastGraphs.view)
             forecastGraphs.didMoveToParentViewController(self)
             self.forecastGraphs = forecastGraphs
             
         }
     func displaySummary(forecastSummary: Summary) {
-            containerView1!.frame.size.height = forecastSummary.view.frame.height
-            containerView1!.frame.size.width = forecastSummary.view.frame.width
+            containerView3!.frame.size.height = forecastSummary.view.frame.height
+            containerView3!.frame.size.width = forecastSummary.view.frame.width
             self.addChildViewController(forecastSummary)
-            self.containerView1!.addSubview(forecastSummary.view)
+            self.containerView3!.addSubview(forecastSummary.view)
             forecastSummary.didMoveToParentViewController(self)
             self.forecastSummary = forecastSummary
             
         }
     func displayAirQuality(airQuality: AirQuality) {
-            containerView1!.frame.size.height = airQuality.view.frame.height
-            containerView1!.frame.size.width = airQuality.view.frame.width
+            containerView4!.frame.size.height = airQuality.view.frame.height
+            containerView4!.frame.size.width = airQuality.view.frame.width
             self.addChildViewController(airQuality)
-            self.containerView1!.addSubview(airQuality.view)
+            self.containerView4!.addSubview(airQuality.view)
             airQuality.didMoveToParentViewController(self)
             self.airQuality = airQuality
             
