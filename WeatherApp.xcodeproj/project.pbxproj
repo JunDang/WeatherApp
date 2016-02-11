@@ -19,6 +19,12 @@
 		0788BB141C48881400E89747 /* SwiftyJSON2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788BB131C48881400E89747 /* SwiftyJSON2.swift */; };
 		0788BB171C48894B00E89747 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0788BB041C48876800E89747 /* Alamofire.framework */; };
 		0788BB181C48894B00E89747 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0788BB041C48876800E89747 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		079B5A841C6C32D00043D1C0 /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079B5A7E1C6C32D00043D1C0 /* Summary.swift */; };
+		079B5A851C6C32D00043D1C0 /* Summary.xib in Resources */ = {isa = PBXBuildFile; fileRef = 079B5A7F1C6C32D00043D1C0 /* Summary.xib */; };
+		079B5A861C6C32D00043D1C0 /* AirQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079B5A801C6C32D00043D1C0 /* AirQuality.swift */; };
+		079B5A871C6C32D00043D1C0 /* AirQuality.xib in Resources */ = {isa = PBXBuildFile; fileRef = 079B5A811C6C32D00043D1C0 /* AirQuality.xib */; };
+		079B5A881C6C32D00043D1C0 /* Graphs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079B5A821C6C32D00043D1C0 /* Graphs.swift */; };
+		079B5A891C6C32D00043D1C0 /* Graphs.xib in Resources */ = {isa = PBXBuildFile; fileRef = 079B5A831C6C32D00043D1C0 /* Graphs.xib */; };
 		07AB53671C3D6C1D009059B0 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AB53661C3D6C1D009059B0 /* Observable.swift */; };
 		07AB53691C3D9FC4009059B0 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AB53681C3D9FC4009059B0 /* LocationService.swift */; };
 		07AB536B1C3DA552009059B0 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AB536A1C3DA552009059B0 /* Error.swift */; };
@@ -155,6 +161,12 @@
 		0788BAB51C48017D00E89747 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = /Users/YYH/Documents/iOS/WeatherApp/Carthage/Build/iOS/Alamofire.framework; sourceTree = "<absolute>"; };
 		0788BAF91C48876700E89747 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "../../../Downloads/Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
 		0788BB131C48881400E89747 /* SwiftyJSON2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON2.swift; path = WeatherApp/SwiftyJSON2.swift; sourceTree = "<group>"; };
+		079B5A7E1C6C32D00043D1C0 /* Summary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
+		079B5A7F1C6C32D00043D1C0 /* Summary.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Summary.xib; sourceTree = "<group>"; };
+		079B5A801C6C32D00043D1C0 /* AirQuality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirQuality.swift; sourceTree = "<group>"; };
+		079B5A811C6C32D00043D1C0 /* AirQuality.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AirQuality.xib; sourceTree = "<group>"; };
+		079B5A821C6C32D00043D1C0 /* Graphs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Graphs.swift; sourceTree = "<group>"; };
+		079B5A831C6C32D00043D1C0 /* Graphs.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Graphs.xib; sourceTree = "<group>"; };
 		07AB53661C3D6C1D009059B0 /* Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		07AB53681C3D9FC4009059B0 /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		07AB536A1C3DA552009059B0 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
@@ -274,6 +286,19 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		079B5A761C6C2F670043D1C0 /* Contents */ = {
+			isa = PBXGroup;
+			children = (
+				079B5A7E1C6C32D00043D1C0 /* Summary.swift */,
+				079B5A7F1C6C32D00043D1C0 /* Summary.xib */,
+				079B5A801C6C32D00043D1C0 /* AirQuality.swift */,
+				079B5A811C6C32D00043D1C0 /* AirQuality.xib */,
+				079B5A821C6C32D00043D1C0 /* Graphs.swift */,
+				079B5A831C6C32D00043D1C0 /* Graphs.xib */,
+			);
+			name = Contents;
+			sourceTree = "<group>";
+		};
 		07AB53651C3D6AA8009059B0 /* Basics */ = {
 			isa = PBXGroup;
 			children = (
@@ -333,6 +358,7 @@
 		60DEB9581C07ACDA00CED811 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				079B5A761C6C2F670043D1C0 /* Contents */,
 				07AB536F1C3DC7BB009059B0 /* BasicModels */,
 				07AB53651C3D6AA8009059B0 /* Basics */,
 				60DEB9591C07ACDA00CED811 /* AppDelegate.swift */,
@@ -528,6 +554,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				079B5A871C6C32D00043D1C0 /* AirQuality.xib in Resources */,
+				079B5A851C6C32D00043D1C0 /* Summary.xib in Resources */,
+				079B5A891C6C32D00043D1C0 /* Graphs.xib in Resources */,
 				60DEB9641C07ACDA00CED811 /* LaunchScreen.storyboard in Resources */,
 				6038D7991C0F7D16000B17AD /* Images-2 in Resources */,
 				60DEB9611C07ACDA00CED811 /* Assets.xcassets in Resources */,
@@ -562,13 +591,16 @@
 				6038D7961C0F7AAB000B17AD /* UIImage+ImageEffects.m in Sources */,
 				6038D7971C0F7AAB000B17AD /* UIImageView+LBBlurredImage.m in Sources */,
 				60603B6B1C18B585002E9CA7 /* TodayWeaterCollectionViewCell.swift in Sources */,
+				079B5A841C6C32D00043D1C0 /* Summary.swift in Sources */,
 				07850F851C4E822800EFE0E3 /* WeatherViewModel.swift in Sources */,
 				0769B9B81C4C8D0F00EEC4D9 /* DailyViewModel.swift in Sources */,
 				07AB53671C3D6C1D009059B0 /* Observable.swift in Sources */,
 				0783E1921C3EC4D800696727 /* WeatherBuilder.swift in Sources */,
 				07AB53711C3DC7E1009059B0 /* Weather.swift in Sources */,
+				079B5A881C6C32D00043D1C0 /* Graphs.swift in Sources */,
 				605D89B51C222E6800C5EA84 /* WeatherTableViewController.swift in Sources */,
 				07AB53731C3DD856009059B0 /* Temperature.swift in Sources */,
+				079B5A861C6C32D00043D1C0 /* AirQuality.swift in Sources */,
 				0788BB141C48881400E89747 /* SwiftyJSON2.swift in Sources */,
 				07BA25AB1C540E36009A69D6 /* HourlyViewModel.swift in Sources */,
 				60DEB95C1C07ACDA00CED811 /* ViewController.swift in Sources */,

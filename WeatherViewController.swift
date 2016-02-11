@@ -32,7 +32,9 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
     var weatherDescription: UILabel?
     var weatherTableViewController: WeatherTableViewController?
     let screenSize: CGRect = UIScreen.mainScreen().bounds
-    let gradientLayer = CAGradientLayer()
+    var forecastGraphs: Graphs?
+    var forecastSummary: Summary?
+    var airQuality: AirQuality?
     
     override func viewDidLoad() {
         
@@ -102,7 +104,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         //containerView
         let containerSize1 = CGSize(width: view.bounds.width, height: screenHeight*0.9)
         containerView1 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: screenHeight + 5), size:containerSize1))
-        containerView1?.backgroundColor = UIColor.blueColor()
+        containerView1?.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
         containerView1!.setNeedsDisplay()
         containerView1!.translatesAutoresizingMaskIntoConstraints = false
         let fheight1 = containerView1?.frame.height
@@ -149,8 +151,9 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
             attribute: .Width, multiplier: 1, constant: 0)
         NSLayoutConstraint.activateConstraints([heightForegroundScrollView, widthForegroundScrollView])
       
-        let weatherTableViewController: WeatherTableViewController = WeatherTableViewController()
-        displayContentController(weatherTableViewController)
+        //let weatherTableViewController: WeatherTableViewController = WeatherTableViewController()
+        weatherTableViewController = WeatherTableViewController()
+        //displayContentController(weatherTableViewController!)
         
         //add location label
         locationLabel = UILabel(frame: CGRectMake(150, 30, 100, 60))
@@ -222,10 +225,10 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         self.ForegroundScrollView.addSubview(feelsLike)
         
         //FeelsLikeTemperature
-        feelsLikeTemperature = UILabel(frame: CGRectMake(155, screenHeight-117, 80, 80))
+        feelsLikeTemperature = UILabel(frame: CGRectMake(165, screenHeight-117, 80, 80))
         feelsLikeTemperature!.backgroundColor = UIColor.clearColor()
         feelsLikeTemperature!.textColor = UIColor.whiteColor()
-        feelsLikeTemperature!.font = UIFont(name: "HelveticaNeue-Bold", size: 10)
+        feelsLikeTemperature!.font = UIFont(name: "HelveticaNeue-Bold", size: 15)
         self.ForegroundScrollView.addSubview(feelsLikeTemperature!)
 
         //weathericon2Label
@@ -250,41 +253,21 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         //add segmented controll
         // Initialize
         let items = ["Table", "Graph", "Summary", "Air Quality"]
-        let customSC = UISegmentedControl(items: items)
-        customSC.selectedSegmentIndex = 0
-        customSC.frame = CGRectMake(screenSize.minX + 10, screenHeight + 5,
+        let segmentedControll = UISegmentedControl(items: items)
+        segmentedControll.selectedSegmentIndex = 0
+        segmentedControll.frame = CGRectMake(screenSize.minX + 10, screenHeight + 5,
             screenSize.width - 20, screenSize.height*0.05)
-        customSC.layer.cornerRadius = 5.0  // Don't let background bleed
-        customSC.backgroundColor = UIColor.blackColor()
-        customSC.tintColor = UIColor.whiteColor()
-        customSC.addTarget(self, action: "changeDisplay:", forControlEvents: .ValueChanged)
-        self.ForegroundScrollView.addSubview(customSC)
-        //WeatherDataService().retrieveWeatherInfo(43.7000, longitude   : -79.4000)
-        /* let newYork = CLLocation(latitude: 40.7127, longitude: -74.0059)
-        WeatherService().retrieveWeatherInfo(newYork) { (weather, error) -> Void in
-        dispatch_async(dispatch_get_main_queue(), {
-        print("Hello world")
-        /*
-        if let unwrappedError = error {
-        print(unwrappedError)
-        self.update(unwrappedError)
-        return
-        }
-        
-        guard let unwrappedWeather = weather else {
-        return
-        }
-        self.update(unwrappedWeather)*/
-        })
-        }*/
+        segmentedControll.layer.cornerRadius = 5.0  // Don't let background bleed
+        segmentedControll.backgroundColor = UIColor.blackColor()
+        segmentedControll.tintColor = UIColor.whiteColor()
+        segmentedControll.addTarget(self, action: "changeDisplay:", forControlEvents: .ValueChanged)
+        self.ForegroundScrollView.addSubview(segmentedControll)
+        forecastGraphs = Graphs()
+        forecastSummary = Summary()
+        airQuality = AirQuality()
+
         viewModel = WeatherViewModel()
         viewModel?.startLocationService()
-        /*Flickr().searchFlickrForTerm("rain") {(FlickrSearchResults, error) -> Void in
-            dispatch_async(dispatch_get_main_queue(), {
-                print("Hello world")
-
-            })
-        }*/
         print(screenSize)
     }
        override func didReceiveMemoryWarning() {
@@ -319,16 +302,62 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         
     }
     
+    func changeDisplay(sender: UISegmentedControl) {
+        print("change display handler is called.")
+        
+        switch sender.selectedSegmentIndex {
+        case 1:
+            displayGraphs(forecastGraphs!)
+            
+        case 2:
+            displaySummary(forecastSummary!)
+        case 3:
+            displayAirQuality(airQuality!)
+        default:
+            displayContentController(weatherTableViewController!)
+        }
+    }
+
+    
     func displayContentController(weatherTableViewController: WeatherTableViewController) {
         
         containerView1!.frame.size.height = weatherTableViewController.tableView.frame.height
         containerView1!.frame.size.width = weatherTableViewController.tableView.frame.width
+        containerView1!.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
         self.addChildViewController(weatherTableViewController)
         self.containerView1!.addSubview(weatherTableViewController.tableView)
         weatherTableViewController.didMoveToParentViewController(self)
         self.weatherTableViewController = weatherTableViewController
         
     }
+    func displayGraphs(forecastGraphs: Graphs) {
+            containerView1!.frame.size.height = forecastGraphs.view.frame.height
+            containerView1!.frame.size.width = forecastGraphs.view.frame.width
+            self.addChildViewController(forecastGraphs)
+            self.containerView1!.addSubview(forecastGraphs.view)
+            forecastGraphs.didMoveToParentViewController(self)
+            self.forecastGraphs = forecastGraphs
+            
+        }
+    func displaySummary(forecastSummary: Summary) {
+            containerView1!.frame.size.height = forecastSummary.view.frame.height
+            containerView1!.frame.size.width = forecastSummary.view.frame.width
+            self.addChildViewController(forecastSummary)
+            self.containerView1!.addSubview(forecastSummary.view)
+            forecastSummary.didMoveToParentViewController(self)
+            self.forecastSummary = forecastSummary
+            
+        }
+    func displayAirQuality(airQuality: AirQuality) {
+            containerView1!.frame.size.height = airQuality.view.frame.height
+            containerView1!.frame.size.width = airQuality.view.frame.width
+            self.addChildViewController(airQuality)
+            self.containerView1!.addSubview(airQuality.view)
+            airQuality.didMoveToParentViewController(self)
+            self.airQuality = airQuality
+            
+        }
+    
     
     // ViewModel
     var viewModel: WeatherViewModel? {
