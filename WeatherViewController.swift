@@ -105,7 +105,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         //containerView
         let containerSize1 = CGSize(width: view.bounds.width, height: screenHeight)
         containerView1 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: screenHeight + 5), size:containerSize1))
-        containerView1?.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
+        containerView1?.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
         containerView1!.setNeedsDisplay()
         containerView1!.translatesAutoresizingMaskIntoConstraints = false
         let fheight1 = containerView1?.frame.height
@@ -113,19 +113,19 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
        
         let containerSize2 = CGSize(width: view.bounds.width, height: screenHeight)
         containerView2 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: screenHeight + 5), size:containerSize2))
-        containerView2?.backgroundColor = UIColor.redColor().colorWithAlphaComponent(0.5)
+        containerView2?.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.2)
         containerView2!.setNeedsDisplay()
         containerView2!.translatesAutoresizingMaskIntoConstraints = false
         //let fheight2 = containerView2?.frame.height
         let containerSize3 = CGSize(width: view.bounds.width, height: screenHeight)
         containerView3 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: screenHeight + 5), size:containerSize3))
-        containerView3?.backgroundColor = UIColor.greenColor().colorWithAlphaComponent(0.5)
+        containerView3?.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.2)
         containerView3!.setNeedsDisplay()
         containerView3!.translatesAutoresizingMaskIntoConstraints = false
        // let fheight3 = containerView3?.frame.height
         let containerSize4 = CGSize(width: view.bounds.width, height: screenHeight)
         containerView4 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: screenHeight + 5), size:containerSize4))
-        containerView4?.backgroundColor = UIColor.blueColor().colorWithAlphaComponent(0.5)
+        containerView4?.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.2)
         containerView4!.setNeedsDisplay()
         containerView4!.translatesAutoresizingMaskIntoConstraints = false
 
@@ -193,8 +193,8 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         ForegroundScrollView.addSubview(temperatureLabel!)
         
         //add minute summary
-        minutelySummary = UILabel(frame: CGRectMake(100, screenHeight-130, 300, 80))
-        let fontLabel = UIFont(name: "HelveticaNeue", size: 15.0)
+        minutelySummary = UILabel(frame: CGRectMake(130, screenHeight-50, 300, 80))
+        let fontLabel = UIFont(name: "HelveticaNeue-Bold", size: 13.0)
         minutelySummary!.font = fontLabel
         minutelySummary!.backgroundColor = UIColor.clearColor()
         minutelySummary!.textColor = UIColor.whiteColor()
@@ -208,10 +208,10 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         self.ForegroundScrollView.addSubview(upArrow)*/
         
         //max temperature description
-        let maxTemperature = UILabel(frame: CGRectMake(60, screenHeight-117, 80, 80))
+        let maxTemperature = UILabel(frame: CGRectMake(65, screenHeight-117, 80, 80))
         maxTemperature.backgroundColor = UIColor.clearColor()
         maxTemperature.textColor = UIColor.whiteColor()
-        maxTemperature.text = "max:"
+        maxTemperature.text = "High:"
         maxTemperature.font = UIFont(name: "HelveticaNeue-Bold", size: 10)
         self.ForegroundScrollView.addSubview(maxTemperature)
 
@@ -232,12 +232,12 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         let minTemperature = UILabel(frame: CGRectMake(12, screenHeight-117, 80, 80))
         minTemperature.backgroundColor = UIColor.clearColor()
         minTemperature.textColor = UIColor.whiteColor()
-        minTemperature.text = "min:"
+        minTemperature.text = "Low:"
         minTemperature.font = UIFont(name: "HelveticaNeue-Bold", size: 10)
         self.ForegroundScrollView.addSubview(minTemperature)
      
         //high temperature label
-        hiLabel = UILabel(frame: CGRectMake(87, screenHeight-117, 80, 80))
+        hiLabel = UILabel(frame: CGRectMake(92, screenHeight-117, 80, 80))
         hiLabel!.backgroundColor = UIColor.clearColor()
         hiLabel!.textColor = UIColor.whiteColor()
         //lowLabel!.text = "20\u{00B0}"
@@ -246,7 +246,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         
         //Feels like
         
-        let feelsLike = UILabel(frame: CGRectMake(110, screenHeight-117, 80, 80))
+        let feelsLike = UILabel(frame: CGRectMake(119, screenHeight-117, 80, 80))
         feelsLike.backgroundColor = UIColor.clearColor()
         feelsLike.textColor = UIColor.whiteColor()
         feelsLike.text = "Feels like:"
@@ -254,7 +254,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         self.ForegroundScrollView.addSubview(feelsLike)
         
         //FeelsLikeTemperature
-        feelsLikeTemperature = UILabel(frame: CGRectMake(165, screenHeight-117, 80, 80))
+        feelsLikeTemperature = UILabel(frame: CGRectMake(170, screenHeight-117, 80, 80))
         feelsLikeTemperature!.backgroundColor = UIColor.clearColor()
         feelsLikeTemperature!.textColor = UIColor.whiteColor()
         feelsLikeTemperature!.font = UIFont(name: "HelveticaNeue-Bold", size: 15)
@@ -369,7 +369,6 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         
         containerView1!.frame.size.height = weatherTableViewController.tableView.frame.height
         containerView1!.frame.size.width = weatherTableViewController.tableView.frame.width
-        containerView1!.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
         self.addChildViewController(weatherTableViewController)
         self.containerView1!.addSubview(weatherTableViewController.tableView)
         weatherTableViewController.didMoveToParentViewController(self)
@@ -471,12 +470,54 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
                 [unowned self] in
                 self.weatherDescription!.text = $0
             }
-            viewModel?.minutelySummary.observe {
+            /*viewModel?.minutelySummary.observe {
                 [unowned self] in
                 self.minutelySummary!.text = $0
+            }*/
+            viewModel?.dailySummary.observe {
+                [unowned self] in
+                self.forecastSummary!.dailySummary!.text = $0
             }
-
-            
+            viewModel?.precipitationProbability.observe {
+                [unowned self] in
+                self.forecastSummary!.precipitationProbability!.text = $0
+            }
+            viewModel?.precipitationIntensity.observe {
+                [unowned self] in
+                self.forecastSummary!.precipitationIntensity!.text = $0
+            }
+            viewModel?.dewPoint.observe {
+                [unowned self] in
+                self.forecastSummary!.dewPoint!.text = $0
+            }
+            viewModel?.humidity.observe {
+                [unowned self] in
+                self.forecastSummary!.humidity!.text = $0
+            }
+            viewModel?.windDirection.observe {
+                [unowned self] in
+                self.forecastSummary!.windDirection!.text = $0
+            }
+            viewModel?.windSpeed.observe {
+                [unowned self] in
+                self.forecastSummary!.windSpeed!.text = $0
+            }
+            viewModel?.sunriseTime.observe {
+                [unowned self] in
+                self.forecastSummary!.sunriseTime!.text = $0
+            }
+            viewModel?.sunsetTime.observe {
+                [unowned self] in
+                self.forecastSummary!.sunsetTime!.text = $0
+            }
+            viewModel?.cloudCover.observe {
+                [unowned self] in
+                self.forecastSummary!.cloudCover!.text = $0
+            }
+            /*viewModel?.weeklySummary.observe {
+                [unowned self] in
+                self.forecastSummary!.weeklySummary!.text = $0
+            }*/
             viewModel?.dailyForecasts.observe {
                 [unowned self] in
                 //print($0.count)
@@ -494,17 +535,3 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
    
 
  }
-/*
-self.currentSummary.value = self.EmptyString
-self.dailySummary.value = self.EmptyString
-self.minutelySummary.value = self.EmptyString
-self.precipitationProbability.value = self.EmptyString
-self.precipitationType.value = self.EmptyString
-self.precipitationIntensity.value = self.EmptyString
-self.dewPoint.value = self.EmptyString
-self.humidity.value = self.EmptyString
-self.windDirection.value = self.EmptyString
-self.windSpeed.value = self.EmptyString
-self.sunriseTime.value = self.EmptyString
-self.sunsetTime.value = self.EmptyString
-self.cloudCover.value = self.EmptyString */

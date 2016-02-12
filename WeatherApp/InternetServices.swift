@@ -30,9 +30,9 @@ struct WeatherService: WeatherServiceProtocol {
                     print("Request failed with error")
                     return
                 }
-                //print(data)
+                print(data)
                 let json = JSON(data)
-                print(json)
+                               
                 //get current weather data
                 guard let currentTemp = json["currently"]["temperature"].double,
                     currentMaxTemp = json["daily"]["data"][0]["temperatureMax"].double,
@@ -40,9 +40,8 @@ struct WeatherService: WeatherServiceProtocol {
                     feelsLikeTemperature = json["currently"]["apparentTemperature"].double,
                     currentSummary = json["currently"]["summary"].string,
                     dailySummary = json["daily"]["data"][0]["summary"].string,
-                    minutelySummary = json["minutely"]["summary"].string,
+                    //minutelySummary = json["minutely"]["summary"].string,
                     precipitationProbability = json["daily"]["data"][0]["precipProbability"].double,
-                    precipitationType = json["daily"]["data"][0]["precipType"].string,
                     precipitationIntensity = json["daily"]["data"][0]["precipIntensity"].double,
                     dewPoint = json["daily"]["data"][0]["dewPoint"].double,
                     humidity = json["daily"]["data"][0]["humidity"].double,
@@ -51,12 +50,14 @@ struct WeatherService: WeatherServiceProtocol {
                     sunriseTime = json["daily"]["data"][0]["sunriseTime"].double,
                     sunsetTime = json["daily"]["data"][0]["sunsetTime"].double,
                     cloudCover = json["daily"]["data"][0]["cloudCover"].double,
+                    //weeklySummary = json["daily"]["data"]["summary"].string,
                     countryCity = json["timezone"].string,
                     currentIcon = json["currently"]["icon"].string else {
                         let error = Error(errorCode: .JSONParsingFailed)
                         completionHandler(nil, error)
                         return
                 }
+               // print(cloudCover)
                 
                 let currentCity = countryCity.componentsSeparatedByString("/")[1]
                 
@@ -68,12 +69,13 @@ struct WeatherService: WeatherServiceProtocol {
                 let windDirection = WindDirection(windBearing: windBearing)
                 let sunRise = TimeDateConversion(sunriseTime).hourTime
                 let sunSet = TimeDateConversion(sunsetTime).hourTime
-                let precipitationProb: String = String(precipitationProbability)
+                let precipitationProb: String = String(Int(precipitationProbability * 100))
                 let precipitation: String = String(precipitationIntensity)
                 let dewP: String = String(dewPoint)
-                let humidityString: String = String(humidity)
+                let humidityString: String = String(Int(humidity * 100))
                 let windSpeedString: String = String(windSpeed)
                 let cloudCoverString: String = String(cloudCover)
+                
                 
                 
                 weatherBuilder.currentTemperature = temperature.degrees
@@ -83,9 +85,8 @@ struct WeatherService: WeatherServiceProtocol {
                 weatherBuilder.location = currentCity
                 weatherBuilder.currentSummary = currentSummary
                 weatherBuilder.dailySummary = dailySummary
-                weatherBuilder.minutelySummary = minutelySummary
+                //weatherBuilder.minutelySummary = minutelySummary
                 weatherBuilder.precipitationProbability = precipitationProb
-                weatherBuilder.precipitationType = precipitationType
                 weatherBuilder.precipitationIntensity = precipitation
                 weatherBuilder.dewPoint = dewP
                 weatherBuilder.humidity = humidityString
@@ -94,6 +95,7 @@ struct WeatherService: WeatherServiceProtocol {
                 weatherBuilder.sunriseTime = sunRise
                 weatherBuilder.sunsetTime = sunSet
                 weatherBuilder.cloudCover = cloudCoverString
+                //weatherBuilder.weeklySummary = weeklySummary
                 
                 let weatherIcon = WeatherIcon().iconMap[currentIcon]
                 weatherBuilder.currentIconName = weatherIcon
