@@ -38,13 +38,25 @@ struct WeatherService: WeatherServiceProtocol {
                     currentMaxTemp = json["daily"]["data"][0]["temperatureMax"].double,
                     currentMinTemp = json["daily"]["data"][0]["temperatureMin"].double,
                     feelsLikeTemperature = json["currently"]["apparentTemperature"].double,
+                    currentSummary = json["currently"]["summary"].string,
+                    dailySummary = json["daily"]["data"][0]["summary"].string,
+                    minutelySummary = json["minutely"]["summary"].string,
+                    precipitationProbability = json["daily"]["data"][0]["precipProbability"].double,
+                    precipitationType = json["daily"]["data"][0]["precipType"].string,
+                    precipitationIntensity = json["daily"]["data"][0]["precipIntensity"].double,
+                    dewPoint = json["daily"]["data"][0]["dewPoint"].double,
+                    humidity = json["daily"]["data"][0]["humidity"].double,
+                    windBearing = json["daily"]["data"][0]["windBearing"].double,
+                    windSpeed = json["daily"]["data"][0]["windSpeed"].double,
+                    sunriseTime = json["daily"]["data"][0]["sunriseTime"].double,
+                    sunsetTime = json["daily"]["data"][0]["sunsetTime"].double,
+                    cloudCover = json["daily"]["data"][0]["cloudCover"].double,
                     countryCity = json["timezone"].string,
                     currentIcon = json["currently"]["icon"].string else {
                         let error = Error(errorCode: .JSONParsingFailed)
                         completionHandler(nil, error)
                         return
                 }
-                
                 
                 let currentCity = countryCity.componentsSeparatedByString("/")[1]
                 
@@ -53,13 +65,35 @@ struct WeatherService: WeatherServiceProtocol {
                 let temperatureLow = Temperature(forecastIoDegrees: currentMinTemp)
                 let temperatureHigh = Temperature(forecastIoDegrees: currentMaxTemp)
                 let feelsLike = Temperature(forecastIoDegrees: feelsLikeTemperature)
-
+                let windDirection = WindDirection(windBearing: windBearing)
+                let sunRise = TimeDateConversion(sunriseTime).hourTime
+                let sunSet = TimeDateConversion(sunsetTime).hourTime
+                let precipitationProb: String = String(precipitationProbability)
+                let precipitation: String = String(precipitationIntensity)
+                let dewP: String = String(dewPoint)
+                let humidityString: String = String(humidity)
+                let windSpeedString: String = String(windSpeed)
+                let cloudCoverString: String = String(cloudCover)
+                
                 
                 weatherBuilder.currentTemperature = temperature.degrees
                 weatherBuilder.currentTemperatureLow = temperatureLow.degrees
                 weatherBuilder.currentTemperatureHigh = temperatureHigh.degrees
                 weatherBuilder.feelsLikeTemperature = feelsLike.degrees
                 weatherBuilder.location = currentCity
+                weatherBuilder.currentSummary = currentSummary
+                weatherBuilder.dailySummary = dailySummary
+                weatherBuilder.minutelySummary = minutelySummary
+                weatherBuilder.precipitationProbability = precipitationProb
+                weatherBuilder.precipitationType = precipitationType
+                weatherBuilder.precipitationIntensity = precipitation
+                weatherBuilder.dewPoint = dewP
+                weatherBuilder.humidity = humidityString
+                weatherBuilder.windDirection = windDirection.windDirection
+                weatherBuilder.windSpeed = windSpeedString
+                weatherBuilder.sunriseTime = sunRise
+                weatherBuilder.sunsetTime = sunSet
+                weatherBuilder.cloudCover = cloudCoverString
                 
                 let weatherIcon = WeatherIcon().iconMap[currentIcon]
                 weatherBuilder.currentIconName = weatherIcon

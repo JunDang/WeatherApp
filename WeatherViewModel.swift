@@ -23,10 +23,22 @@ class WeatherViewModel {
     let currentTemperatureHigh: Observable<String>
     let currentTemperatureLow: Observable<String>
     let feelsLikeTemperature: Observable<String>
-    
+    let currentSummary: Observable<String>
+    let dailySummary: Observable<String>
+    let minutelySummary: Observable<String>
+    let precipitationProbability: Observable<String>
+    let precipitationType: Observable<String>
+    let precipitationIntensity: Observable<String>
+    let dewPoint: Observable<String>
+    let humidity: Observable<String>
+    let windDirection: Observable<String>
+    let windSpeed: Observable<String>
+    let sunriseTime: Observable<String>
+    let sunsetTime: Observable<String>
+    let cloudCover: Observable<String>
     let hourlyForecasts: Observable<[HourlyForecast]>
     let dailyForecasts: Observable<[DailyForecast]>
-    
+
      // MARK: - Services
     private var locationService: LocationService!
     private var weatherService: WeatherServiceProtocol!
@@ -42,7 +54,19 @@ class WeatherViewModel {
         currentTemperatureHigh = Observable(EmptyString)
         currentTemperatureLow = Observable(EmptyString)
         feelsLikeTemperature = Observable(EmptyString)
-        
+        currentSummary = Observable(EmptyString)
+        dailySummary = Observable(EmptyString)
+        minutelySummary = Observable(EmptyString)
+        precipitationProbability = Observable(EmptyString)
+        precipitationType = Observable(EmptyString)
+        precipitationIntensity = Observable(EmptyString)
+        dewPoint = Observable(EmptyString)
+        humidity = Observable(EmptyString)
+        windDirection = Observable(EmptyString)
+        windSpeed = Observable(EmptyString)
+        sunriseTime = Observable(EmptyString)
+        sunsetTime = Observable(EmptyString)
+        cloudCover = Observable(EmptyString)
         hourlyForecasts = Observable([])
         dailyForecasts = Observable([])
     }
@@ -69,6 +93,20 @@ class WeatherViewModel {
         self.currentTemperatureHigh.value = weather.currentTemperatureHigh
         self.currentTemperatureLow.value = weather.currentTemperatureLow
         self.feelsLikeTemperature.value = weather.feelsLikeTemperature
+        self.currentSummary.value = weather.currentSummary
+        self.dailySummary.value = weather.dailySummary
+        self.minutelySummary.value = weather.minutelySummary
+        self.precipitationProbability.value = weather.precipitationProbability
+        self.precipitationType.value = weather.precipitationType
+        self.precipitationIntensity.value = weather.precipitationIntensity
+        self.dewPoint.value = weather.dewPoint
+        self.humidity.value = weather.humidity
+        self.windDirection.value = weather.windDirection
+        self.windSpeed.value = weather.windSpeed
+        self.sunriseTime.value = weather.sunriseTime
+        self.sunsetTime.value = weather.sunsetTime
+        self.cloudCover.value = weather.cloudCover
+
         //hourly forecast
         self.hourlyForecasts.value = weather.hourlyForecasts
         //daily forecast
@@ -98,7 +136,19 @@ class WeatherViewModel {
         self.currentTemperatureHigh.value = self.EmptyString
         self.currentTemperatureLow.value = self.EmptyString
         self.feelsLikeTemperature.value = self.EmptyString
-        
+        self.currentSummary.value = self.EmptyString
+        self.dailySummary.value = self.EmptyString
+        self.minutelySummary.value = self.EmptyString
+        self.precipitationProbability.value = self.EmptyString
+        self.precipitationType.value = self.EmptyString
+        self.precipitationIntensity.value = self.EmptyString
+        self.dewPoint.value = self.EmptyString
+        self.humidity.value = self.EmptyString
+        self.windDirection.value = self.EmptyString
+        self.windSpeed.value = self.EmptyString
+        self.sunriseTime.value = self.EmptyString
+        self.sunsetTime.value = self.EmptyString
+        self.cloudCover.value = self.EmptyString
         self.hourlyForecasts.value = []
         self.dailyForecasts.value = []
     }

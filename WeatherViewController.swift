@@ -25,6 +25,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
     var locationLabel: UILabel?
     var temperatureLabel: UILabel?
     var feelsLikeTemperature: UILabel?
+    var minutelySummary: UILabel?
     var hiLabel: UILabel?
     var lowLabel: UILabel?
     var weathericon2: UIImageView?
@@ -191,6 +192,16 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         temperatureLabel!.text = "20\u{00B0}"
         ForegroundScrollView.addSubview(temperatureLabel!)
         
+        //add minute summary
+        minutelySummary = UILabel(frame: CGRectMake(100, screenHeight-130, 300, 80))
+        let fontLabel = UIFont(name: "HelveticaNeue", size: 15.0)
+        minutelySummary!.font = fontLabel
+        minutelySummary!.backgroundColor = UIColor.clearColor()
+        minutelySummary!.textColor = UIColor.whiteColor()
+        //minutelySummary!.text = "20\u{00B0}"
+        ForegroundScrollView.addSubview(minutelySummary!)
+        
+
         /*//up arrow
         let upArrow = UIImageView(frame: CGRectMake(13, screenHeight-90, 25, 25))
         upArrow.image = UIImage(named: "Up-25")
@@ -325,22 +336,6 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         
     }
     
-   /* func changeDisplay(sender: UISegmentedControl) {
-        print("change display handler is called.")
-        
-        switch sender.selectedSegmentIndex {
-        case 1:
-            displayGraphs(forecastGraphs!)
-            
-        case 2:
-            displaySummary(forecastSummary!)
-        case 3:
-            displayAirQuality(airQuality!)
-        default:
-            displayContentController(weatherTableViewController!)
-        }
-    }
-*/
     func changeDisplay(sender: UISegmentedControl) {
         print("change display handler is called.")
         switch sender.selectedSegmentIndex {
@@ -423,7 +418,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
                 self.weathericon2Label!.text = $0
                 if  !self.weathericon2Label!.text!.isEmpty {
                    self.weathericon2!.image = UIImage(named: "\(self.weathericon2Label!.text!)")
-                   self.weatherDescription!.text = "\(self.weathericon2Label!.text!)"
+                   //self.weatherDescription!.text = "\(self.weathericon2Label!.text!)"
 
                     Flickr().searchFlickrForTerm(self.weathericon2Label!.text!) {(backgroundImage, error) -> Void in
                         dispatch_async(dispatch_get_main_queue(), {
@@ -472,6 +467,14 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
                 [unowned self] in
                 self.feelsLikeTemperature!.text = $0
             }
+            viewModel?.currentSummary.observe {
+                [unowned self] in
+                self.weatherDescription!.text = $0
+            }
+            viewModel?.minutelySummary.observe {
+                [unowned self] in
+                self.minutelySummary!.text = $0
+            }
 
             
             viewModel?.dailyForecasts.observe {
@@ -491,3 +494,17 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
    
 
  }
+/*
+self.currentSummary.value = self.EmptyString
+self.dailySummary.value = self.EmptyString
+self.minutelySummary.value = self.EmptyString
+self.precipitationProbability.value = self.EmptyString
+self.precipitationType.value = self.EmptyString
+self.precipitationIntensity.value = self.EmptyString
+self.dewPoint.value = self.EmptyString
+self.humidity.value = self.EmptyString
+self.windDirection.value = self.EmptyString
+self.windSpeed.value = self.EmptyString
+self.sunriseTime.value = self.EmptyString
+self.sunsetTime.value = self.EmptyString
+self.cloudCover.value = self.EmptyString */

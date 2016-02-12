@@ -15,6 +15,22 @@ struct Weather {
     let currentTemperatureHigh: String
     let currentTemperatureLow: String
     let feelsLikeTemperature: String
+    
+    let currentSummary: String
+    let dailySummary: String
+    let minutelySummary: String
+    
+    let precipitationProbability: String
+    let precipitationType: String
+    let precipitationIntensity: String
+    let dewPoint: String
+    let humidity: String
+    let windDirection: String
+    let windSpeed: String
+    let sunriseTime: String
+    let sunsetTime: String
+    let cloudCover: String
+
    
     
     let hourlyForecasts: [HourlyForecast]
