@@ -18,7 +18,7 @@ struct Weather {
     
     let currentSummary: String
     let dailySummary: String
-    //let minutelySummary: String
+    let minutelySummary: String
     
     let precipitationProbability: String
     let precipitationIntensity: String
@@ -30,7 +30,7 @@ struct Weather {
     let sunsetTime: String
     let cloudCover: String
     
-    //let weeklySummary: String
+    let weeklySummary: String
 
    
     

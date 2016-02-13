@@ -10,7 +10,9 @@ import UIKit
 
 class Summary: UIViewController {
     
+   
     @IBOutlet weak var TodayLabel: UILabel!
+    @IBOutlet weak var precipType: UILabel!
     @IBOutlet weak var weeklySummary: UILabel!
     @IBOutlet weak var cloudCover: UILabel!
     @IBOutlet weak var dailySummary: UILabel!

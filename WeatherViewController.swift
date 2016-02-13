@@ -198,7 +198,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         minutelySummary!.font = fontLabel
         minutelySummary!.backgroundColor = UIColor.clearColor()
         minutelySummary!.textColor = UIColor.whiteColor()
-        //minutelySummary!.text = "20\u{00B0}"
+      
         ForegroundScrollView.addSubview(minutelySummary!)
         
 
@@ -470,10 +470,10 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
                 [unowned self] in
                 self.weatherDescription!.text = $0
             }
-            /*viewModel?.minutelySummary.observe {
+            viewModel?.minutelySummary.observe {
                 [unowned self] in
                 self.minutelySummary!.text = $0
-            }*/
+            }
             viewModel?.dailySummary.observe {
                 [unowned self] in
                 self.forecastSummary!.dailySummary!.text = $0
@@ -514,10 +514,10 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
                 [unowned self] in
                 self.forecastSummary!.cloudCover!.text = $0
             }
-            /*viewModel?.weeklySummary.observe {
+            viewModel?.weeklySummary.observe {
                 [unowned self] in
                 self.forecastSummary!.weeklySummary!.text = $0
-            }*/
+            }
             viewModel?.dailyForecasts.observe {
                 [unowned self] in
                 //print($0.count)

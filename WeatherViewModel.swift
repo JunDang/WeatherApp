@@ -25,7 +25,7 @@ class WeatherViewModel {
     let feelsLikeTemperature: Observable<String>
     let currentSummary: Observable<String>
     let dailySummary: Observable<String>
-    //let minutelySummary: Observable<String>
+    let minutelySummary: Observable<String>
     let precipitationProbability: Observable<String>
     let precipitationIntensity: Observable<String>
     let dewPoint: Observable<String>
@@ -35,7 +35,7 @@ class WeatherViewModel {
     let sunriseTime: Observable<String>
     let sunsetTime: Observable<String>
     let cloudCover: Observable<String>
-    //let weeklySummary: Observable<String>
+    let weeklySummary: Observable<String>
     let hourlyForecasts: Observable<[HourlyForecast]>
     let dailyForecasts: Observable<[DailyForecast]>
 
@@ -56,7 +56,7 @@ class WeatherViewModel {
         feelsLikeTemperature = Observable(EmptyString)
         currentSummary = Observable(EmptyString)
         dailySummary = Observable(EmptyString)
-        //minutelySummary = Observable(EmptyString)
+        minutelySummary = Observable(EmptyString)
         precipitationProbability = Observable(EmptyString)
         precipitationIntensity = Observable(EmptyString)
         dewPoint = Observable(EmptyString)
@@ -66,7 +66,7 @@ class WeatherViewModel {
         sunriseTime = Observable(EmptyString)
         sunsetTime = Observable(EmptyString)
         cloudCover = Observable(EmptyString)
-       // weeklySummary = Observable(EmptyString)
+        weeklySummary = Observable(EmptyString)
         hourlyForecasts = Observable([])
         dailyForecasts = Observable([])
     }
@@ -95,7 +95,7 @@ class WeatherViewModel {
         self.feelsLikeTemperature.value = weather.feelsLikeTemperature
         self.currentSummary.value = weather.currentSummary
         self.dailySummary.value = weather.dailySummary
-       // self.minutelySummary.value = weather.minutelySummary
+        self.minutelySummary.value = weather.minutelySummary
         self.precipitationProbability.value = weather.precipitationProbability
         self.precipitationIntensity.value = weather.precipitationIntensity
         self.dewPoint.value = weather.dewPoint
@@ -105,7 +105,7 @@ class WeatherViewModel {
         self.sunriseTime.value = weather.sunriseTime
         self.sunsetTime.value = weather.sunsetTime
         self.cloudCover.value = weather.cloudCover
-        //self.weeklySummary.value = weather.weeklySummary
+        self.weeklySummary.value = weather.weeklySummary
 
         //hourly forecast
         self.hourlyForecasts.value = weather.hourlyForecasts
@@ -138,7 +138,7 @@ class WeatherViewModel {
         self.feelsLikeTemperature.value = self.EmptyString
         self.currentSummary.value = self.EmptyString
         self.dailySummary.value = self.EmptyString
-        //self.minutelySummary.value = self.EmptyString
+        self.minutelySummary.value = self.EmptyString
         self.precipitationProbability.value = self.EmptyString
         self.precipitationIntensity.value = self.EmptyString
         self.dewPoint.value = self.EmptyString
@@ -148,7 +148,7 @@ class WeatherViewModel {
         self.sunriseTime.value = self.EmptyString
         self.sunsetTime.value = self.EmptyString
         self.cloudCover.value = self.EmptyString
-        //self.weeklySummary.value = self.EmptyString
+        self.weeklySummary.value = self.EmptyString
         self.hourlyForecasts.value = []
         self.dailyForecasts.value = []
     }
