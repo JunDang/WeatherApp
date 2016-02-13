@@ -29,6 +29,7 @@ class DailyViewCell: UITableViewCell {
         dayLabel!.font = font
         dayLabel!.backgroundColor = UIColor.clearColor()
         dayLabel!.textAlignment = NSTextAlignment.Left
+        dayLabel!.textColor = UIColor.whiteColor()
         self.contentView.addSubview(dayLabel!)
         let toTopDay =  NSLayoutConstraint(item: dayLabel!, attribute: .Top, relatedBy: .Equal,
             toItem: contentView, attribute: .Top, multiplier: 1.0, constant: 2)
@@ -42,6 +43,7 @@ class DailyViewCell: UITableViewCell {
         //create minmum temperature label
         temperatureLow!.font = font
         temperatureLow!.backgroundColor = UIColor.clearColor()
+        temperatureLow!.textColor = UIColor.whiteColor()
         temperatureLow!.textAlignment = NSTextAlignment.Center
         self.contentView.addSubview(temperatureLow!)
         let toTopTL =  NSLayoutConstraint(item: temperatureLow!, attribute: .Top, relatedBy: .Equal,
@@ -56,6 +58,7 @@ class DailyViewCell: UITableViewCell {
         // create temperature high
         temperatureHigh!.font = font
         temperatureHigh!.backgroundColor = UIColor.clearColor()
+        temperatureHigh!.textColor = UIColor.whiteColor()
         temperatureHigh!.textAlignment = NSTextAlignment.Center
         self.contentView.addSubview(temperatureHigh!)
         let toTopTH =  NSLayoutConstraint(item: temperatureHigh!, attribute: .Top, relatedBy: .Equal,

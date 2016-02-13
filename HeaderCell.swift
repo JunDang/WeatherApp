@@ -23,7 +23,7 @@ class HeaderCell: UITableViewCell {
         headerTitle!.font = font
         headerTitle!.backgroundColor = UIColor.clearColor()
         headerTitle!.textAlignment = NSTextAlignment.Left
-        headerTitle!.text = "Forecast"
+        headerTitle!.text = ""
         self.contentView.addSubview(headerTitle!)
         let toTopHeader =  NSLayoutConstraint(item: headerTitle!, attribute: .Top, relatedBy: .Equal,
             toItem: contentView, attribute: .Top, multiplier: 1.0, constant: 5)

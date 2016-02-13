@@ -56,17 +56,23 @@ struct WeatherService: WeatherServiceProtocol {
                         return
                 }
                // print(cloudCover)
-                let weeklySummary: String?
+               /* let weeklySummary: String?
                 if json["daily"]["data"]["summary"] != nil {
                    weeklySummary = json["daily"]["data"]["summary"].string
                 } else {
                    weeklySummary = ""
-                }
+                }*/
                 let minutelySummary: String?
                 if json["minutely"]["summary"] != nil {
                     minutelySummary = json["minutely"]["summary"].string
                 } else {
                     minutelySummary = ""
+                }
+                let precipitationType: String?
+                if json["daily"]["data"][0]["precipType"] != nil {
+                    precipitationType = json["daily"]["data"][0]["precipType"].string
+                } else {
+                    precipitationType = ""
                 }
                 let currentCity = countryCity.componentsSeparatedByString("/")[1]
                 
@@ -78,11 +84,11 @@ struct WeatherService: WeatherServiceProtocol {
                 let windDirection = WindDirection(windBearing: windBearing)
                 let sunRise = TimeDateConversion(sunriseTime).hourTime
                 let sunSet = TimeDateConversion(sunsetTime).hourTime
-                let precipitationProb: String = String(Int(precipitationProbability * 100))
-                let precipitation: String = String(precipitationIntensity)
+                let precipitationProb: String = String(Int(precipitationProbability * 100)) + "%"
+                let precipitation: String = String(precipitationIntensity) + "cm"
                 let dewP: String = String(dewPoint)
-                let humidityString: String = String(Int(humidity * 100))
-                let windSpeedString: String = String(windSpeed)
+                let humidityString: String = String(Int(humidity * 100)) + "%"
+                let windSpeedString: String = String(windSpeed) + "km/hr"
                 let cloudCoverString: String = String(cloudCover)
                 
                 
@@ -97,6 +103,7 @@ struct WeatherService: WeatherServiceProtocol {
                 weatherBuilder.minutelySummary = minutelySummary
                 weatherBuilder.precipitationProbability = precipitationProb
                 weatherBuilder.precipitationIntensity = precipitation
+                weatherBuilder.precipitationType = precipitationType
                 weatherBuilder.dewPoint = dewP
                 weatherBuilder.humidity = humidityString
                 weatherBuilder.windDirection = windDirection.windDirection
@@ -104,7 +111,7 @@ struct WeatherService: WeatherServiceProtocol {
                 weatherBuilder.sunriseTime = sunRise
                 weatherBuilder.sunsetTime = sunSet
                 weatherBuilder.cloudCover = cloudCoverString
-                weatherBuilder.weeklySummary = weeklySummary
+                //weatherBuilder.weeklySummary = weeklySummary
                 
                 let weatherIcon = WeatherIcon().iconMap[currentIcon]
                 weatherBuilder.currentIconName = weatherIcon

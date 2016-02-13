@@ -21,6 +21,7 @@ struct WeatherBuilder {
     
     var precipitationProbability: String?
     var precipitationIntensity: String?
+    var precipitationType: String?
     var dewPoint: String?
     var humidity: String?
     var windDirection: String?
@@ -28,7 +29,7 @@ struct WeatherBuilder {
     var sunriseTime: String?
     var sunsetTime: String?
     var cloudCover: String?
-    var weeklySummary: String?
+    //var weeklySummary: String?
     var hourlyForecasts: [HourlyForecast]?
     var dailyForecasts: [DailyForecast]?
     
@@ -45,6 +46,7 @@ struct WeatherBuilder {
             minutelySummary: minutelySummary!,
             precipitationProbability:precipitationProbability!,
             precipitationIntensity: precipitationIntensity!,
+            precipitationType: precipitationType!,
             dewPoint: dewPoint!,
             humidity: humidity!,
             windDirection: windDirection!,
@@ -52,7 +54,7 @@ struct WeatherBuilder {
             sunriseTime: sunriseTime!,
             sunsetTime: sunsetTime!,
             cloudCover: cloudCover!,
-            weeklySummary: weeklySummary!,
+            //weeklySummary: weeklySummary!,
             hourlyForecasts: hourlyForecasts!,
             dailyForecasts: dailyForecasts!)
     }

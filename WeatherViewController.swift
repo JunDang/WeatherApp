@@ -104,7 +104,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         
         //containerView
         let containerSize1 = CGSize(width: view.bounds.width, height: screenHeight)
-        containerView1 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: screenHeight + 5), size:containerSize1))
+        containerView1 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: screenHeight + 15), size:containerSize1))
         containerView1?.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
         containerView1!.setNeedsDisplay()
         containerView1!.translatesAutoresizingMaskIntoConstraints = false
@@ -208,7 +208,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         self.ForegroundScrollView.addSubview(upArrow)*/
         
         //max temperature description
-        let maxTemperature = UILabel(frame: CGRectMake(65, screenHeight-117, 80, 80))
+        let maxTemperature = UILabel(frame: CGRectMake(70, screenHeight-117, 80, 80))
         maxTemperature.backgroundColor = UIColor.clearColor()
         maxTemperature.textColor = UIColor.whiteColor()
         maxTemperature.text = "High:"
@@ -237,7 +237,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         self.ForegroundScrollView.addSubview(minTemperature)
      
         //high temperature label
-        hiLabel = UILabel(frame: CGRectMake(92, screenHeight-117, 80, 80))
+        hiLabel = UILabel(frame: CGRectMake(97, screenHeight-117, 80, 80))
         hiLabel!.backgroundColor = UIColor.clearColor()
         hiLabel!.textColor = UIColor.whiteColor()
         //lowLabel!.text = "20\u{00B0}"
@@ -246,7 +246,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         
         //Feels like
         
-        let feelsLike = UILabel(frame: CGRectMake(119, screenHeight-117, 80, 80))
+        let feelsLike = UILabel(frame: CGRectMake(124, screenHeight-117, 80, 80))
         feelsLike.backgroundColor = UIColor.clearColor()
         feelsLike.textColor = UIColor.whiteColor()
         feelsLike.text = "Feels like:"
@@ -254,7 +254,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         self.ForegroundScrollView.addSubview(feelsLike)
         
         //FeelsLikeTemperature
-        feelsLikeTemperature = UILabel(frame: CGRectMake(170, screenHeight-117, 80, 80))
+        feelsLikeTemperature = UILabel(frame: CGRectMake(175, screenHeight-117, 80, 80))
         feelsLikeTemperature!.backgroundColor = UIColor.clearColor()
         feelsLikeTemperature!.textColor = UIColor.whiteColor()
         feelsLikeTemperature!.font = UIFont(name: "HelveticaNeue-Bold", size: 15)
@@ -287,7 +287,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         segmentedControll.frame = CGRectMake(screenSize.minX + 10, screenHeight + 5,
             screenSize.width - 20, screenSize.height*0.05)
         segmentedControll.layer.cornerRadius = 5.0  // Don't let background bleed
-        segmentedControll.backgroundColor = UIColor.blackColor()
+        segmentedControll.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
         segmentedControll.tintColor = UIColor.whiteColor()
         segmentedControll.addTarget(self, action: "changeDisplay:", forControlEvents: .ValueChanged)
         self.ForegroundScrollView.addSubview(segmentedControll)
@@ -486,6 +486,10 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
                 [unowned self] in
                 self.forecastSummary!.precipitationIntensity!.text = $0
             }
+            viewModel?.precipitationType.observe {
+                [unowned self] in
+                self.forecastSummary!.precipType!.text = $0
+            }
             viewModel?.dewPoint.observe {
                 [unowned self] in
                 self.forecastSummary!.dewPoint!.text = $0
@@ -514,10 +518,10 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
                 [unowned self] in
                 self.forecastSummary!.cloudCover!.text = $0
             }
-            viewModel?.weeklySummary.observe {
+           /* viewModel?.weeklySummary.observe {
                 [unowned self] in
                 self.forecastSummary!.weeklySummary!.text = $0
-            }
+            }*/
             viewModel?.dailyForecasts.observe {
                 [unowned self] in
                 //print($0.count)
