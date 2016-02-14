@@ -30,7 +30,7 @@ struct WeatherService: WeatherServiceProtocol {
                     print("Request failed with error")
                     return
                 }
-                print(data)
+                //print(data)
                 let json = JSON(data)
                                
                 //get current weather data
@@ -262,7 +262,7 @@ struct Flickr: FlickrServiceProtocol{
             
         let searchTerm = searchTerm.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
         
-        let URLString = "https://api.flickr.com/services/rest/?accuracy=11&api_key=\(apiKey)&per_page=25&method=flickr.photos.search&sort=interestingness-desc&tags=\(searchTerm),scenic,landscape,flower,tree,nature,beautiful&tagmode=all&format=json&nojsoncallback=1"
+        let URLString = "https://api.flickr.com/services/rest/?accuracy=11&api_key=\(apiKey)&per_page=25&method=flickr.photos.search&sort=interestingness-desc&tags=\(searchTerm),scenic,landscape,flower,tree,nature,insects,water,sea,cloud,leaf,colorful&tagmode=all&format=json&nojsoncallback=1"
         //print(URLString)
         return NSURL(string: URLString)!
         

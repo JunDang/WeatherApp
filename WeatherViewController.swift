@@ -531,6 +531,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
             viewModel?.hourlyForecasts.observe {
                 [unowned self] in
                 self.weatherTableViewController!.updateHourlyData($0)
+                self.forecastGraphs!.updateHourlyData($0)
                 
             }
         }

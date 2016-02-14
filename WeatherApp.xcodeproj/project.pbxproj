@@ -13,6 +13,8 @@
 		0769B9B81C4C8D0F00EEC4D9 /* DailyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0769B9B71C4C8D0F00EEC4D9 /* DailyViewModel.swift */; };
 		0769B9BA1C4C8D7500EEC4D9 /* DailyForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0769B9B91C4C8D7500EEC4D9 /* DailyForecast.swift */; };
 		076FDE651C6D34C300833B0B /* WindDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076FDE641C6D34C300833B0B /* WindDirection.swift */; };
+		0781E0411C6FCED90061710B /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0781E03C1C6FCE700061710B /* Charts.framework */; };
+		0781E0421C6FCED90061710B /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0781E03C1C6FCE700061710B /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0783E1921C3EC4D800696727 /* WeatherBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0783E1911C3EC4D800696727 /* WeatherBuilder.swift */; };
 		07850F851C4E822800EFE0E3 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07850F841C4E822800EFE0E3 /* WeatherViewModel.swift */; };
 		0788BABB1C484B9300E89747 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0788BAB51C48017D00E89747 /* Alamofire.framework */; };
@@ -54,6 +56,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		0781E03B1C6FCE700061710B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0781E0301C6FCE6F0061710B /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5BA8EC401A9D14DC00CE82E1;
+			remoteInfo = "Charts-iOS";
+		};
+		0781E03D1C6FCE700061710B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0781E0301C6FCE6F0061710B /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A52C5C371BAC5CA400594CDD;
+			remoteInfo = "Charts-TV";
+		};
+		0781E03F1C6FCE700061710B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0781E0301C6FCE6F0061710B /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 06AEE7A21BDC3F8B009875AE;
+			remoteInfo = ChartsTests;
+		};
+		0781E0431C6FCED90061710B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0781E0301C6FCE6F0061710B /* Charts.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 5BA8EC3F1A9D14DC00CE82E1;
+			remoteInfo = "Charts-iOS";
+		};
 		0788BB031C48876800E89747 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0788BAF91C48876700E89747 /* Alamofire.xcodeproj */;
@@ -145,6 +175,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				0788BB181C48894B00E89747 /* Alamofire.framework in Embed Frameworks */,
+				0781E0421C6FCED90061710B /* Charts.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -158,6 +189,7 @@
 		0769B9B71C4C8D0F00EEC4D9 /* DailyViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyViewModel.swift; sourceTree = "<group>"; };
 		0769B9B91C4C8D7500EEC4D9 /* DailyForecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyForecast.swift; sourceTree = "<group>"; };
 		076FDE641C6D34C300833B0B /* WindDirection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindDirection.swift; sourceTree = "<group>"; };
+		0781E0301C6FCE6F0061710B /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../../../Downloads/ios-charts-master/Charts/Charts.xcodeproj"; sourceTree = "<group>"; };
 		0783E1911C3EC4D800696727 /* WeatherBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherBuilder.swift; sourceTree = "<group>"; };
 		07850F841C4E822800EFE0E3 /* WeatherViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeatherViewModel.swift; path = ../WeatherViewModel.swift; sourceTree = "<group>"; };
 		0788BAB51C48017D00E89747 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = /Users/YYH/Documents/iOS/WeatherApp/Carthage/Build/iOS/Alamofire.framework; sourceTree = "<absolute>"; };
@@ -210,6 +242,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0781E0411C6FCED90061710B /* Charts.framework in Frameworks */,
 				0788BABB1C484B9300E89747 /* Alamofire.framework in Frameworks */,
 				0788BB171C48894B00E89747 /* Alamofire.framework in Frameworks */,
 			);
@@ -243,6 +276,16 @@
 			);
 			name = DailyForecast;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		0781E0311C6FCE6F0061710B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0781E03C1C6FCE700061710B /* Charts.framework */,
+				0781E03E1C6FCE700061710B /* Charts.framework */,
+				0781E0401C6FCE700061710B /* ChartsTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		07850F8B1C4E823A00EFE0E3 /* ThirdParty */ = {
@@ -367,6 +410,7 @@
 				60DEB9591C07ACDA00CED811 /* AppDelegate.swift */,
 				60DEB95D1C07ACDA00CED811 /* Main.storyboard */,
 				60DEB9601C07ACDA00CED811 /* Assets.xcassets */,
+				0781E0301C6FCE6F0061710B /* Charts.xcodeproj */,
 				6038D7981C0F7D16000B17AD /* Images-2 */,
 				60DEB9621C07ACDA00CED811 /* LaunchScreen.storyboard */,
 				60DEB9651C07ACDA00CED811 /* Info.plist */,
@@ -416,6 +460,7 @@
 			dependencies = (
 				0788BB161C48886100E89747 /* PBXTargetDependency */,
 				0788BB1A1C48894B00E89747 /* PBXTargetDependency */,
+				0781E0441C6FCED90061710B /* PBXTargetDependency */,
 			);
 			name = WeatherApp;
 			productName = WeatherApp;
@@ -497,6 +542,10 @@
 					ProductGroup = 0788BAFA1C48876700E89747 /* Products */;
 					ProjectRef = 0788BAF91C48876700E89747 /* Alamofire.xcodeproj */;
 				},
+				{
+					ProductGroup = 0781E0311C6FCE6F0061710B /* Products */;
+					ProjectRef = 0781E0301C6FCE6F0061710B /* Charts.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -508,6 +557,27 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		0781E03C1C6FCE700061710B /* Charts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Charts.framework;
+			remoteRef = 0781E03B1C6FCE700061710B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0781E03E1C6FCE700061710B /* Charts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Charts.framework;
+			remoteRef = 0781E03D1C6FCE700061710B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0781E0401C6FCE700061710B /* ChartsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ChartsTests.xctest;
+			remoteRef = 0781E03F1C6FCE700061710B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		0788BB041C48876800E89747 /* Alamofire.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -641,6 +711,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		0781E0441C6FCED90061710B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Charts-iOS";
+			targetProxy = 0781E0431C6FCED90061710B /* PBXContainerItemProxy */;
+		};
 		0788BB161C48886100E89747 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Alamofire iOS";

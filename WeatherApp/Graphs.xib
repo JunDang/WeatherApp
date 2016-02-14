@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Graphs" customModule="WeatherApp" customModuleProvider="target">
             <connections>
-                <outlet property="hourlyForecast" destination="gi3-Ju-50L" id="2G8-U1-zdq"/>
+                <outlet property="hourlyForecast" destination="gi3-Ju-50L" id="eQR-ci-3L2"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,8 +16,8 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gi3-Ju-50L">
-                    <rect key="frame" x="8" y="23" width="578" height="386"/>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gi3-Ju-50L" customClass="LineChartView" customModule="Charts">
+                    <rect key="frame" x="18" y="23" width="291" height="280"/>
                     <color key="backgroundColor" red="0.4081899162" green="0.77503551140000004" blue="0.43703125059999998" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
             </subviews>
