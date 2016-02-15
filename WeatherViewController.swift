@@ -246,7 +246,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         
         //Feels like
         
-        let feelsLike = UILabel(frame: CGRectMake(124, screenHeight-117, 80, 80))
+        let feelsLike = UILabel(frame: CGRectMake(128, screenHeight-117, 80, 80))
         feelsLike.backgroundColor = UIColor.clearColor()
         feelsLike.textColor = UIColor.whiteColor()
         feelsLike.text = "Feels like:"
@@ -254,7 +254,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         self.ForegroundScrollView.addSubview(feelsLike)
         
         //FeelsLikeTemperature
-        feelsLikeTemperature = UILabel(frame: CGRectMake(175, screenHeight-117, 80, 80))
+        feelsLikeTemperature = UILabel(frame: CGRectMake(179, screenHeight-117, 80, 80))
         feelsLikeTemperature!.backgroundColor = UIColor.clearColor()
         feelsLikeTemperature!.textColor = UIColor.whiteColor()
         feelsLikeTemperature!.font = UIFont(name: "HelveticaNeue-Bold", size: 15)
