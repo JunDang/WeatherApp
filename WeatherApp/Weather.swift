@@ -22,10 +22,10 @@ struct Weather {
     
     let precipitationProbability: String
     let precipitationIntensity: String
-    let precipitationType: String
+    //let precipitationType: String
     let dewPoint: String
     let humidity: String
-    let windDirection: String
+    //let windDirection: String
     let windSpeed: String
     let sunriseTime: String
     let sunsetTime: String

@@ -81,17 +81,30 @@ struct WeatherService: WeatherServiceProtocol {
                 let temperatureLow = Temperature(forecastIoDegrees: currentMinTemp)
                 let temperatureHigh = Temperature(forecastIoDegrees: currentMaxTemp)
                 let feelsLike = Temperature(forecastIoDegrees: feelsLikeTemperature)
-                let windDirection = WindDirection(windBearing: windBearing)
+               // let calculatingWindDirection = windDegreeTowindDirection(windBearing: windBearing)
                 let sunRise = TimeDateConversion(sunriseTime).hourTime
                 let sunSet = TimeDateConversion(sunsetTime).hourTime
-                let precipitationProb: String = String(Int(precipitationProbability * 100)) + "%"
-                let precipitation: String = String(precipitationIntensity) + "cm"
+                let precipitationProb: String = String(Int(precipitationProbability * 100)) + " %"
+                let precipitation: String = String(precipitationIntensity) + " cm"
                 let dewP: String = String(dewPoint)
-                let humidityString: String = String(Int(humidity * 100)) + "%"
-                let windSpeedString: String = String(windSpeed) + "km/hr"
+                let humidityString: String = String(Int(humidity * 100)) + " %"
+                let windSpeedString: String = String(windSpeed) + " km/hr"
                 let cloudCoverString: String = String(cloudCover)
                 
-                
+                var windDirection: String?
+                func windDegreeTowindDirection(windBearing: Double) -> String {
+                    
+                    var directions = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE",
+                        "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"]
+                    
+                    let i:Int = Int((windBearing + 11.25)/22.5)
+                    
+                    windDirection = String(directions[i % 16])
+                    return windDirection!
+                    
+                    
+                }
+                let calculatingWindDirection = windDegreeTowindDirection(windBearing)
                 
                 weatherBuilder.currentTemperature = temperature.degrees
                 weatherBuilder.currentTemperatureLow = temperatureLow.degrees
@@ -101,13 +114,13 @@ struct WeatherService: WeatherServiceProtocol {
                 weatherBuilder.currentSummary = currentSummary
                 weatherBuilder.dailySummary = dailySummary
                 weatherBuilder.minutelySummary = minutelySummary
-                weatherBuilder.precipitationProbability = precipitationProb
+                weatherBuilder.precipitationProbability = precipitationProb + " " + precipitationType!
                 weatherBuilder.precipitationIntensity = precipitation
-                weatherBuilder.precipitationType = precipitationType
+                //weatherBuilder.precipitationType = precipitationType
                 weatherBuilder.dewPoint = dewP
                 weatherBuilder.humidity = humidityString
-                weatherBuilder.windDirection = windDirection.windDirection
-                weatherBuilder.windSpeed = windSpeedString
+                //weatherBuilder.windDirection = windDirection.windDirection
+                weatherBuilder.windSpeed = calculatingWindDirection + " " + windSpeedString
                 weatherBuilder.sunriseTime = sunRise
                 weatherBuilder.sunsetTime = sunSet
                 weatherBuilder.cloudCover = cloudCoverString

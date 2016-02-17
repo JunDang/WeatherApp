@@ -105,7 +105,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         //containerView
         let containerSize1 = CGSize(width: view.bounds.width, height: screenHeight)
         containerView1 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: screenHeight + 15), size:containerSize1))
-        containerView1?.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
+        containerView1?.backgroundColor = UIColor.clearColor()
         containerView1!.setNeedsDisplay()
         containerView1!.translatesAutoresizingMaskIntoConstraints = false
         let fheight1 = containerView1?.frame.height
@@ -113,19 +113,19 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
        
         let containerSize2 = CGSize(width: view.bounds.width, height: screenHeight)
         containerView2 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: screenHeight + 5), size:containerSize2))
-        containerView2?.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.2)
+        containerView2?.backgroundColor = UIColor.clearColor()
         containerView2!.setNeedsDisplay()
         containerView2!.translatesAutoresizingMaskIntoConstraints = false
         //let fheight2 = containerView2?.frame.height
         let containerSize3 = CGSize(width: view.bounds.width, height: screenHeight)
         containerView3 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: screenHeight + 5), size:containerSize3))
-        containerView3?.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.2)
+        containerView3?.backgroundColor = UIColor.clearColor()
         containerView3!.setNeedsDisplay()
         containerView3!.translatesAutoresizingMaskIntoConstraints = false
        // let fheight3 = containerView3?.frame.height
         let containerSize4 = CGSize(width: view.bounds.width, height: screenHeight)
         containerView4 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: screenHeight + 5), size:containerSize4))
-        containerView4?.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.2)
+        containerView4?.backgroundColor = UIColor.clearColor()
         containerView4!.setNeedsDisplay()
         containerView4!.translatesAutoresizingMaskIntoConstraints = false
 
@@ -486,10 +486,10 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
                 [unowned self] in
                 self.forecastSummary!.precipitationIntensity!.text = $0
             }
-            viewModel?.precipitationType.observe {
+           /* viewModel?.precipitationType.observe {
                 [unowned self] in
                 self.forecastSummary!.precipType!.text = $0
-            }
+            }*/
             viewModel?.dewPoint.observe {
                 [unowned self] in
                 self.forecastSummary!.dewPoint!.text = $0
@@ -498,10 +498,10 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
                 [unowned self] in
                 self.forecastSummary!.humidity!.text = $0
             }
-            viewModel?.windDirection.observe {
+            /*viewModel?.windDirection.observe {
                 [unowned self] in
                 self.forecastSummary!.windDirection!.text = $0
-            }
+            }*/
             viewModel?.windSpeed.observe {
                 [unowned self] in
                 self.forecastSummary!.windSpeed!.text = $0

@@ -13,7 +13,6 @@ class Summary: UIViewController {
    
     @IBOutlet weak var TodayLabel: UILabel!
     @IBOutlet weak var precipType: UILabel!
-    @IBOutlet weak var weeklySummary: UILabel!
     @IBOutlet weak var cloudCover: UILabel!
     @IBOutlet weak var dailySummary: UILabel!
     @IBOutlet weak var precipitationProbability: UILabel!
@@ -32,7 +31,7 @@ class Summary: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
+        self.view.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
         // Do any additional setup after loading the view.
         
         

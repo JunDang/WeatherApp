@@ -17,7 +17,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gi3-Ju-50L" customClass="LineChartView" customModule="Charts">
-                    <rect key="frame" x="18" y="74" width="373" height="280"/>
+                    <rect key="frame" x="19" y="38" width="333" height="309"/>
                     <color key="backgroundColor" name="textColor" catalog="System" colorSpace="catalog"/>
                 </view>
             </subviews>

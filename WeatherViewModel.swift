@@ -28,10 +28,10 @@ class WeatherViewModel {
     let minutelySummary: Observable<String>
     let precipitationProbability: Observable<String>
     let precipitationIntensity: Observable<String>
-    let precipitationType: Observable<String>
+    //let precipitationType: Observable<String>
     let dewPoint: Observable<String>
     let humidity: Observable<String>
-    let windDirection: Observable<String>
+    //let windDirection: Observable<String>
     let windSpeed: Observable<String>
     let sunriseTime: Observable<String>
     let sunsetTime: Observable<String>
@@ -60,10 +60,10 @@ class WeatherViewModel {
         minutelySummary = Observable(EmptyString)
         precipitationProbability = Observable(EmptyString)
         precipitationIntensity = Observable(EmptyString)
-        precipitationType = Observable(EmptyString)
+       // precipitationType = Observable(EmptyString)
         dewPoint = Observable(EmptyString)
         humidity = Observable(EmptyString)
-        windDirection = Observable(EmptyString)
+      //  windDirection = Observable(EmptyString)
         windSpeed = Observable(EmptyString)
         sunriseTime = Observable(EmptyString)
         sunsetTime = Observable(EmptyString)
@@ -100,10 +100,10 @@ class WeatherViewModel {
         self.minutelySummary.value = weather.minutelySummary
         self.precipitationProbability.value = weather.precipitationProbability
         self.precipitationIntensity.value = weather.precipitationIntensity
-        self.precipitationType.value = weather.precipitationType
+       // self.precipitationType.value = weather.precipitationType
         self.dewPoint.value = weather.dewPoint
         self.humidity.value = weather.humidity
-        self.windDirection.value = weather.windDirection
+        //self.windDirection.value = weather.windDirection
         self.windSpeed.value = weather.windSpeed
         self.sunriseTime.value = weather.sunriseTime
         self.sunsetTime.value = weather.sunsetTime
@@ -144,10 +144,10 @@ class WeatherViewModel {
         self.minutelySummary.value = self.EmptyString
         self.precipitationProbability.value = self.EmptyString
         self.precipitationIntensity.value = self.EmptyString
-        self.precipitationType.value = self.EmptyString
+        //self.precipitationType.value = self.EmptyString
         self.dewPoint.value = self.EmptyString
         self.humidity.value = self.EmptyString
-        self.windDirection.value = self.EmptyString
+        //self.windDirection.value = self.EmptyString
         self.windSpeed.value = self.EmptyString
         self.sunriseTime.value = self.EmptyString
         self.sunsetTime.value = self.EmptyString

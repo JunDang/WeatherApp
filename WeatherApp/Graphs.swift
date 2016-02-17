@@ -74,7 +74,6 @@ class Graphs: UIViewController {
         let lineChartData = LineChartData(xVals: hours, dataSet: lineChartDataSet)
         lineChartData.setValueFont(UIFont(name: "Avenir", size: 8))
         lineChartData.setDrawValues(true)
-//        lineChartData.circleRadius = 10
         lineChartData.setValueTextColor(UIColor.whiteColor())
         hourlyForecastLineChartView.drawGridBackgroundEnabled = false
         //hourlyForecastLineChartView.drawGridBackgroundEnabled = true
@@ -85,27 +84,30 @@ class Graphs: UIViewController {
         xAxis.axisLineColor = UIColor.whiteColor()
         xAxis.labelTextColor = UIColor.whiteColor()
 //        xAxis.spaceBetweenLabels = 0.0
+        xAxis.labelFont = UIFont(name: "Avenir", size: 8)!
+        
         xAxis.drawGridLinesEnabled = false
         hourlyForecastLineChartView.leftAxis.drawGridLinesEnabled = false;
         hourlyForecastLineChartView.rightAxis.drawGridLinesEnabled = false;
         hourlyForecastLineChartView.rightAxis.enabled = false;
         hourlyForecastLineChartView.legend.enabled = false
         
-            // Oy axis setup
+            // y axis setup
         let leftAxis = hourlyForecastLineChartView.leftAxis
         
         //leftAxis.labelFont = [UIFont Caption1];
         leftAxis.labelTextColor = UIColor.whiteColor()
-        leftAxis.labelCount = 3;
+        //leftAxis.labelCount = 3;
         leftAxis.labelPosition = .OutsideChart//.YAxisLabelPositionInsideChart
         leftAxis.spaceTop = 0.15;
         leftAxis.axisLineColor = UIColor.whiteColor()
+        leftAxis.labelFont = UIFont(name: "Avenir", size: 8)!
         //leftAxis.removeAllLimitLines()
         
         hourlyForecastLineChartView.data = lineChartData
         //hourlyForecastLineChartView.rightAxis.enabled = false
-        //hourlyForecastLineChartView.leftAxis.valueFormatter = NSNumberFormatter()
-        //hourlyForecastLineChartView.leftAxis.valueFormatter?.minimumFractionDigits = 0
+        hourlyForecastLineChartView.leftAxis.valueFormatter = NSNumberFormatter()
+        hourlyForecastLineChartView.leftAxis.valueFormatter?.minimumFractionDigits = 0
         //hourlyForecastLineChartView.descriptionText = ""
        // hourlyForecastLineChartView.
         

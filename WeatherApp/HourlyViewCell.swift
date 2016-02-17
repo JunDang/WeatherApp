@@ -64,7 +64,7 @@ class HourlyViewCell: UITableViewCell, UICollectionViewDataSource,UICollectionVi
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.registerClass(TodayWeaterCollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
-        collectionView.backgroundColor = UIColor.clearColor()
+        collectionView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
         collectionView.setNeedsDisplay()
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         self.contentView.addSubview(collectionView)

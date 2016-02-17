@@ -24,7 +24,7 @@ class WeatherTableViewController: UITableViewController {
         super.viewDidLoad()
         
         tableView!.frame = CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height)
-        tableView!.backgroundColor = UIColor.clearColor()
+        tableView!.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
         tableView!.delegate = self
         tableView!.dataSource = self
         tableView!.separatorColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
@@ -56,20 +56,20 @@ class WeatherTableViewController: UITableViewController {
          if indexPath.row == 0 {
             
            let cell: HeaderCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell", forIndexPath: indexPath) as! HeaderCell
-           cell.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
+           cell.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
            return cell
             
            } else if indexPath.row == 1 {
             
            let cell: HourlyViewCell = tableView.dequeueReusableCellWithIdentifier("HourlyViewCell", forIndexPath: indexPath) as! HourlyViewCell
-           cell.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
+           cell.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
            cell.updateWeatherData(hourlyForecasts)
            return cell
             
           } else {
             
             let cell: DailyViewCell = tableView.dequeueReusableCellWithIdentifier("DailyViewCell", forIndexPath: indexPath) as! DailyViewCell
-            cell.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
+            cell.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
             let dailyForecast = dailyForecasts[indexPath.row - 2]
                 cell.dayLabel!.text = dailyForecast.day
                 cell.temperatureLow?.text = dailyForecast.dailyTemperatureLow

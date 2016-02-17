@@ -21,10 +21,10 @@ struct WeatherBuilder {
     
     var precipitationProbability: String?
     var precipitationIntensity: String?
-    var precipitationType: String?
+    //var precipitationType: String?
     var dewPoint: String?
     var humidity: String?
-    var windDirection: String?
+    //var windDirection: String?
     var windSpeed: String?
     var sunriseTime: String?
     var sunsetTime: String?
@@ -46,10 +46,10 @@ struct WeatherBuilder {
             minutelySummary: minutelySummary!,
             precipitationProbability:precipitationProbability!,
             precipitationIntensity: precipitationIntensity!,
-            precipitationType: precipitationType!,
+            //precipitationType: precipitationType!,
             dewPoint: dewPoint!,
             humidity: humidity!,
-            windDirection: windDirection!,
+            //windDirection: windDirection!,
             windSpeed: windSpeed!,
             sunriseTime: sunriseTime!,
             sunsetTime: sunsetTime!,
