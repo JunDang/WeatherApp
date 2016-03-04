@@ -2,13 +2,13 @@
 //  WeatherViewController.swift
 //  WeatherApp
 //
-//  Created by Yuan Yinhuan on 16/1/23.
-//  Copyright © 2016年 Jun Jun. All rights reserved.
+//  Created by Jun Dang on 16/1/23.
+//  Copyright © 2016年 Jun Dang. All rights reserved.
 //
 
 import UIKit
 
-class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableViewDelegate {
+class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableViewDelegate, UINavigationBarDelegate {
     
     var BackgroundScrollView: UIScrollView!
     var ForegroundScrollView: UIScrollView!
@@ -175,7 +175,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         //let weatherTableViewController: WeatherTableViewController = WeatherTableViewController()
         
         //add location label
-        locationLabel = UILabel(frame: CGRectMake(screenWidth/2-80, 30, 100, 60))
+        locationLabel = UILabel(frame: CGRectMake(screenWidth/2-60, 20, 100, 60))
         let fontLocation = UIFont(name: "HelveticaNeue-Bold", size: 20.0)
         locationLabel!.font = fontLocation
         locationLabel!.backgroundColor = UIColor.clearColor()
@@ -303,7 +303,36 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         viewModel = WeatherViewModel()
         viewModel?.startLocationService()
         print(screenSize)
+        //add navigation bar
+        let navigationBar = UINavigationBar(frame: CGRectMake(0, 33, self.view.frame.size.width, 40))
+        navigationBar.backgroundColor = UIColor.clearColor()
+        navigationBar.tintColor = UIColor.whiteColor()
+        //navigationBar.translucent = true
+        navigationBar.delegate = self
+        let navigationItem = UINavigationItem()
+        let searchButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Search, target: self, action: "SearchCity:")
+        let menuButton = UIButton()
+        //set image for button
+        menuButton.frame = CGRectMake(20, 35, 35, 35)
+        menuButton.setImage(UIImage(named: "icon-menu-narrow-white"), forState: .Normal)
+        menuButton.addTarget(self, action: Selector("menuButtonPressed"), forControlEvents: .TouchUpInside)
+        //assign button to navigationbar
+        let menubarButton = UIBarButtonItem(customView: menuButton)
+        
+        navigationItem.leftBarButtonItem = menubarButton
+        //let settingButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: "Settings:")
+        navigationItem.rightBarButtonItem = searchButton
+        //navigationItem.leftBarButtonItem = settingButton
+        
+        // Assign the navigation item to the navigation bar
+        navigationBar.items = [navigationItem]
+        
+        // Make the navigation bar a subview of the current view controller
+        
+        self.ForegroundScrollView.addSubview(navigationBar)
+        
     }
+
        override func didReceiveMemoryWarning() {
         
         super.didReceiveMemoryWarning()
@@ -537,6 +566,13 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         }
     }
     
+    func menuButtonPressed() {
+        
+        print("menuButtonPressed")
+    }
+    func SearchCity(sender: UIBarButtonItem) {
+        print("search city")
+    }
+}
    
 
- }

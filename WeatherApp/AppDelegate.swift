@@ -20,7 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window!.makeKeyAndVisible()
         // approach without storyboard
             self.window?.rootViewController = WeatherViewController()
-        
+        // Sets background to a blank/empty image
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        // Sets shadow (line below the bar) to a blank image
+        UINavigationBar.appearance().shadowImage = UIImage()
+        // Set translucent
+        UINavigationBar.appearance().translucent = true
         return true
 
     }

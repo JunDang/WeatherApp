@@ -152,11 +152,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeatherViewController.swift"
-            timestampString = "477002865.469424"
+            timestampString = "478751530.543498"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "475"
-            endingLineNumber = "475"
+            startingLineNumber = "504"
+            endingLineNumber = "504"
             landmarkName = "WeatherViewController"
             landmarkType = "3">
          </BreakpointContent>
