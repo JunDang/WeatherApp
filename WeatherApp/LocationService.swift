@@ -4,6 +4,7 @@ import CoreLocation
 
 protocol LocationServiceDelegate {
     func locationDidUpdate(service: LocationService, location: CLLocation)
+   
 }
 
 class LocationService: NSObject{

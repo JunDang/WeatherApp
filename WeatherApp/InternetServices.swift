@@ -20,6 +20,8 @@ struct WeatherService: WeatherServiceProtocol {
    
     
     func retrieveWeatherInfo(location: CLLocation, completionHandler: WeatherCompletionHandler) {
+        print("CLLocation: \(location)")
+        print("coordinate: \(location.coordinate)")
         let latitude = location.coordinate.latitude
         let longitude = location.coordinate.longitude
         let path = "\(baseUrl)/\(APIKEY)/\(latitude),\(longitude)" as URLStringConvertible

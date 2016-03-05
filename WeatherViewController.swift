@@ -36,6 +36,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
     var forecastGraphs: Graphs?
     var forecastSummary: Summary?
     var airQuality: AirQuality?
+    var searchCity: SearchCityViewController?
     
     override func viewDidLoad() {
         
@@ -331,6 +332,9 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         
         self.ForegroundScrollView.addSubview(navigationBar)
         
+        searchCity = SearchCityViewController()
+        
+        
     }
 
        override func didReceiveMemoryWarning() {
@@ -571,7 +575,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         print("menuButtonPressed")
     }
     func SearchCity(sender: UIBarButtonItem) {
-        print("search city")
+        self.presentViewController(searchCity!, animated: true, completion: nil)
     }
 }
    

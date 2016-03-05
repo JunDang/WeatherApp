@@ -75,12 +75,12 @@ class WeatherViewModel {
     
     // MARK: - public
     func startLocationService() {
-        locationService = LocationService()
-        locationService.delegate = self
+       // locationService = LocationService()
+        //locationService.delegate = self
         
         weatherService = WeatherService()
         
-        locationService.requestLocation()
+        //locationService.requestLocation()
     }
     
     // MARK: - private
@@ -156,6 +156,26 @@ class WeatherViewModel {
         self.hourlyForecasts.value = []
         self.dailyForecasts.value = []
     }
+    
+    
+    func searchCityLocation(location: CLLocation) {
+        print("transferredLocation: \(location)")
+        weatherService.retrieveWeatherInfo(location) { (weather, error) -> Void in
+            dispatch_async(dispatch_get_main_queue(), {
+                if let unwrappedError = error {
+                    print(unwrappedError)
+                    self.update(unwrappedError)
+                    return
+                }
+                
+                guard let unwrappedWeather = weather else {
+                    return
+                }
+                self.update(unwrappedWeather)
+            })
+        }
+    }
+
 }
 
 // MARK: LocationServiceDelegate
@@ -176,4 +196,6 @@ extension WeatherViewModel: LocationServiceDelegate {
             })
         }
     }
+    
+    
 }

@@ -12,9 +12,10 @@ import Foundation
 class DataManager {
     
     class func getLocationFromGoogle(address: String, success: ((LocationData: NSData!) -> Void)) {
-        let addressURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDQBjJDcstLekCjgZi0ZauJVakapTcDY4g"
+        let addressURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyBdTOGf2Apyxjck8RxFk2ffcYTnGU7btk8"
         let urlString = addressURL.stringByAddingPercentEncodingWithAllowedCharacters( NSCharacterSet.URLQueryAllowedCharacterSet())
         let url = NSURL(string: urlString!)
+        print("url: \(url)")
         
         if url != nil {
             loadDataFromURL(url!, completion: { (data, error) -> Void in
