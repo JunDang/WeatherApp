@@ -24,7 +24,19 @@ struct WeatherService: WeatherServiceProtocol {
         print("coordinate: \(location.coordinate)")
         let latitude = location.coordinate.latitude
         let longitude = location.coordinate.longitude
+        
+        DataManager.getLocationFromCoordinates(location.coordinate, success: {(LocationData) -> Void in
+            
+            let json = JSON(data: LocationData)
+            print(json)
+            })
+       
+
         let path = "\(baseUrl)/\(APIKEY)/\(latitude),\(longitude)" as URLStringConvertible
+        
+        
+        
+        
         
         Alamofire.request(.GET, path)
             .responseJSON {response in
@@ -57,6 +69,8 @@ struct WeatherService: WeatherServiceProtocol {
                         completionHandler(nil, error)
                         return
                 }
+               // print("currentCityName: countryCity")
+               // print(json)
                // print(cloudCover)
                /* let weeklySummary: String?
                 if json["daily"]["data"]["summary"] != nil {

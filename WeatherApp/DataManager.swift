@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 
 class DataManager {
@@ -28,6 +29,31 @@ class DataManager {
         }
         
     }
+    
+    class func getLocationFromCoordinates(coordinate: CLLocationCoordinate2D, success: ((LocationData: NSData!) -> Void)) {
+        
+        let latitude = coordinate.latitude
+        let longitude = coordinate.longitude
+        let passedLatlng = String(latitude) + "," + String(longitude)
+        print(passedLatlng)
+        let reverseGeocodingURL = "https://maps.googleapis.com/maps/api/geocode/json?latlng=passedLatlng&key=AIzaSyBdTOGf2Apyxjck8RxFk2ffcYTnGU7btk8"
+        let urlString = reverseGeocodingURL.stringByAddingPercentEncodingWithAllowedCharacters( NSCharacterSet.URLQueryAllowedCharacterSet())
+        let url = NSURL(string: urlString!)
+        print("url: \(url)")
+        
+        if url != nil {
+            loadDataFromURL(url!, completion: { (data, error) -> Void in
+                if let urlData = data {
+                    
+                    success(LocationData: urlData)
+                }
+            })
+            
+        }
+        
+    }
+    
+    
 
     class func loadDataFromURL(url: NSURL, completion:(data: NSData?, error: NSError?) -> Void) {
         let session = NSURLSession.sharedSession()

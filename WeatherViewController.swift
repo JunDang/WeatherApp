@@ -575,6 +575,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         print("menuButtonPressed")
     }
     func SearchCity(sender: UIBarButtonItem) {
+        searchCity!.viewModel = self.viewModel
         self.presentViewController(searchCity!, animated: true, completion: nil)
     }
 }

@@ -12,7 +12,7 @@ import CoreLocation
 class SearchCityViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDelegate, UIActionSheetDelegate {
     
     @IBOutlet weak var searchCityName: UISearchBar!
-    
+    var viewModel: WeatherViewModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +29,7 @@ class SearchCityViewController: UIViewController, UISearchBarDelegate, CLLocatio
     func searchBarSearchButtonClicked(searchCityName: UISearchBar) {
         print("searchbarcalled")
         searchCityName.resignFirstResponder()
-        dismissViewControllerAnimated(true, completion: nil)
+ 
         
         DataManager.getLocationFromGoogle(searchCityName.text!, success: {(LocationData) -> Void in
         
@@ -40,10 +40,14 @@ class SearchCityViewController: UIViewController, UISearchBarDelegate, CLLocatio
                 let cityLocation: CLLocation =  CLLocation(latitude: latitudeY, longitude: longitudeX)
                 print("cityLocation: \(cityLocation)")
                 dispatch_async(dispatch_get_main_queue()) {
-                    let weatherViewModel = WeatherViewModel()
-                    weatherViewModel.searchCityLocation(cityLocation)
+                    print("cityLocation: \(cityLocation)")
+                    //let weatherViewModel = WeatherViewModel()
+                    //weatherViewModel.startLocationService()
+                    //self.weatherViewModel.searchCityLocation(cityLocation)
+                    self.viewModel?.searchCityLocation(cityLocation)
         
                 }
+                self.dismissViewControllerAnimated(true, completion: nil)
            } else {
                dispatch_async(dispatch_get_main_queue()) {
                let myAlert = UIAlertController(title: nil, message: "Address not found", preferredStyle: .Alert)
