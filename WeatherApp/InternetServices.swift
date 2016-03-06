@@ -20,15 +20,28 @@ struct WeatherService: WeatherServiceProtocol {
    
     
     func retrieveWeatherInfo(location: CLLocation, completionHandler: WeatherCompletionHandler) {
-        print("CLLocation: \(location)")
-        print("coordinate: \(location.coordinate)")
+        var cityName: String?
         let latitude = location.coordinate.latitude
         let longitude = location.coordinate.longitude
         
         DataManager.getLocationFromCoordinates(location.coordinate, success: {(LocationData) -> Void in
             
             let json = JSON(data: LocationData)
-            print(json)
+            //print(json)
+            if json["status"] == "OK"{
+               let rGeocodingResults = json["results"][0]["address_components"]
+               //print(rGeocodingResults)
+                for i in 0..<rGeocodingResults.count {
+                    //print(rGeocodingResults[i]["types"])
+                    if ((rGeocodingResults[i]["types"][0] == "neighborhood" || rGeocodingResults[i]["types"][0] == "locality") && rGeocodingResults[i]["types"][1] == "political") || (rGeocodingResults[i]["types"][0] == "sublocality_level_1" && rGeocodingResults[i]["types"][1] == "sublocality" && rGeocodingResults[i]["types"][2] == "political"){
+                       cityName = rGeocodingResults[i]["long_name"].string
+                       print("cityName: \(cityName)")
+                       break
+                    }
+                  }
+                
+            }
+        
             })
        
 
@@ -63,7 +76,7 @@ struct WeatherService: WeatherServiceProtocol {
                     sunriseTime = json["daily"]["data"][0]["sunriseTime"].double,
                     sunsetTime = json["daily"]["data"][0]["sunsetTime"].double,
                     cloudCover = json["daily"]["data"][0]["cloudCover"].double,
-                    countryCity = json["timezone"].string,
+                    //countryCity = json["timezone"].string,
                     currentIcon = json["currently"]["icon"].string else {
                         let error = Error(errorCode: .JSONParsingFailed)
                         completionHandler(nil, error)
@@ -90,7 +103,7 @@ struct WeatherService: WeatherServiceProtocol {
                 } else {
                     precipitationType = ""
                 }
-                let currentCity = countryCity.componentsSeparatedByString("/")[1]
+                //let currentCity = countryCity.componentsSeparatedByString("/")[1]
                 
                 var weatherBuilder = WeatherBuilder()
                 let temperature = Temperature(forecastIoDegrees: currentTemp)
@@ -126,7 +139,7 @@ struct WeatherService: WeatherServiceProtocol {
                 weatherBuilder.currentTemperatureLow = temperatureLow.degrees
                 weatherBuilder.currentTemperatureHigh = temperatureHigh.degrees
                 weatherBuilder.feelsLikeTemperature = feelsLike.degrees
-                weatherBuilder.location = currentCity
+                weatherBuilder.location = cityName
                 weatherBuilder.currentSummary = currentSummary
                 weatherBuilder.dailySummary = dailySummary
                 weatherBuilder.minutelySummary = minutelySummary

@@ -176,12 +176,12 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         //let weatherTableViewController: WeatherTableViewController = WeatherTableViewController()
         
         //add location label
-        locationLabel = UILabel(frame: CGRectMake(screenWidth/2-60, 20, 100, 60))
+        locationLabel = UILabel(frame: CGRectMake(screenWidth/2-40, 20, 200, 60))
         let fontLocation = UIFont(name: "HelveticaNeue-Bold", size: 20.0)
         locationLabel!.font = fontLocation
         locationLabel!.backgroundColor = UIColor.clearColor()
         locationLabel!.textColor = UIColor.whiteColor()
-        locationLabel!.textAlignment = NSTextAlignment.Center
+        locationLabel!.textAlignment = NSTextAlignment.Left
         ForegroundScrollView.addSubview(locationLabel!)
         
         //add temperature label

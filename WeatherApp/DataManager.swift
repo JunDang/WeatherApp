@@ -36,7 +36,7 @@ class DataManager {
         let longitude = coordinate.longitude
         let passedLatlng = String(latitude) + "," + String(longitude)
         print(passedLatlng)
-        let reverseGeocodingURL = "https://maps.googleapis.com/maps/api/geocode/json?latlng=passedLatlng&key=AIzaSyBdTOGf2Apyxjck8RxFk2ffcYTnGU7btk8"
+        let reverseGeocodingURL = "https://maps.googleapis.com/maps/api/geocode/json?latlng=\(passedLatlng)&key=AIzaSyBdTOGf2Apyxjck8RxFk2ffcYTnGU7btk8"
         let urlString = reverseGeocodingURL.stringByAddingPercentEncodingWithAllowedCharacters( NSCharacterSet.URLQueryAllowedCharacterSet())
         let url = NSURL(string: urlString!)
         print("url: \(url)")

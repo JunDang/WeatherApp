@@ -11,6 +11,11 @@ import CoreLocation
 
 class SearchCityViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDelegate, UIActionSheetDelegate {
     
+    @IBAction func cancelButtonPressed(sender: AnyObject) {
+      
+       self.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
     @IBOutlet weak var searchCityName: UISearchBar!
     var viewModel: WeatherViewModel?
 
@@ -19,6 +24,7 @@ class SearchCityViewController: UIViewController, UISearchBarDelegate, CLLocatio
         searchCityName!.delegate = self
 
         // Do any additional setup after loading the view.
+       
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,7 +33,7 @@ class SearchCityViewController: UIViewController, UISearchBarDelegate, CLLocatio
     }
     
     func searchBarSearchButtonClicked(searchCityName: UISearchBar) {
-        print("searchbarcalled")
+        //print("searchbarcalled")
         searchCityName.resignFirstResponder()
  
         
@@ -38,14 +44,9 @@ class SearchCityViewController: UIViewController, UISearchBarDelegate, CLLocatio
                 let longitudeX = json["results"][0]["geometry"]["location"]["lng"].double!
                 let latitudeY = json["results"][0]["geometry"]["location"]["lat"].double!
                 let cityLocation: CLLocation =  CLLocation(latitude: latitudeY, longitude: longitudeX)
-                print("cityLocation: \(cityLocation)")
+                //print("cityLocation: \(cityLocation)")
                 dispatch_async(dispatch_get_main_queue()) {
-                    print("cityLocation: \(cityLocation)")
-                    //let weatherViewModel = WeatherViewModel()
-                    //weatherViewModel.startLocationService()
-                    //self.weatherViewModel.searchCityLocation(cityLocation)
                     self.viewModel?.searchCityLocation(cityLocation)
-        
                 }
                 self.dismissViewControllerAnimated(true, completion: nil)
            } else {
@@ -53,9 +54,8 @@ class SearchCityViewController: UIViewController, UISearchBarDelegate, CLLocatio
                let myAlert = UIAlertController(title: nil, message: "Address not found", preferredStyle: .Alert)
                let action = UIAlertAction(
                   title: "OK",
-                  style: .Default) { action in self.dismissViewControllerAnimated(true, completion: nil)
-           }
-           myAlert.addAction(action)
+                style: .Default, handler: nil)
+                myAlert.addAction(action)
            self.presentViewController(myAlert, animated: true, completion: nil)
            }
          }
