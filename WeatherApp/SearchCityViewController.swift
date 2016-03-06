@@ -33,20 +33,22 @@ class SearchCityViewController: UIViewController, UISearchBarDelegate, CLLocatio
     }
     
     func searchBarSearchButtonClicked(searchCityName: UISearchBar) {
-        //print("searchbarcalled")
+        var cityName: String?
         searchCityName.resignFirstResponder()
  
         
         DataManager.getLocationFromGoogle(searchCityName.text!, success: {(LocationData) -> Void in
         
             let json = JSON(data: LocationData)
-            if json["status"] != "ZERO_RESULTS" {
+            if json["status"] == "OK" {
                 let longitudeX = json["results"][0]["geometry"]["location"]["lng"].double!
                 let latitudeY = json["results"][0]["geometry"]["location"]["lat"].double!
                 let cityLocation: CLLocation =  CLLocation(latitude: latitudeY, longitude: longitudeX)
-                //print("cityLocation: \(cityLocation)")
+                
+                cityName = json["results"][0]["address_components"][0]["long_name"].string
+                print(cityName)
                 dispatch_async(dispatch_get_main_queue()) {
-                    self.viewModel?.searchCityLocation(cityLocation)
+                    self.viewModel?.searchCityLocation(cityName!,location: cityLocation)
                 }
                 self.dismissViewControllerAnimated(true, completion: nil)
            } else {

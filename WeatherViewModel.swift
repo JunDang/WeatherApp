@@ -158,8 +158,10 @@ class WeatherViewModel {
     }
     
     
-    func searchCityLocation(location: CLLocation) {
-        print("transferredLocation: \(location)")
+    func searchCityLocation(city: String, location: CLLocation) {
+        //print("transferredLocation: \(location)")
+        weatherService.cityName = city
+        print(weatherService.cityName)
         weatherService.retrieveWeatherInfo(location) { (weather, error) -> Void in
             dispatch_async(dispatch_get_main_queue(), {
                 if let unwrappedError = error {

@@ -12,6 +12,7 @@ import CoreLocation
 typealias WeatherCompletionHandler = (Weather?, Error?) -> Void
 
 protocol WeatherServiceProtocol {
+    var cityName:String {get set}
     func retrieveWeatherInfo(location: CLLocation, completionHandler: WeatherCompletionHandler)
 }
 
