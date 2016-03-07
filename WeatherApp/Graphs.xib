@@ -28,7 +28,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OQ2-0i-Hek" customClass="WeatherLineChartView" customModule="Charts">
-                    <rect key="frame" x="19" y="331" width="333" height="213"/>
+                    <rect key="frame" x="19" y="331" width="333" height="229"/>
                     <color key="backgroundColor" name="textColor" catalog="System" colorSpace="catalog"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Daily Forecast:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OYj-lV-WpQ">

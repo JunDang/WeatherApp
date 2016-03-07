@@ -166,26 +166,53 @@ class Graphs: UIViewController {
         print(iconsNames)
         let days = dailyForecastsData.map({$0.day})
         print(days)
-        let values = dailyForecastsData.map({Double($0.dailyTemperatureHigh.substringToIndex($0.dailyTemperatureHigh.endIndex.advancedBy(-1)))!})
+        //high temperature
+        let valuesHighTemperature = dailyForecastsData.map({Double($0.dailyTemperatureHigh.substringToIndex($0.dailyTemperatureHigh.endIndex.advancedBy(-1)))!})
         // let hourlyIcon = hourlyForecastsData.map({$0.iconName})
-        var dataEntries: [ChartDataEntry] = []
+        var dataEntriesHighTemperature: [ChartDataEntry] = []
         for i in 0..<days.count {
-            let dataEntry = ChartDataEntry(value: values[i], xIndex: i)
-            dataEntries.append(dataEntry)
+            let dataEntryHighTemperature = ChartDataEntry(value: valuesHighTemperature[i], xIndex: i)
+            dataEntriesHighTemperature.append(dataEntryHighTemperature)
         }
-        let lineChartDataSetHighTemperature = WeatherLineChartDataSet(yVals: dataEntries, label: "dailyTemperatureHigh")
-        lineChartDataSetHighTemperature.circleRadius = 2.0
-        lineChartDataSetHighTemperature.valueFormatter = NSNumberFormatter()
-        lineChartDataSetHighTemperature.valueFormatter?.minimumFractionDigits = 0
-        let lineChartDataHighTemperature = LineChartData(xVals: days, dataSet: lineChartDataSetHighTemperature)
+        let highTemperatureSet = WeatherLineChartDataSet(yVals: dataEntriesHighTemperature, label: "dailyTemperatureHigh")
+        highTemperatureSet.axisDependency = .Left
+        highTemperatureSet.circleRadius = 2.0
+        highTemperatureSet.valueFormatter = NSNumberFormatter()
+        highTemperatureSet.valueFormatter?.minimumFractionDigits = 0
+        highTemperatureSet.setColor(UIColor.redColor())
+        /*let lineChartDataHighTemperature = LineChartData(xVals: days, dataSet: lineChartDataSetHighTemperature)
         lineChartDataHighTemperature.setValueFont(UIFont(name: "Avenir", size: 8))
         lineChartDataHighTemperature.setDrawValues(true)
-        lineChartDataHighTemperature.setValueTextColor(UIColor.whiteColor())
+        lineChartDataHighTemperature.setValueTextColor(UIColor.whiteColor())*/
+        //low tempreature
+        let valuesLowTemperature = dailyForecastsData.map({Double($0.dailyTemperatureLow.substringToIndex($0.dailyTemperatureLow.endIndex.advancedBy(-1)))!})
+        print("lowTemperature: \(valuesLowTemperature)")
+        var dataEntriesLowTemperature: [ChartDataEntry] = []
+        for i in 0..<days.count {
+            let dataEntryLowTemperature = ChartDataEntry(value: valuesLowTemperature[i], xIndex: i)
+            dataEntriesLowTemperature.append(dataEntryLowTemperature)
+        }
+        let lowTemperatureSet = WeatherLineChartDataSet(yVals: dataEntriesLowTemperature, label: "dailyTemperatureLow")
+        lowTemperatureSet.axisDependency = .Left
+        lowTemperatureSet.circleRadius = 2.0
+        lowTemperatureSet.valueFormatter = NSNumberFormatter()
+        lowTemperatureSet.valueFormatter?.minimumFractionDigits = 0
+        /*let lineChartDataLowTemperature = LineChartData(xVals: days, dataSet: lineChartDataSetLowTemperature)
+        lineChartDataLowTemperature.setValueFont(UIFont(name: "Avenir", size: 8))
+        lineChartDataLowTemperature.setDrawValues(true)
+        lineChartDataLowTemperature.setValueTextColor(UIColor.whiteColor())*/
+
+        //create datasets
+        var dataSets : [WeatherLineChartDataSet] = [WeatherLineChartDataSet]()
+        dataSets.append(highTemperatureSet)
+        dataSets.append(lowTemperatureSet)
+        
+        let data: LineChartData = LineChartData(xVals: days, dataSets: dataSets)
+        data.setValueTextColor(UIColor.whiteColor())
+        DailyForecastLineChartView.data = data
+        
         DailyForecastLineChartView.drawGridBackgroundEnabled = false
-        //hourlyForecastLineChartView.drawGridBackgroundEnabled = true
-        //hourlyForecastLineChartView.drawBordersEnabled = false
-        //hourlyForecastLineChartView.xAxis.labelPosition = .Bottom
-        let xAxis = hourlyForecastLineChartView.xAxis
+        let xAxis = DailyForecastLineChartView.xAxis
         xAxis.labelPosition = .Bottom
         xAxis.axisLineColor = UIColor.whiteColor()
         xAxis.labelTextColor = UIColor.whiteColor()
@@ -210,22 +237,13 @@ class Graphs: UIViewController {
         leftAxis.labelFont = UIFont(name: "Avenir", size: 8)!
         //leftAxis.removeAllLimitLines()
         
-        DailyForecastLineChartView.data = lineChartDataHighTemperature
+        //DailyForecastLineChartView.data = lineChartDataLowTemperature
         //hourlyForecastLineChartView.rightAxis.enabled = false
         DailyForecastLineChartView.leftAxis.valueFormatter = NSNumberFormatter()
         DailyForecastLineChartView.leftAxis.valueFormatter?.minimumFractionDigits = 0
-        //hourlyForecastLineChartView.descriptionText = ""
-        // hourlyForecastLineChartView.
         
-        
-        /* let data = UIImageJPEGRepresentation((hourlyForecastLineChartView.marker?.image)!, 1)
-        let imageSize = data?.length
-        print("imageSize1" + "\(imageSize)")*/
         print("size " + "\(DailyForecastLineChartView.marker)")
-        //hourlyForecastLineChartView.marker?.image = UIImage(named: "weather-clear")
-        /* let data2 = UIImageJPEGRepresentation((hourlyForecastLineChartView.marker?.image)!, 1)
-        let imageSize2 = data2?.length
-        print("imageSize2" + "\(imageSize2)")*/
+        
         DailyForecastLineChartView.notifyDataSetChanged()
         
     }

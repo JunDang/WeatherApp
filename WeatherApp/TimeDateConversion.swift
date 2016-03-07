@@ -26,7 +26,7 @@ struct TimeDateConversion {
         dateFormatter.dateFormat = "EEEE"
         let date = NSDate(timeIntervalSince1970: forecastDate)
         let myWeekday = NSCalendar.currentCalendar().component(.Weekday, fromDate: date)
-        let array = ["Sunday", "Monday", "Tuesday", "Wednesday", "Tuesday", "Thursday", "Friday", "Saturday"]
+        let array = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
         return array[myWeekday]
         
     }
