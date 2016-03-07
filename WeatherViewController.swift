@@ -557,9 +557,8 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
             }*/
             viewModel?.dailyForecasts.observe {
                 [unowned self] in
-                //print($0.count)
                 self.weatherTableViewController!.updateDailyData($0)
-                
+                self.forecastGraphs!.updateDailyData($0)
             }
             viewModel?.hourlyForecasts.observe {
                 [unowned self] in
