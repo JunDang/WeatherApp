@@ -112,7 +112,11 @@ struct WeatherService: WeatherServiceProtocol {
                 weatherBuilder.currentTemperatureLow = temperatureLow.degrees
                 weatherBuilder.currentTemperatureHigh = temperatureHigh.degrees
                 weatherBuilder.feelsLikeTemperature = feelsLike.degrees
-                weatherBuilder.location = self.cityName
+                if self.cityName == "" {
+                    weatherBuilder.location = "Current Location"
+                } else {
+                    weatherBuilder.location = self.cityName
+                }
                 weatherBuilder.currentSummary = currentSummary
                 weatherBuilder.dailySummary = dailySummary
                 weatherBuilder.minutelySummary = minutelySummary
@@ -223,8 +227,8 @@ struct Flickr: FlickrServiceProtocol{
                        // print( "data -> \(data.length)")
                         if data.length > 20000 {
                             backgroundImage = UIImage(data: data, scale:1)!
-                            print(backgroundImage.size.height)
-                            print(backgroundImage.size.width)
+                            //print(backgroundImage.size.height)
+                           // print(backgroundImage.size.width)
                             completionHandler(backgroundImage, nil)
 /*
                             if backgroundImage.size.width < 400 {

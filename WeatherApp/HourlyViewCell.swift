@@ -69,9 +69,9 @@ class HourlyViewCell: UITableViewCell, UICollectionViewDataSource,UICollectionVi
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         self.contentView.addSubview(collectionView)
         let toTop =  NSLayoutConstraint(item: collectionView, attribute: .Top, relatedBy: .Equal,
-            toItem: contentView, attribute: .Top, multiplier: 1.0, constant: 2)
+            toItem: contentView, attribute: .Top, multiplier: 1.0, constant: 1)
         let toBottom =  NSLayoutConstraint(item: collectionView, attribute: .Bottom, relatedBy: .Equal,
-            toItem: contentView, attribute: .Bottom, multiplier: 1.0, constant: -2)
+            toItem: contentView, attribute: .Bottom, multiplier: 1.0, constant: -1)
         let leadingMargin = NSLayoutConstraint(item: collectionView, attribute: .LeadingMargin, relatedBy: .Equal,
             toItem: contentView, attribute: .LeadingMargin, multiplier: 1.0, constant: 5)
         let heightConstraint = NSLayoutConstraint(item: collectionView,
@@ -80,7 +80,9 @@ class HourlyViewCell: UITableViewCell, UICollectionViewDataSource,UICollectionVi
         let widthConstraint = NSLayoutConstraint(item: collectionView,
             attribute: .Width, relatedBy: .Equal, toItem: nil,
             attribute: .NotAnAttribute, multiplier: 1, constant: width)
-        NSLayoutConstraint.activateConstraints([toTop, toBottom, leadingMargin, heightConstraint, widthConstraint])
+        //print("HourlyViewCell: \(toBottom)")
+        NSLayoutConstraint.activateConstraints([toTop, toBottom, heightConstraint,leadingMargin,
+            widthConstraint])
         
         
         

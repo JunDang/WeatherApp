@@ -75,12 +75,12 @@ class WeatherViewModel {
     
     // MARK: - public
     func startLocationService() {
-       // locationService = LocationService()
-        //locationService.delegate = self
+        locationService = LocationService()
+        locationService.delegate = self
         
         weatherService = WeatherService()
         
-        //locationService.requestLocation()
+        locationService.requestLocation()
     }
     
     // MARK: - private
@@ -183,8 +183,7 @@ class WeatherViewModel {
 // MARK: LocationServiceDelegate
 extension WeatherViewModel: LocationServiceDelegate {
     func locationDidUpdate(service: LocationService, location: CLLocation) {
-        print ("LocationServiceDelegate")
-          weatherService.retrieveWeatherInfo(location) { (weather, error) -> Void in
+         weatherService.retrieveWeatherInfo(location) { (weather, error) -> Void in
             dispatch_async(dispatch_get_main_queue(), {
                 if let unwrappedError = error {
                     print(unwrappedError)

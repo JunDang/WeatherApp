@@ -32,13 +32,13 @@ class DailyViewCell: UITableViewCell {
         dayLabel!.textColor = UIColor.whiteColor()
         self.contentView.addSubview(dayLabel!)
         let toTopDay =  NSLayoutConstraint(item: dayLabel!, attribute: .Top, relatedBy: .Equal,
-            toItem: contentView, attribute: .Top, multiplier: 1.0, constant: 2)
-        let toBottomDay =  NSLayoutConstraint(item: dayLabel!, attribute: .Bottom, relatedBy: .Equal,
-            toItem: contentView, attribute: .Bottom, multiplier: 1.0, constant: -2)
+            toItem: contentView, attribute: .Top, multiplier: 1.0, constant: 7.5)
+        /*let toBottomDay =  NSLayoutConstraint(item: dayLabel!, attribute: .Bottom, relatedBy: .Equal,
+            toItem: contentView, attribute: .Bottom, multiplier: 1.0, constant: -5)*/
         let leadingMarginDay =  NSLayoutConstraint(item: dayLabel!, attribute: .LeadingMargin, relatedBy: .Equal,
             toItem: contentView, attribute: .LeadingMargin, multiplier: 1.0, constant: 5)
         dayLabel!.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activateConstraints([toTopDay, toBottomDay, leadingMarginDay])
+        NSLayoutConstraint.activateConstraints([toTopDay, leadingMarginDay])
         
         //create minmum temperature label
         temperatureLow!.font = font
@@ -47,13 +47,14 @@ class DailyViewCell: UITableViewCell {
         temperatureLow!.textAlignment = NSTextAlignment.Center
         self.contentView.addSubview(temperatureLow!)
         let toTopTL =  NSLayoutConstraint(item: temperatureLow!, attribute: .Top, relatedBy: .Equal,
-            toItem: contentView, attribute: .Top, multiplier: 1.0, constant: 5)
-        let toBottomTL =  NSLayoutConstraint(item: temperatureLow!, attribute: .Bottom, relatedBy: .Equal,
-            toItem: contentView, attribute: .Bottom, multiplier: 1.0, constant: -5)
+            toItem: contentView, attribute: .Top, multiplier: 1.0, constant: 7.5)
+        /*let toBottomTL =  NSLayoutConstraint(item: temperatureLow!, attribute: .Bottom, relatedBy: .Equal,
+            toItem: contentView, attribute: .Bottom, multiplier: 1.0, constant: -5)*/
         let trailingTL =  NSLayoutConstraint(item: temperatureLow!, attribute: .TrailingMargin, relatedBy: .Equal,
             toItem: contentView, attribute: .TrailingMargin, multiplier: 1.0, constant: -2)
         temperatureLow!.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activateConstraints([toTopTL, toBottomTL, trailingTL])
+        //NSLayoutConstraint.activateConstraints([toTopTL, toBottomTL, trailingTL])
+        NSLayoutConstraint.activateConstraints([toTopTL, trailingTL])
         
         // create temperature high
         temperatureHigh!.font = font
@@ -62,13 +63,15 @@ class DailyViewCell: UITableViewCell {
         temperatureHigh!.textAlignment = NSTextAlignment.Center
         self.contentView.addSubview(temperatureHigh!)
         let toTopTH =  NSLayoutConstraint(item: temperatureHigh!, attribute: .Top, relatedBy: .Equal,
-            toItem: contentView, attribute: .Top, multiplier: 1.0, constant: 5)
-        let toBottomTH =  NSLayoutConstraint(item: temperatureHigh!, attribute: .Bottom, relatedBy: .Equal,
-            toItem: contentView, attribute: .Bottom, multiplier: 1.0, constant: -5)
+            toItem: contentView, attribute: .Top, multiplier: 1.0, constant: 7.5)
+       /* let toBottomTH =  NSLayoutConstraint(item: temperatureHigh!, attribute: .Bottom, relatedBy: .Equal,
+            toItem: contentView, attribute: .Bottom, multiplier: 1.0, constant: -5)*/
         let trailingTH =  NSLayoutConstraint(item: temperatureHigh!, attribute: .TrailingMargin, relatedBy: .Equal,
             toItem: contentView, attribute: .TrailingMargin, multiplier: 1.0, constant: -60)
         temperatureHigh!.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activateConstraints([toTopTH, toBottomTH, trailingTH])
+        //NSLayoutConstraint.activateConstraints([toTopTH, toBottomTH, trailingTH])
+        NSLayoutConstraint.activateConstraints([toTopTH, trailingTH])
+        
         
         //add weather icon label
         weatherIconLabel!.font = font
@@ -86,12 +89,12 @@ class DailyViewCell: UITableViewCell {
             toItem: contentView, attribute: .Bottom, multiplier: 1.0, constant: -5)
         let leadingWI = NSLayoutConstraint(item: weatherIcon!, attribute: .LeadingMargin, relatedBy: .Equal,
             toItem: contentView, attribute: .LeadingMargin, multiplier: 1.0, constant: self.frame.width/2)
-        let heightWI = NSLayoutConstraint(item: weatherIcon!, attribute: .Height, relatedBy: .Equal,
-            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 30)
+        /*let heightWI = NSLayoutConstraint(item: weatherIcon!, attribute: .Height, relatedBy: .Equal,
+            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 30)*/
         let widthWI = NSLayoutConstraint(item: weatherIcon!, attribute: .Width, relatedBy: .Equal,
             toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 30)
         weatherIcon!.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activateConstraints([toTopWI, toBottomWI, leadingWI, heightWI, widthWI])
+        NSLayoutConstraint.activateConstraints([toTopWI, toBottomWI, leadingWI, widthWI])
         
     }
     

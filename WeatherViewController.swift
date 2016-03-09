@@ -105,7 +105,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         
         //containerView
         let containerSize1 = CGSize(width: view.bounds.width, height: screenHeight)
-        containerView1 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: screenHeight + 15), size:containerSize1))
+        containerView1 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: screenHeight + 38), size:containerSize1))
         containerView1?.backgroundColor = UIColor.clearColor()
         containerView1!.setNeedsDisplay()
         containerView1!.translatesAutoresizingMaskIntoConstraints = false
@@ -113,19 +113,19 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         //let cheight2 = fheight1! + screenHeight + 10
        
         let containerSize2 = CGSize(width: view.bounds.width, height: screenHeight)
-        containerView2 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: screenHeight + 5), size:containerSize2))
+        containerView2 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: screenHeight + 38), size:containerSize2))
         containerView2?.backgroundColor = UIColor.clearColor()
         containerView2!.setNeedsDisplay()
         containerView2!.translatesAutoresizingMaskIntoConstraints = false
         //let fheight2 = containerView2?.frame.height
         let containerSize3 = CGSize(width: view.bounds.width, height: screenHeight)
-        containerView3 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: screenHeight + 5), size:containerSize3))
+        containerView3 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: screenHeight + 38), size:containerSize3))
         containerView3?.backgroundColor = UIColor.clearColor()
         containerView3!.setNeedsDisplay()
         containerView3!.translatesAutoresizingMaskIntoConstraints = false
        // let fheight3 = containerView3?.frame.height
         let containerSize4 = CGSize(width: view.bounds.width, height: screenHeight)
-        containerView4 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: screenHeight + 5), size:containerSize4))
+        containerView4 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: screenHeight + 38), size:containerSize4))
         containerView4?.backgroundColor = UIColor.clearColor()
         containerView4!.setNeedsDisplay()
         containerView4!.translatesAutoresizingMaskIntoConstraints = false
@@ -176,12 +176,12 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         //let weatherTableViewController: WeatherTableViewController = WeatherTableViewController()
         
         //add location label
-        locationLabel = UILabel(frame: CGRectMake(screenWidth/2-30, 20, 300, 60))
+        locationLabel = UILabel(frame: CGRectMake(0, 20, screenWidth, 60))
         let fontLocation = UIFont(name: "HelveticaNeue-Bold", size: 20.0)
         locationLabel!.font = fontLocation
         locationLabel!.backgroundColor = UIColor.clearColor()
         locationLabel!.textColor = UIColor.whiteColor()
-        locationLabel!.textAlignment = NSTextAlignment.Left
+        locationLabel!.textAlignment = NSTextAlignment.Center
         ForegroundScrollView.addSubview(locationLabel!)
         
         //add temperature label
@@ -202,12 +202,6 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
       
         ForegroundScrollView.addSubview(minutelySummary!)
         
-
-        /*//up arrow
-        let upArrow = UIImageView(frame: CGRectMake(13, screenHeight-90, 25, 25))
-        upArrow.image = UIImage(named: "Up-25")
-        self.ForegroundScrollView.addSubview(upArrow)*/
-        
         //max temperature description
         let maxTemperature = UILabel(frame: CGRectMake(70, screenHeight-117, 80, 80))
         maxTemperature.backgroundColor = UIColor.clearColor()
@@ -223,11 +217,6 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         lowLabel!.text = "20\u{00B0}"
         lowLabel!.font = UIFont(name: "HelveticaNeue-Bold", size: 15)
         ForegroundScrollView.addSubview(lowLabel!)
-        
-        /*//Down arrow
-        let downArrow = UIImageView(frame: CGRectMake(60, screenHeight-90, 25, 25))
-        downArrow.image = UIImage(named: "Down-25")
-        self.ForegroundScrollView.addSubview(downArrow)*/
         
         //min temperature description
         let minTemperature = UILabel(frame: CGRectMake(12, screenHeight-117, 80, 80))
@@ -303,7 +292,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
 
         viewModel = WeatherViewModel()
         viewModel?.startLocationService()
-        print(screenSize)
+        //print(screenSize)
         //add navigation bar
         let navigationBar = UINavigationBar(frame: CGRectMake(0, 33, self.view.frame.size.width, 40))
         navigationBar.backgroundColor = UIColor.clearColor()
@@ -370,7 +359,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
     }
     
     func changeDisplay(sender: UISegmentedControl) {
-        print("change display handler is called.")
+        //print("change display handler is called.")
         switch sender.selectedSegmentIndex {
            case 0:
                 self.containerView1!.alpha = 1
@@ -465,7 +454,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
                             
                             //let resizedImage = Flickr().imageResize(backgroundImage!, sizeChange: CGSizeMake(self.screenSize.width, self.screenSize.height))
                             //let resizedImage = Flickr().sizeToFill(backgroundImage!, size: self.screenSize.size)
-                            print("calledImage")
+                            //print("calledImage")
                             self.backgroundImageView.image = backgroundImage
                             self.backgroundImageView?.contentMode = UIViewContentMode.ScaleAspectFill
                             self.backgroundImageView?.frame = CGRect(x: 0, y: 0, width: self.screenWidth, height: self.screenHeight)
