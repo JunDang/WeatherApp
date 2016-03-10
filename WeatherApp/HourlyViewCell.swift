@@ -73,14 +73,17 @@ class HourlyViewCell: UITableViewCell, UICollectionViewDataSource,UICollectionVi
         let toBottom =  NSLayoutConstraint(item: collectionView, attribute: .Bottom, relatedBy: .Equal,
             toItem: contentView, attribute: .Bottom, multiplier: 1.0, constant: -1)
         let leadingMargin = NSLayoutConstraint(item: collectionView, attribute: .LeadingMargin, relatedBy: .Equal,
-            toItem: contentView, attribute: .LeadingMargin, multiplier: 1.0, constant: 5)
+            toItem: contentView, attribute: .LeadingMargin, multiplier: 1.0, constant: 2)
         let heightConstraint = NSLayoutConstraint(item: collectionView,
             attribute: .Height, relatedBy: .Equal, toItem: nil,
             attribute: .NotAnAttribute, multiplier: 1, constant: 90)
+        //to avoid the "UIView-Encapsulated-Layout-Height constraint" error
+        heightConstraint.priority = 999
         let widthConstraint = NSLayoutConstraint(item: collectionView,
             attribute: .Width, relatedBy: .Equal, toItem: nil,
             attribute: .NotAnAttribute, multiplier: 1, constant: width)
         //print("HourlyViewCell: \(toBottom)")
+   
         NSLayoutConstraint.activateConstraints([toTop, toBottom, heightConstraint,leadingMargin,
             widthConstraint])
         

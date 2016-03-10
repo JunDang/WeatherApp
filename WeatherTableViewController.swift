@@ -81,6 +81,14 @@ class WeatherTableViewController: UITableViewController {
         
     }
     
+    /*override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.row == 1 {
+            return 92.0
+        } else {
+            return UITableViewAutomaticDimension
+        }
+    }*/
+        
     func updateDailyData(dailyForecasts : [DailyForecast]) {
         guard dailyForecasts.count > 0 else {
             return

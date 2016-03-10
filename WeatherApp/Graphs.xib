@@ -18,23 +18,23 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gi3-Ju-50L" customClass="LineChartView" customModule="Charts">
-                    <rect key="frame" x="19" y="50" width="369" height="213"/>
+                    <rect key="frame" x="19" y="81" width="369" height="213"/>
                     <color key="backgroundColor" name="textColor" catalog="System" colorSpace="catalog"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hourly Forecast:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LdR-uA-gka">
-                    <rect key="frame" x="19" y="28" width="134" height="21"/>
+                    <rect key="frame" x="19" y="58" width="134" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OQ2-0i-Hek" customClass="WeatherLineChartView" customModule="Charts">
-                    <rect key="frame" x="19" y="297" width="369" height="221"/>
+                    <rect key="frame" x="19" y="324" width="369" height="221"/>
                     <color key="backgroundColor" name="textColor" catalog="System" colorSpace="catalog"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Daily Forecast:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OYj-lV-WpQ">
-                    <rect key="frame" x="19" y="275" width="108" height="21"/>
+                    <rect key="frame" x="19" y="302" width="108" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
