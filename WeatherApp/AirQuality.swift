@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class AirQuality: UIViewController {
 
     override func viewDidLoad() {

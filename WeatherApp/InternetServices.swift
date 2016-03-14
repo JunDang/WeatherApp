@@ -179,6 +179,21 @@ struct WeatherService: WeatherServiceProtocol {
                 }
                 
                 weatherBuilder.dailyForecasts = dailyForecasts
+                
+                // breezeometer air quality data fetch
+                let breezoMeterPath = "https://api.breezometer.com/baqi/?lat=\(latitude)&lon=\(longitude)&key=db641ef73ece4b81a351ddf133cb2bc7"
+                print(breezoMeterPath)
+                Alamofire.request(.GET, breezoMeterPath)
+                    .responseJSON {response in
+                        guard let data = response.result.value else{
+                            print("Request failed with error")
+                            return
+                        }
+                        
+                        let airQualityData = JSON(data)
+                        print("air quality data: \(airQualityData)")
+                }
+
                 // print(weatherBuilder.hourlyForecasts)
                 completionHandler(weatherBuilder.build(), nil)
         }
@@ -291,8 +306,27 @@ struct Flickr: FlickrServiceProtocol{
         
 }
 
-
-
+/*
+struct breezoMeterAirQuality {
+    func retrieveAirQualityInfo(location: CLLocation, completionHandler:BreezometerCompletionHandler) {
+            let latitude = location.coordinate.latitude
+            let longitude = location.coordinate.longitude
+            let breezoMeterPath = "https://api.breezometer.com/baqi/?lat={\(latitude)}&lon={\(longitude)}&key=db641ef73ece4b81a351ddf133cb2bc7"
+            print(breezoMeterPath)
+             Alamofire.request(.GET, breezoMeterPath)
+                .responseJSON {response in
+                   guard let data = response.result.value else{
+                    print("Request failed with error")
+                    return
+                  }
+                
+                  let airQualityData = JSON(data)
+                  print(airQualityData)
+           }
+    }
+    
+    
+}*/
 
 
 

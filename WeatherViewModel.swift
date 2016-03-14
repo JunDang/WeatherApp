@@ -176,7 +176,10 @@ class WeatherViewModel {
                 self.update(unwrappedWeather)
             })
         }
+       
     }
+    
+
 
 }
 

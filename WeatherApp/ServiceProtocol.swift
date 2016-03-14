@@ -22,3 +22,10 @@ typealias FlickrImageCompletionHandler = (UIImage?, Error?) -> Void
 protocol FlickrServiceProtocol {
     func searchFlickrForTerm(searchTerm: String, completionHandler: FlickrImageCompletionHandler)
 }
+
+
+typealias BreezometerCompletionHandler = (String?, Error?) -> Void
+
+protocol BreezometerServiceProtocol {
+    func searchFlickrForTerm(searchTerm: String, completionHandler: BreezometerCompletionHandler)
+}
