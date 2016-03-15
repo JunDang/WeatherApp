@@ -555,6 +555,36 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
                 self.forecastGraphs!.updateHourlyData($0)
                 
             }
+            // air quality
+            viewModel?.airQualityDescription.observe {
+                [unowned self] in
+                self.airQuality!.airQualityDescription!.text = $0
+            }
+            viewModel?.dominantPollutantDescription.observe {
+                [unowned self] in
+                self.airQuality!.dominantPollutantDescription!.text = $0
+            }
+            viewModel?.recommendationsChildren.observe {
+                [unowned self] in
+                self.airQuality!.recommendationChildren!.text = $0
+            }
+            viewModel?.recommendationsHealth.observe {
+                [unowned self] in
+                self.airQuality!.recommendationsHealth!.text = $0
+            }
+            viewModel?.recommendationsInside.observe {
+                [unowned self] in
+                self.airQuality!.recommendationsInside!.text = $0
+            }
+            viewModel?.recommendationsOutside.observe {
+                [unowned self] in
+                self.airQuality!.recommendationsOutside!.text = $0
+            }
+            viewModel?.recommendationsSport.observe {
+                [unowned self] in
+                self.airQuality!.recommendationsSport!.text = $0
+            }
+
         }
     }
     

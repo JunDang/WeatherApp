@@ -10,9 +10,26 @@ import UIKit
 
 
 class AirQuality: UIViewController {
+    
+    @IBOutlet weak var airQualityDescription: UILabel!
+    
+    @IBOutlet weak var dominantPollutantDescription: UILabel!
+    
+    @IBOutlet weak var recommendationChildren: UILabel!
+    
+    @IBOutlet weak var recommendationsHealth: UILabel!
+    
+    @IBOutlet weak var recommendationsInside: UILabel!
+    
+    
+    @IBOutlet weak var recommendationsOutside: UILabel!
+    
+    
+    @IBOutlet weak var recommendationsSport: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
 
         // Do any additional setup after loading the view.
     }

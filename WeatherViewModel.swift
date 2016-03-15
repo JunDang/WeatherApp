@@ -39,7 +39,15 @@ class WeatherViewModel {
     //let weeklySummary: Observable<String>
     let hourlyForecasts: Observable<[HourlyForecast]>
     let dailyForecasts: Observable<[DailyForecast]>
-
+    // air quality
+    let airQualityDescription: Observable<String>
+    let dominantPollutantDescription: Observable<String>
+    let recommendationsChildren: Observable<String>
+    let recommendationsHealth: Observable<String>
+    let recommendationsInside: Observable<String>
+    let recommendationsOutside: Observable<String>
+    let recommendationsSport: Observable<String>
+    
      // MARK: - Services
     private var locationService: LocationService!
     private var weatherAirQualityService: WeatherAirQualityServiceProtocol!
@@ -71,6 +79,14 @@ class WeatherViewModel {
         //weeklySummary = Observable(EmptyString)
         hourlyForecasts = Observable([])
         dailyForecasts = Observable([])
+        //air quality
+        airQualityDescription = Observable(EmptyString)
+        dominantPollutantDescription = Observable(EmptyString)
+        recommendationsChildren = Observable(EmptyString)
+        recommendationsHealth = Observable(EmptyString)
+        recommendationsInside = Observable(EmptyString)
+        recommendationsOutside = Observable(EmptyString)
+        recommendationsSport = Observable(EmptyString)
     }
     
     // MARK: - public
@@ -117,6 +133,15 @@ class WeatherViewModel {
             return DailyForecast(dailyForecast)
         }*/
         self.dailyForecasts.value = weatherAirQuality.dailyForecasts
+        //air quality
+        airQualityDescription.value = weatherAirQuality.airQualityDescription
+        dominantPollutantDescription.value = weatherAirQuality.dominantPollutantDescription
+        recommendationsChildren.value = weatherAirQuality.recommendationsChildren
+        recommendationsHealth.value = weatherAirQuality.recommendationsHealth
+        recommendationsInside.value = weatherAirQuality.recommendationsInside
+        recommendationsOutside.value = weatherAirQuality.recommendationsOutside
+        recommendationsSport.value = weatherAirQuality.recommendationsSport
+    
     }
     
     private func update(error: Error) {
@@ -155,6 +180,14 @@ class WeatherViewModel {
         //self.weeklySummary.value = self.EmptyString
         self.hourlyForecasts.value = []
         self.dailyForecasts.value = []
+        // air quality
+        airQualityDescription.value = self.EmptyString
+        dominantPollutantDescription.value = self.EmptyString
+        recommendationsChildren.value = self.EmptyString
+        recommendationsHealth.value = self.EmptyString
+        recommendationsInside.value = self.EmptyString
+        recommendationsOutside.value = self.EmptyString
+        recommendationsSport.value = self.EmptyString
     }
     
     
