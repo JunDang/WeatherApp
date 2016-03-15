@@ -10,15 +10,22 @@
 		072762741C6691C1005E524E /* FlickrPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072762731C6691C1005E524E /* FlickrPhoto.swift */; };
 		072762781C66D81C005E524E /* InternetServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072762771C66D81C005E524E /* InternetServices.swift */; };
 		0727627A1C66D862005E524E /* ServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072762791C66D862005E524E /* ServiceProtocol.swift */; };
+		073390451C9735E10018355A /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0781E03C1C6FCE700061710B /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		073390F51C9744F20018355A /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 073390E21C9744D20018355A /* PromiseKit.framework */; };
+		073390F61C9745500018355A /* PromiseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 073390E21C9744D20018355A /* PromiseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		073390F71C9745650018355A /* PromiseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 073390E21C9744D20018355A /* PromiseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0733910C1C9746BD0018355A /* OMGHTTPURLRQ.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 073391031C9746AF0018355A /* OMGHTTPURLRQ.framework */; };
+		0733910D1C9746CC0018355A /* OMGHTTPURLRQ.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 073391031C9746AF0018355A /* OMGHTTPURLRQ.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0733910E1C9746DC0018355A /* OMGHTTPURLRQ.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 073391031C9746AF0018355A /* OMGHTTPURLRQ.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		073391121C979B490018355A /* WeatherAirQualityBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073391111C979B490018355A /* WeatherAirQualityBuilder.swift */; };
 		0769B9B81C4C8D0F00EEC4D9 /* DailyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0769B9B71C4C8D0F00EEC4D9 /* DailyViewModel.swift */; };
 		0769B9BA1C4C8D7500EEC4D9 /* DailyForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0769B9B91C4C8D7500EEC4D9 /* DailyForecast.swift */; };
 		076FDE651C6D34C300833B0B /* WindDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076FDE641C6D34C300833B0B /* WindDirection.swift */; };
 		0781E0411C6FCED90061710B /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0781E03C1C6FCE700061710B /* Charts.framework */; };
 		0781E0421C6FCED90061710B /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0781E03C1C6FCE700061710B /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0781ED841C9709EF001F88CB /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0788BB041C48876800E89747 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0783E1921C3EC4D800696727 /* WeatherBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0783E1911C3EC4D800696727 /* WeatherBuilder.swift */; };
 		07850F851C4E822800EFE0E3 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07850F841C4E822800EFE0E3 /* WeatherViewModel.swift */; };
-		0788BABB1C484B9300E89747 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0788BAB51C48017D00E89747 /* Alamofire.framework */; };
-		0788BABC1C484B9300E89747 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0788BAB51C48017D00E89747 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0788BB141C48881400E89747 /* SwiftyJSON2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788BB131C48881400E89747 /* SwiftyJSON2.swift */; };
 		0788BB171C48894B00E89747 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0788BB041C48876800E89747 /* Alamofire.framework */; };
 		0788BB181C48894B00E89747 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0788BB041C48876800E89747 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -60,6 +67,125 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		073390E11C9744D20018355A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 073390D41C9744D10018355A /* PromiseKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 63F803A31AB87A8200E4DEE1;
+			remoteInfo = PMKiOS;
+		};
+		073390E31C9744D20018355A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 073390D41C9744D10018355A /* PromiseKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 63F803CC1AB89A0F00E4DEE1;
+			remoteInfo = PMKOSX;
+		};
+		073390E51C9744D20018355A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 073390D41C9744D10018355A /* PromiseKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 63CD9A621BB102EE008D916F;
+			remoteInfo = PMKwatchOS;
+		};
+		073390E71C9744D20018355A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 073390D41C9744D10018355A /* PromiseKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 43EF78A61C5AA12B00BCD8FB;
+			remoteInfo = PMKtvOS;
+		};
+		073390E91C9744D20018355A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 073390D41C9744D10018355A /* PromiseKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6388E1A21AD315F90074D85B;
+			remoteInfo = PMKTests;
+		};
+		073390EB1C9744D20018355A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 073390D41C9744D10018355A /* PromiseKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 63533B331AE57A9300C10972;
+			remoteInfo = PMKAPlusTests;
+		};
+		073390ED1C9744D20018355A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 073390D41C9744D10018355A /* PromiseKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 638E0ED51AEF16530052E28F;
+			remoteInfo = PMKiOSCategoryTests;
+		};
+		073390EF1C9744D20018355A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 073390D41C9744D10018355A /* PromiseKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 63CA14571AE9FBD000223904;
+			remoteInfo = PMKOSXCategoryTests;
+		};
+		073390F11C9744D20018355A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 073390D41C9744D10018355A /* PromiseKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 638CDF031AEE734B0023A543;
+			remoteInfo = PMKiOSUITestsHost;
+		};
+		073390F31C9744D20018355A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 073390D41C9744D10018355A /* PromiseKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 63EBEAC51B6151AA0097FA42;
+			remoteInfo = PMKiOSUITests;
+		};
+		073390F81C9745860018355A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 073390D41C9744D10018355A /* PromiseKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 63F803A21AB87A8200E4DEE1;
+			remoteInfo = PMKiOS;
+		};
+		073391021C9746AF0018355A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 073390FA1C9746AD0018355A /* OMGHTTPURLRQ.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 63EDFE721A7FFD0E0030F974;
+			remoteInfo = OMGiOS;
+		};
+		073391041C9746AF0018355A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 073390FA1C9746AD0018355A /* OMGHTTPURLRQ.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 63F804341AB8AAA300E4DEE1;
+			remoteInfo = OMGOSX;
+		};
+		073391061C9746AF0018355A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 073390FA1C9746AD0018355A /* OMGHTTPURLRQ.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 63EDFE7D1A7FFD0E0030F974;
+			remoteInfo = OMGTest;
+		};
+		073391081C9746AF0018355A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 073390FA1C9746AD0018355A /* OMGHTTPURLRQ.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 43EDF3D11BCC3C0900159436;
+			remoteInfo = OMGwatchOS;
+		};
+		0733910A1C9746AF0018355A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 073390FA1C9746AD0018355A /* OMGHTTPURLRQ.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E18CAC721C56CABC0043C367;
+			remoteInfo = OMGtvOS;
+		};
+		0733910F1C9746EF0018355A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 073390FA1C9746AD0018355A /* OMGHTTPURLRQ.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 63EDFE711A7FFD0E0030F974;
+			remoteInfo = OMGiOS;
+		};
 		0781E03B1C6FCE700061710B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0781E0301C6FCE6F0061710B /* Charts.xcodeproj */;
@@ -167,7 +293,10 @@
 			dstPath = "usr/local/bin/carthage copy-frameworks";
 			dstSubfolderSpec = 10;
 			files = (
-				0788BABC1C484B9300E89747 /* Alamofire.framework in Embed Frameworks */,
+				0733910D1C9746CC0018355A /* OMGHTTPURLRQ.framework in Embed Frameworks */,
+				073390F61C9745500018355A /* PromiseKit.framework in Embed Frameworks */,
+				073390451C9735E10018355A /* Charts.framework in Embed Frameworks */,
+				0781ED841C9709EF001F88CB /* Alamofire.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -178,6 +307,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				0733910E1C9746DC0018355A /* OMGHTTPURLRQ.framework in Embed Frameworks */,
+				073390F71C9745650018355A /* PromiseKit.framework in Embed Frameworks */,
 				0788BB181C48894B00E89747 /* Alamofire.framework in Embed Frameworks */,
 				0781E0421C6FCED90061710B /* Charts.framework in Embed Frameworks */,
 			);
@@ -190,13 +321,15 @@
 		072762731C6691C1005E524E /* FlickrPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrPhoto.swift; sourceTree = "<group>"; };
 		072762771C66D81C005E524E /* InternetServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetServices.swift; sourceTree = "<group>"; };
 		072762791C66D862005E524E /* ServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProtocol.swift; sourceTree = "<group>"; };
+		073390D41C9744D10018355A /* PromiseKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PromiseKit.xcodeproj; path = "../../../../Downloads/PromiseKit-master/PromiseKit.xcodeproj"; sourceTree = "<group>"; };
+		073390FA1C9746AD0018355A /* OMGHTTPURLRQ.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OMGHTTPURLRQ.xcodeproj; path = "../../../../Downloads/OMGHTTPURLRQ-master/OMGHTTPURLRQ.xcodeproj"; sourceTree = "<group>"; };
+		073391111C979B490018355A /* WeatherAirQualityBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherAirQualityBuilder.swift; sourceTree = "<group>"; };
 		0769B9B71C4C8D0F00EEC4D9 /* DailyViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyViewModel.swift; sourceTree = "<group>"; };
 		0769B9B91C4C8D7500EEC4D9 /* DailyForecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyForecast.swift; sourceTree = "<group>"; };
 		076FDE641C6D34C300833B0B /* WindDirection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindDirection.swift; sourceTree = "<group>"; };
 		0781E0301C6FCE6F0061710B /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../../../Downloads/ios-charts-master/Charts/Charts.xcodeproj"; sourceTree = "<group>"; };
 		0783E1911C3EC4D800696727 /* WeatherBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherBuilder.swift; sourceTree = "<group>"; };
 		07850F841C4E822800EFE0E3 /* WeatherViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeatherViewModel.swift; path = ../WeatherViewModel.swift; sourceTree = "<group>"; };
-		0788BAB51C48017D00E89747 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = /Users/YYH/Documents/iOS/WeatherApp/Carthage/Build/iOS/Alamofire.framework; sourceTree = "<absolute>"; };
 		0788BAF91C48876700E89747 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "../../../Downloads/Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
 		0788BB131C48881400E89747 /* SwiftyJSON2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON2.swift; path = WeatherApp/SwiftyJSON2.swift; sourceTree = "<group>"; };
 		078C0DD61C93BE4C001B0652 /* WeatherAirQuality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherAirQuality.swift; sourceTree = "<group>"; };
@@ -250,8 +383,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0733910C1C9746BD0018355A /* OMGHTTPURLRQ.framework in Frameworks */,
+				073390F51C9744F20018355A /* PromiseKit.framework in Frameworks */,
 				0781E0411C6FCED90061710B /* Charts.framework in Frameworks */,
-				0788BABB1C484B9300E89747 /* Alamofire.framework in Frameworks */,
 				0788BB171C48894B00E89747 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -273,6 +407,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		073390D51C9744D10018355A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				073390E21C9744D20018355A /* PromiseKit.framework */,
+				073390E41C9744D20018355A /* PromiseKit.framework */,
+				073390E61C9744D20018355A /* PromiseKit.framework */,
+				073390E81C9744D20018355A /* PromiseKit.framework */,
+				073390EA1C9744D20018355A /* PMKTests.xctest */,
+				073390EC1C9744D20018355A /* PMKAPlusTests.xctest */,
+				073390EE1C9744D20018355A /* PMKiOSCategoryTests.xctest */,
+				073390F01C9744D20018355A /* PMKOSXCategoryTests.xctest */,
+				073390F21C9744D20018355A /* PMKiOSUITestsHost.app */,
+				073390F41C9744D20018355A /* PMKiOSUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		073390FB1C9746AD0018355A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				073391031C9746AF0018355A /* OMGHTTPURLRQ.framework */,
+				073391051C9746AF0018355A /* OMGHTTPURLRQ.framework */,
+				073391071C9746AF0018355A /* OMGTest.xctest */,
+				073391091C9746AF0018355A /* OMGHTTPURLRQ.framework */,
+				0733910B1C9746AF0018355A /* OMGHTTPURLRQ.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		0769B9B11C4C8CD200EEC4D9 /* DailyForecast */ = {
 			isa = PBXGroup;
 			children = (
@@ -376,6 +539,7 @@
 				072762731C6691C1005E524E /* FlickrPhoto.swift */,
 				076FDE641C6D34C300833B0B /* WindDirection.swift */,
 				078C0DD61C93BE4C001B0652 /* WeatherAirQuality.swift */,
+				073391111C979B490018355A /* WeatherAirQualityBuilder.swift */,
 			);
 			name = BasicModels;
 			sourceTree = "<group>";
@@ -422,6 +586,8 @@
 				60DEB9591C07ACDA00CED811 /* AppDelegate.swift */,
 				60DEB95D1C07ACDA00CED811 /* Main.storyboard */,
 				60DEB9601C07ACDA00CED811 /* Assets.xcassets */,
+				073390FA1C9746AD0018355A /* OMGHTTPURLRQ.xcodeproj */,
+				073390D41C9744D10018355A /* PromiseKit.xcodeproj */,
 				0781E0301C6FCE6F0061710B /* Charts.xcodeproj */,
 				6038D7981C0F7D16000B17AD /* Images-2 */,
 				60DEB9621C07ACDA00CED811 /* LaunchScreen.storyboard */,
@@ -470,6 +636,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				073391101C9746EF0018355A /* PBXTargetDependency */,
+				073390F91C9745860018355A /* PBXTargetDependency */,
 				0788BB161C48886100E89747 /* PBXTargetDependency */,
 				0788BB1A1C48894B00E89747 /* PBXTargetDependency */,
 				0781E0441C6FCED90061710B /* PBXTargetDependency */,
@@ -558,6 +726,14 @@
 					ProductGroup = 0781E0311C6FCE6F0061710B /* Products */;
 					ProjectRef = 0781E0301C6FCE6F0061710B /* Charts.xcodeproj */;
 				},
+				{
+					ProductGroup = 073390FB1C9746AD0018355A /* Products */;
+					ProjectRef = 073390FA1C9746AD0018355A /* OMGHTTPURLRQ.xcodeproj */;
+				},
+				{
+					ProductGroup = 073390D51C9744D10018355A /* Products */;
+					ProjectRef = 073390D41C9744D10018355A /* PromiseKit.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -569,6 +745,111 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		073390E21C9744D20018355A /* PromiseKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = PromiseKit.framework;
+			remoteRef = 073390E11C9744D20018355A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		073390E41C9744D20018355A /* PromiseKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = PromiseKit.framework;
+			remoteRef = 073390E31C9744D20018355A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		073390E61C9744D20018355A /* PromiseKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = PromiseKit.framework;
+			remoteRef = 073390E51C9744D20018355A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		073390E81C9744D20018355A /* PromiseKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = PromiseKit.framework;
+			remoteRef = 073390E71C9744D20018355A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		073390EA1C9744D20018355A /* PMKTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = PMKTests.xctest;
+			remoteRef = 073390E91C9744D20018355A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		073390EC1C9744D20018355A /* PMKAPlusTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = PMKAPlusTests.xctest;
+			remoteRef = 073390EB1C9744D20018355A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		073390EE1C9744D20018355A /* PMKiOSCategoryTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = PMKiOSCategoryTests.xctest;
+			remoteRef = 073390ED1C9744D20018355A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		073390F01C9744D20018355A /* PMKOSXCategoryTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = PMKOSXCategoryTests.xctest;
+			remoteRef = 073390EF1C9744D20018355A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		073390F21C9744D20018355A /* PMKiOSUITestsHost.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = PMKiOSUITestsHost.app;
+			remoteRef = 073390F11C9744D20018355A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		073390F41C9744D20018355A /* PMKiOSUITests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = PMKiOSUITests.xctest;
+			remoteRef = 073390F31C9744D20018355A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		073391031C9746AF0018355A /* OMGHTTPURLRQ.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OMGHTTPURLRQ.framework;
+			remoteRef = 073391021C9746AF0018355A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		073391051C9746AF0018355A /* OMGHTTPURLRQ.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OMGHTTPURLRQ.framework;
+			remoteRef = 073391041C9746AF0018355A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		073391071C9746AF0018355A /* OMGTest.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = OMGTest.xctest;
+			remoteRef = 073391061C9746AF0018355A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		073391091C9746AF0018355A /* OMGHTTPURLRQ.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OMGHTTPURLRQ.framework;
+			remoteRef = 073391081C9746AF0018355A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0733910B1C9746AF0018355A /* OMGHTTPURLRQ.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OMGHTTPURLRQ.framework;
+			remoteRef = 0733910A1C9746AF0018355A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		0781E03C1C6FCE700061710B /* Charts.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -692,6 +973,7 @@
 				0788BB141C48881400E89747 /* SwiftyJSON2.swift in Sources */,
 				07BA25AB1C540E36009A69D6 /* HourlyViewModel.swift in Sources */,
 				079E0CAA1C89DCBA00DAEF6D /* DataManager.swift in Sources */,
+				073391121C979B490018355A /* WeatherAirQualityBuilder.swift in Sources */,
 				60DEB95C1C07ACDA00CED811 /* ViewController.swift in Sources */,
 				07AB53691C3D9FC4009059B0 /* LocationService.swift in Sources */,
 				07BA25B11C5414B5009A69D6 /* DailyViewCell.swift in Sources */,
@@ -727,6 +1009,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		073390F91C9745860018355A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PMKiOS;
+			targetProxy = 073390F81C9745860018355A /* PBXContainerItemProxy */;
+		};
+		073391101C9746EF0018355A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = OMGiOS;
+			targetProxy = 0733910F1C9746EF0018355A /* PBXContainerItemProxy */;
+		};
 		0781E0441C6FCED90061710B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Charts-iOS";
@@ -813,6 +1105,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				"OTHER_CODE_SIGN_FLAGS[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -862,6 +1155,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_ENTITLEMENTS[sdk=iphoneos*]" = "";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -870,8 +1164,10 @@
 				INFOPLIST_FILE = WeatherApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				"OTHER_CODE_SIGN_FLAGS[sdk=iphoneos*]" = "--deep";
 				PRODUCT_BUNDLE_IDENTIFIER = com.JunDang.WeatherApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "fa71295c-7de2-43c5-b014-5c853840b190";
 				SWIFT_OBJC_BRIDGING_HEADER = "WeatherApp/WeatherApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -882,6 +1178,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_ENTITLEMENTS[sdk=iphoneos*]" = "";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -890,8 +1187,10 @@
 				INFOPLIST_FILE = WeatherApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				"OTHER_CODE_SIGN_FLAGS[sdk=iphoneos*]" = "--deep";
 				PRODUCT_BUNDLE_IDENTIFIER = com.JunDang.WeatherApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "fa71295c-7de2-43c5-b014-5c853840b190";
 				SWIFT_OBJC_BRIDGING_HEADER = "WeatherApp/WeatherApp-Bridging-Header.h";
 			};
 			name = Release;

@@ -17,12 +17,12 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Please input search city name" translatesAutoresizingMaskIntoConstraints="NO" id="iNt-lK-179">
-                    <rect key="frame" x="8" y="54" width="387" height="44"/>
+                    <rect key="frame" x="8" y="54" width="363" height="44"/>
                     <color key="barTintColor" red="0.29883357960000001" green="0.58119735269999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <textInputTraits key="textInputTraits"/>
                 </searchBar>
                 <navigationBar contentMode="scaleToFill" fixedFrame="YES" barStyle="blackTranslucent" translatesAutoresizingMaskIntoConstraints="NO" id="BME-2H-erb">
-                    <rect key="frame" x="8" y="8" width="387" height="44"/>
+                    <rect key="frame" x="8" y="8" width="363" height="44"/>
                     <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <textAttributes key="titleTextAttributes">
                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>

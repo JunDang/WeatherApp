@@ -2,8 +2,9 @@
 //  DailyViewModel.swift
 //  WeatherApp
 //
-//  Created by Yuan Yinhuan on 16/1/17.
-//  Copyright © 2016年 Jun Jun. All rights reserved.
+
+//  Created by Jun Dang on 16/2/6.
+//  Copyright © 2016年 Jun Dang. All rights reserved.
 //
 
 import Foundation

@@ -42,7 +42,7 @@ class WeatherViewModel {
 
      // MARK: - Services
     private var locationService: LocationService!
-    private var weatherService: WeatherServiceProtocol!
+    private var weatherAirQualityService: WeatherAirQualityServiceProtocol!
     
     // MARK: - init
     init() {
@@ -78,45 +78,45 @@ class WeatherViewModel {
         locationService = LocationService()
         locationService.delegate = self
         
-        weatherService = WeatherService()
+        weatherAirQualityService = WeatherAirQualityService()
         
         locationService.requestLocation()
     }
     
     // MARK: - private
     
-    private func update(weather: Weather) {
+    private func update(weatherAirQuality: WeatherAirQuality) {
         self.hasError.value = false
         self.errorMessage.value = nil
         //current. when value passed to observables changed, call observer. Or else, have to change every label name
-        self.location.value = weather.location
-        self.currentIconName.value = weather.currentIconName
-        self.currentTemperature.value = weather.currentTemperature
-        self.currentTemperatureHigh.value = weather.currentTemperatureHigh
-        self.currentTemperatureLow.value = weather.currentTemperatureLow
-        self.feelsLikeTemperature.value = weather.feelsLikeTemperature
-        self.currentSummary.value = weather.currentSummary
-        self.dailySummary.value = weather.dailySummary
-        self.minutelySummary.value = weather.minutelySummary
-        self.precipitationProbability.value = weather.precipitationProbability
-        self.precipitationIntensity.value = weather.precipitationIntensity
+        self.location.value = weatherAirQuality.location
+        self.currentIconName.value = weatherAirQuality.currentIconName
+        self.currentTemperature.value = weatherAirQuality.currentTemperature
+        self.currentTemperatureHigh.value = weatherAirQuality.currentTemperatureHigh
+        self.currentTemperatureLow.value = weatherAirQuality.currentTemperatureLow
+        self.feelsLikeTemperature.value = weatherAirQuality.feelsLikeTemperature
+        self.currentSummary.value = weatherAirQuality.currentSummary
+        self.dailySummary.value = weatherAirQuality.dailySummary
+        self.minutelySummary.value = weatherAirQuality.minutelySummary
+        self.precipitationProbability.value = weatherAirQuality.precipitationProbability
+        self.precipitationIntensity.value = weatherAirQuality.precipitationIntensity
        // self.precipitationType.value = weather.precipitationType
-        self.dewPoint.value = weather.dewPoint
-        self.humidity.value = weather.humidity
+        self.dewPoint.value = weatherAirQuality.dewPoint
+        self.humidity.value = weatherAirQuality.humidity
         //self.windDirection.value = weather.windDirection
-        self.windSpeed.value = weather.windSpeed
-        self.sunriseTime.value = weather.sunriseTime
-        self.sunsetTime.value = weather.sunsetTime
-        self.cloudCover.value = weather.cloudCover
+        self.windSpeed.value = weatherAirQuality.windSpeed
+        self.sunriseTime.value = weatherAirQuality.sunriseTime
+        self.sunsetTime.value = weatherAirQuality.sunsetTime
+        self.cloudCover.value = weatherAirQuality.cloudCover
         //self.weeklySummary.value = weather.weeklySummary
 
         //hourly forecast
-        self.hourlyForecasts.value = weather.hourlyForecasts
+        self.hourlyForecasts.value = weatherAirQuality.hourlyForecasts
         //daily forecast
         /*let daily = weather.dailyForecasts.map { dailyForecast in
             return DailyForecast(dailyForecast)
         }*/
-        self.dailyForecasts.value = weather.dailyForecasts
+        self.dailyForecasts.value = weatherAirQuality.dailyForecasts
     }
     
     private func update(error: Error) {
@@ -160,9 +160,9 @@ class WeatherViewModel {
     
     func searchCityLocation(city: String, location: CLLocation) {
         //print("transferredLocation: \(location)")
-        weatherService.cityName = city
-        print(weatherService.cityName)
-        weatherService.retrieveWeatherInfo(location) { (weather, error) -> Void in
+        weatherAirQualityService.cityName = city
+        print(weatherAirQualityService.cityName)
+        weatherAirQualityService.retrieveWeatherInfo(location) { (weatherAirQuality, error) -> Void in
             dispatch_async(dispatch_get_main_queue(), {
                 if let unwrappedError = error {
                     print(unwrappedError)
@@ -170,7 +170,7 @@ class WeatherViewModel {
                     return
                 }
                 
-                guard let unwrappedWeather = weather else {
+                guard let unwrappedWeather = weatherAirQuality else {
                     return
                 }
                 self.update(unwrappedWeather)
@@ -186,7 +186,7 @@ class WeatherViewModel {
 // MARK: LocationServiceDelegate
 extension WeatherViewModel: LocationServiceDelegate {
     func locationDidUpdate(service: LocationService, location: CLLocation) {
-         weatherService.retrieveWeatherInfo(location) { (weather, error) -> Void in
+         weatherAirQualityService.retrieveWeatherInfo(location) { (weatherAirQuality, error) -> Void in
             dispatch_async(dispatch_get_main_queue(), {
                 if let unwrappedError = error {
                     print(unwrappedError)
@@ -194,7 +194,7 @@ extension WeatherViewModel: LocationServiceDelegate {
                     return
                 }
                 
-                guard let unwrappedWeather = weather else {
+                guard let unwrappedWeather = weatherAirQuality else {
                     return
                 }
                 self.update(unwrappedWeather)

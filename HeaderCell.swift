@@ -2,9 +2,9 @@
 //  HeaderCell.swift
 //  WeatherApp
 //
-//  Created by Jun Jun on 15/12/18.
-//  Copyright © 2015年 Jun Jun. All rights reserved.
-//
+
+//  Created by Jun Dang on 16/2/6.
+//  Copyright © 2016年 Jun Dang. All rights reserved.
 
 import UIKit
 

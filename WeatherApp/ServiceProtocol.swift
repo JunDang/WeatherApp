@@ -2,18 +2,20 @@
 //  ServiceProtocol.swift
 //  WeatherApp
 //
-//  Created by Yuan Yinhuan on 16/2/6.
-//  Copyright © 2016年 Jun Jun. All rights reserved.
+
+//  Created by Jun Dang on 16/2/6.
+//  Copyright © 2016年 Jun Dang. All rights reserved.
 //
 
 import Foundation
 import CoreLocation
 
-typealias WeatherCompletionHandler = (Weather?, Error?) -> Void
+typealias WeatherAirQualityCompletionHandler = (WeatherAirQuality?, Error?) -> Void
 
-protocol WeatherServiceProtocol {
+protocol WeatherAirQualityServiceProtocol {
     var cityName:String {get set}
-    func retrieveWeatherInfo(location: CLLocation, completionHandler: WeatherCompletionHandler)
+    func processResponses(response1: AnyObject , response2: AnyObject, completionHandler: WeatherAirQualityCompletionHandler)
+    func retrieveWeatherInfo(location: CLLocation, completionHandler: WeatherAirQualityCompletionHandler)
 }
 
 

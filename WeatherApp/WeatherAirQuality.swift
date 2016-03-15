@@ -35,5 +35,12 @@ struct WeatherAirQuality {
     let dailyForecasts: [DailyForecast]
     
     //Air Quality
+    let airQualityDescription: String
+    let dominantPollutantDescription: String
+    let recommendationsChildren: String
+    let recommendationsHealth: String
+    let recommendationsInside: String
+    let recommendationsOutside: String
+    let recommendationsSport: String
     
 }
