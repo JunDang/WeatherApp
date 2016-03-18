@@ -38,6 +38,8 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
     var airQuality: AirQuality?
     var searchCity: SearchCityViewController?
     
+    var sideBar: SideBar = SideBar()
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -322,6 +324,9 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         self.ForegroundScrollView.addSubview(navigationBar)
         
         searchCity = SearchCityViewController()
+        
+        //side bar
+        sideBar = SideBar(sourceView: self.view)
         
         
     }
