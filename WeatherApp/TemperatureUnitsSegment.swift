@@ -8,10 +8,10 @@
 
 import UIKit
 
-enum TemperatureType: Int{
+/*enum TemperatureType: Int{
     case Celsius = 0
     case Farenheit
-}
+}*/
 
 class TemperatureUnitsSegment: UITableViewCell {
 
@@ -40,18 +40,23 @@ class TemperatureUnitsSegment: UITableViewCell {
     }
     
     @IBAction func temperatureUnitSegmentedControl(sender: UISegmentedControl) {
-        let temperatureUnit = TemperatureType(rawValue: temperatureSegmentedControl.selectedSegmentIndex)
-        switch (temperatureUnit!) {
-        case .Celsius:
-            print("celcius")
-        case .Farenheit:
-            print("Farenheit")
-            
-        }
-
         
+        switch temperatureSegmentedControl.selectedSegmentIndex
+        {
+        case 0:
+            print("°C")
+        case 1:
+            print("°F")
+        default:
+            break
+        }
     }
     
+ }
+
+
+
     
     
-}
+    
+

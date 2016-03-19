@@ -326,7 +326,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         searchCity = SearchCityViewController()
         
         //side bar
-        sideBar = SideBar(sourceView: self.view)
+        sideBar = SideBar(sourceView: self.ForegroundScrollView)
         
         
     }

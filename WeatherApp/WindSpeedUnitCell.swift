@@ -8,10 +8,6 @@
 
 import UIKit
 
-enum TemperatureType: Int{
-    case Celsius = 0
-    case Farenheit
-}
 
 
 class WindSpeedUnitCell: UITableViewCell {
@@ -32,18 +28,19 @@ class WindSpeedUnitCell: UITableViewCell {
     
     
     @IBAction func windSpeedUnitSegmentControl(sender: AnyObject) {
-        let temperatureUnit = TemperatureType(rawValue: temperatureSegmentedControl.selectedSegmentIndex)
-        switch (temperatureUnit!) {
-        case .Celsius:
-            print("celcius")
-        case .Farenheit:
-            print("Farenheit")
-            
-        }
- 
         
+            switch windSpeedUnitSegment.selectedSegmentIndex
+            {
+            case 0:
+              print("km/hr")
+            case 1:
+                print("mph")
+            default: 
+                break
+            } 
+      }
         
-    }
+    
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

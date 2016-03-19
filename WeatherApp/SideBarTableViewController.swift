@@ -19,9 +19,10 @@ class SideBarTableViewController: UITableViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView!.registerNib(UINib(nibName: "TemperatureUnitsSegment", bundle: nil), forCellReuseIdentifier: "TemperatureUnitsSegmentCell")
+        tableView!.registerNib(UINib(nibName: "WindSpeedUnitCell", bundle: nil), forCellReuseIdentifier: "WindSpeedUnitCell")
 
         //tableView!.registerClass(TemperatureUnitsSegment.self, forCellReuseIdentifier: "TemperatureUnitsSegmentCell")
-        tableView!.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView!.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         tableView!.backgroundColor = UIColor.clearColor()
         print("6")// Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
@@ -42,7 +43,7 @@ class SideBarTableViewController: UITableViewController{
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 14
+        return 2
     }
     
     
@@ -51,13 +52,19 @@ class SideBarTableViewController: UITableViewController{
         if (indexPath.row == 0) {
             let cell: TemperatureUnitsSegment = tableView.dequeueReusableCellWithIdentifier("TemperatureUnitsSegmentCell", forIndexPath: indexPath) as! TemperatureUnitsSegment
             //cell.textLabel!.text = "I LOVE YOU"
-            cell.backgroundColor = UIColor.purpleColor()
+            cell.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.3)
             return cell
             
+        } else if (indexPath.row == 1){
+            let cell: WindSpeedUnitCell = tableView.dequeueReusableCellWithIdentifier("WindSpeedUnitCell", forIndexPath: indexPath) as! WindSpeedUnitCell
+            cell.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.3)
+            return cell
         } else {
-            let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) 
+            let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+            cell.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.3)
             return cell
         }
+        
        
         
     }

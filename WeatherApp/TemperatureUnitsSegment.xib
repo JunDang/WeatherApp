@@ -17,8 +17,8 @@
                     <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Zvg-hN-elW">
                         <rect key="frame" x="8" y="7" width="128" height="29"/>
                         <segments>
-                            <segment title="Celsius"/>
-                            <segment title="Farenheit"/>
+                            <segment title="°C"/>
+                            <segment title="°F"/>
                         </segments>
                         <connections>
                             <action selector="temperatureUnitSegmentedControl:" destination="KGk-i7-Jjw" eventType="valueChanged" id="b0k-6R-i26"/>
