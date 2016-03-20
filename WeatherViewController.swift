@@ -39,6 +39,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
     var searchCity: SearchCityViewController?
     
     var sideBar: SideBar = SideBar()
+    var sideBarTableViewController: SideBarTableViewController = SideBarTableViewController()
     
     override func viewDidLoad() {
         
@@ -307,7 +308,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         //set image for button
         menuButton.frame = CGRectMake(20, 35, 35, 35)
         menuButton.setImage(UIImage(named: "icon-menu-narrow-white"), forState: .Normal)
-        menuButton.addTarget(self, action: Selector("menuButtonPressed"), forControlEvents: .TouchUpInside)
+        menuButton.addTarget(self, action: Selector("menuButtonPressed:"), forControlEvents: .TouchUpInside)
         //assign button to navigationbar
         let menubarButton = UIBarButtonItem(customView: menuButton)
         
@@ -324,6 +325,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         self.ForegroundScrollView.addSubview(navigationBar)
         
         searchCity = SearchCityViewController()
+       
         
         //side bar
         sideBar = SideBar(sourceView: self.ForegroundScrollView)
@@ -589,13 +591,39 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
                 [unowned self] in
                 self.airQuality!.recommendationsSport!.text = $0
             }
-
         }
+           
     }
     
-    func menuButtonPressed() {
+    func menuButtonPressed(sender: UIBarButtonItem) {
         
-        print("menuButtonPressed")
+       sideBar.viewModel = self.viewModel
+       let sideBarContainerView = UIView()
+       sideBarContainerView.frame = CGRectMake(0, self.view.frame.origin.y, 150, 250)
+       sideBarContainerView.backgroundColor = UIColor.clearColor()
+       sideBarContainerView.clipsToBounds = false
+        
+       self.ForegroundScrollView.addSubview(sideBarContainerView)
+        
+        sideBarTableViewController.delegate = self
+        sideBarTableViewController.tableView.frame = sideBarContainerView.bounds
+        sideBarTableViewController.tableView.clipsToBounds = false
+        sideBarTableViewController.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        sideBarTableViewController.tableView.backgroundColor = UIColor.clearColor()
+        sideBarTableViewController.tableView.scrollsToTop = false
+        sideBarTableViewController.tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0)
+        
+        sideBarContainerView.addSubview(sideBarTableViewController.tableView)
+        
+        let delay = 8.0 * Double(NSEC_PER_SEC)
+        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+        dispatch_after(time, dispatch_get_main_queue(), {
+            
+          sideBarContainerView.removeFromSuperview()
+        })
+        
+
+       
     }
     func SearchCity(sender: UIBarButtonItem) {
         searchCity!.viewModel = self.viewModel

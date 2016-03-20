@@ -9,12 +9,13 @@
 import Foundation
 
 @objc protocol SideBarDelegate{
-    //func sideBarofSelectButtonAtIndex(index:Int)
+  
     optional func sideBarWillClose()
     optional func sideBarWillOpen()
 }
 
 class SideBar: NSObject, UITableViewDelegate{
+
     let barWidth: CGFloat = 150.0
     let sideBarTableViewTopInset: CGFloat = 64.0
     let sideBarContainerView: UIView = UIView()
@@ -23,14 +24,13 @@ class SideBar: NSObject, UITableViewDelegate{
     var animator:UIDynamicAnimator = UIDynamicAnimator()
     var delegate: SideBarDelegate?
     var isSideBarOpen:Bool = false
+    var viewModel: WeatherViewModel?
     
     override init() {
-       print("1")
         super.init()
     }
     
     init(sourceView: UIView) {
-        print("2")
         super.init()
         originView = sourceView
         originView.backgroundColor = UIColor.clearColor()
@@ -47,7 +47,7 @@ class SideBar: NSObject, UITableViewDelegate{
     }
     
     func setupSideBar() {
-        print("3")
+        
         sideBarContainerView.frame = CGRectMake(-barWidth - 2, originView.frame.origin.y, barWidth, originView.frame.size.height)
         sideBarContainerView.backgroundColor = UIColor.clearColor()
         sideBarContainerView.clipsToBounds = false
@@ -66,7 +66,7 @@ class SideBar: NSObject, UITableViewDelegate{
     }
     
     func handleSwipe(recognizer: UISwipeGestureRecognizer) {
-        print("4")
+       
         if recognizer.direction == UISwipeGestureRecognizerDirection.Left {
             showSideBar(false)
             delegate?.sideBarWillClose?()
@@ -78,7 +78,7 @@ class SideBar: NSObject, UITableViewDelegate{
     }
     
     func showSideBar(shouldOpen:Bool) {
-        print("5")
+      
         animator.removeAllBehaviors()
         isSideBarOpen = shouldOpen
         
@@ -104,7 +104,5 @@ class SideBar: NSObject, UITableViewDelegate{
         
     }
     
-   /* func sideBarControlDidSelectRow(indexPath: NSIndexPath) {
-        delegate?.sideBarofSelectButtonAtIndex(indexPath.row)
-    }*/
+   
 }

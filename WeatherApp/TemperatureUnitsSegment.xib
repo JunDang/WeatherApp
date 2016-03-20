@@ -14,12 +14,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="146" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Zvg-hN-elW">
+                    <segmentedControl opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Zvg-hN-elW">
                         <rect key="frame" x="8" y="7" width="128" height="29"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <segments>
                             <segment title="°C"/>
                             <segment title="°F"/>
                         </segments>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <connections>
                             <action selector="temperatureUnitSegmentedControl:" destination="KGk-i7-Jjw" eventType="valueChanged" id="b0k-6R-i26"/>
                         </connections>

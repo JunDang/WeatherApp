@@ -18,8 +18,9 @@ enum NetworkError: ErrorType {
 
 struct WeatherAirQualityService: WeatherAirQualityServiceProtocol {
     //private let baseUrl = "https://api.forecast.io/forecast"
-    
+    var convertToKilometer:Bool = false
     var cityName = ""
+    
     
     func forecastIO(location: CLLocation) -> Promise<AnyObject> {
         let latitude = location.coordinate.latitude
@@ -118,7 +119,12 @@ struct WeatherAirQualityService: WeatherAirQualityServiceProtocol {
         let precipitation: String = String(precipitationIntensity) + " cm"
         let dewP: String = String(dewPoint)
         let humidityString: String = String(Int(humidity * 100)) + " %"
-        let windSpeedString: String = String(windSpeed) + " km/hr"
+        var windSpeedString: String?
+        if convertToKilometer == true {
+            windSpeedString = String(round(windSpeed * 1.609344)) + " km/hr"
+        } else {
+            windSpeedString = String(windSpeed) + "mph"
+        }
         let cloudCoverString: String = String(cloudCover)
         
         var windDirection: String?
@@ -154,7 +160,7 @@ struct WeatherAirQualityService: WeatherAirQualityServiceProtocol {
         weatherAirQualityBuilder.dewPoint = dewP
         weatherAirQualityBuilder.humidity = humidityString
         //weatherBuilder.windDirection = windDirection.windDirection
-        weatherAirQualityBuilder.windSpeed = calculatingWindDirection + " " + windSpeedString
+        weatherAirQualityBuilder.windSpeed = calculatingWindDirection + " " + windSpeedString!
         weatherAirQualityBuilder.sunriseTime = sunRise
         weatherAirQualityBuilder.sunsetTime = sunSet
         weatherAirQualityBuilder.cloudCover = cloudCoverString
