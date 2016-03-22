@@ -72,11 +72,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeatherViewController.swift"
-            timestampString = "480128813.377748"
+            timestampString = "480192462.952791"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
             landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
@@ -88,11 +88,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeatherViewModel.swift"
-            timestampString = "479749123.152884"
+            timestampString = "480306591.706992"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
+            startingLineNumber = "257"
+            endingLineNumber = "257"
             landmarkName = "update(_:)"
             landmarkType = "5">
             <Locations>
@@ -136,11 +136,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeatherApp/InternetServices.swift"
-            timestampString = "480128174.996333"
+            timestampString = "480284669.641418"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "321"
-            endingLineNumber = "321"
+            startingLineNumber = "327"
+            endingLineNumber = "327"
             landmarkName = "imageResize(_:sizeChange:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -152,11 +152,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeatherViewController.swift"
-            timestampString = "480128813.377748"
+            timestampString = "480192462.952791"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "504"
-            endingLineNumber = "504"
+            startingLineNumber = "507"
+            endingLineNumber = "507"
             landmarkName = "WeatherViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -248,11 +248,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeatherViewController.swift"
-            timestampString = "480128813.377748"
+            timestampString = "480192462.952791"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "397"
-            endingLineNumber = "397"
+            startingLineNumber = "400"
+            endingLineNumber = "400"
             landmarkName = "displayContentController(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -264,11 +264,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeatherViewController.swift"
-            timestampString = "480128813.377748"
+            timestampString = "480192462.952791"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "329"
-            endingLineNumber = "329"
+            startingLineNumber = "332"
+            endingLineNumber = "332"
             landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
@@ -502,11 +502,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeatherViewController.swift"
-            timestampString = "480128813.377748"
+            timestampString = "480193901.728381"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "598"
-            endingLineNumber = "598"
+            startingLineNumber = "606"
+            endingLineNumber = "606"
             landmarkName = "menuButtonPressed(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -518,11 +518,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeatherViewModel.swift"
-            timestampString = "480127683.503107"
+            timestampString = "480283780.913641"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "init()"
             landmarkType = "5">
          </BreakpointContent>
@@ -655,12 +655,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeatherViewModel.swift"
-            timestampString = "480130246.120992"
+            timestampString = "480306591.706992"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "172"
-            endingLineNumber = "172"
+            startingLineNumber = "246"
+            endingLineNumber = "246"
             landmarkName = "update(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherApp/WindSpeedUnitCell.swift"
+            timestampString = "480305278.640048"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "awakeFromNib()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

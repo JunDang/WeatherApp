@@ -119,12 +119,8 @@ struct WeatherAirQualityService: WeatherAirQualityServiceProtocol {
         let precipitation: String = String(precipitationIntensity) + " cm"
         let dewP: String = String(dewPoint)
         let humidityString: String = String(Int(humidity * 100)) + " %"
-        var windSpeedString: String?
-        if convertToKilometer == true {
-            windSpeedString = String(round(windSpeed * 1.609344)) + " km/hr"
-        } else {
-            windSpeedString = String(windSpeed) + "mph"
-        }
+             
+        let windSpeedString = String(windSpeed) + " " + "mph"
         let cloudCoverString: String = String(cloudCover)
         
         var windDirection: String?
@@ -160,12 +156,22 @@ struct WeatherAirQualityService: WeatherAirQualityServiceProtocol {
         weatherAirQualityBuilder.dewPoint = dewP
         weatherAirQualityBuilder.humidity = humidityString
         //weatherBuilder.windDirection = windDirection.windDirection
-        weatherAirQualityBuilder.windSpeed = calculatingWindDirection + " " + windSpeedString!
+        weatherAirQualityBuilder.windSpeed = calculatingWindDirection + " " + windSpeedString
         weatherAirQualityBuilder.sunriseTime = sunRise
         weatherAirQualityBuilder.sunsetTime = sunSet
         weatherAirQualityBuilder.cloudCover = cloudCoverString
         //weatherBuilder.weeklySummary = weeklySummary
-        
+       /* let windString = weatherAirQualityBuilder.windSpeed
+        let arrayS = windString!.componentsSeparatedByString(" ")
+        print(arrayS)
+        let numberString = arrayS[1]
+        print(numberString)*/
+        /*let stringArray = windString!.componentsSeparatedByCharactersInSet(
+            NSCharacterSet.decimalDigitCharacterSet().invertedSet)
+        let newString = stringArray.joinWithSeparator("")*/
+        //print(stringArray)
+        //print(newString)
+
         let weatherIcon = WeatherIcon().iconMap[currentIcon]
         weatherAirQualityBuilder.currentIconName = weatherIcon
         

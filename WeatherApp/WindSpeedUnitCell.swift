@@ -20,25 +20,26 @@ class WindSpeedUnitCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        var unitChange: Int? = defaults.objectForKey("unitChange") as! Int?
-        if (unitChange == nil) {
-            unitChange = 1
-            defaults.setObject(unitChange, forKey: "windSpeedUnitSegment")
-        }
-        switch (unitChange!)
-        {
-        case 0:
-            convertToKilometer = true
-           
-            
-        case 1:
+        convertToKilometer = defaults.objectForKey("convertToKilometer") as? Bool
+        print(convertToKilometer)
+        if (convertToKilometer == nil) {
             convertToKilometer = false
-        default:
-            break
+            defaults.setObject(convertToKilometer, forKey: "convertToKilometer")
+        }
+        print(convertToKilometer)
+        // Initialization code
+        //var unitChange: Int? = defaults.objectForKey("unitChange") as! Int?
+        
+        /*if (unitChange == nil) {
+            unitChange = 1
+            defaults.setObject(unitChange, forKey: "convertToKilometer")
+        }*/
+        if convertToKilometer == false {
+            windSpeedUnitSegment.selectedSegmentIndex = 0
+        } else {
+            windSpeedUnitSegment.selectedSegmentIndex = 1
         }
         
-
         
     }
     
@@ -48,25 +49,20 @@ class WindSpeedUnitCell: UITableViewCell {
     }
     
     
-    
+  /*
     @IBAction func saveButtonPressed(sender: UIButton) {
         print("savebuttonPressed")
         let unitChange = windSpeedUnitSegment.selectedSegmentIndex
-        defaults.setObject(unitChange, forKey: "unitChange")
+        defaults.setObject(unitChange, forKey: "convertToKilometer")
         defaults.synchronize()
+        /*defaults.setObject(convertToKilometer, forKey: "convertToKilometer")
+        defaults.synchronize()*/
         
         
         
     }
-    
-
-    
-    
-    
-   
-    
-    
-    
+    */
+       
     
     
     @IBAction func windSpeedUnitSegmentControl(sender: AnyObject) {
@@ -75,15 +71,18 @@ class WindSpeedUnitCell: UITableViewCell {
             switch windSpeedUnitSegment.selectedSegmentIndex
             {
             case 0:
-                 convertToKilometer = true
-                print(convertToKilometer)
-               // WeatherAirQualityService.convertToKilometer = convertToKilometer
+                 convertToKilometer = false
+                //print(convertToKilometer)
+              
                 
             case 1:
-                 convertToKilometer = false
+                 convertToKilometer = true
+                
             default: 
                 break
             }
+        defaults.setObject(convertToKilometer, forKey: "convertToKilometer")
+        defaults.synchronize()
     }
    
     
@@ -101,29 +100,6 @@ class WindSpeedUnitCell: UITableViewCell {
         super.init(coder: aDecoder)
     }
 
-    
-   /* func viewDidLoad() {
-        print("viewDidLoad")
-        var unitChange: Int? = defaults.objectForKey("unitChange") as! Int?
-        if (unitChange == nil) {
-            unitChange = 1
-            defaults.setObject(unitChange, forKey: "windSpeedUnitSegment")
-        }
-        switch (unitChange!)
-        {
-        case 0:
-            convertToKilometer = true
-            //WeatherAirQualityService.convertToKilometer = convertToKilometer
-            
-        case 1:
-            convertToKilometer = false
-        default:
-            break
-        }
-        
-
-        
-    }*/
     
 }
 

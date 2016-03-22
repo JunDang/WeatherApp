@@ -38,8 +38,12 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
     var airQuality: AirQuality?
     var searchCity: SearchCityViewController?
     
+    let menuButton:UIButton = UIButton()
+
+    
     var sideBar: SideBar = SideBar()
     var sideBarTableViewController: SideBarTableViewController = SideBarTableViewController()
+    var isSideBarExpand: Bool = true
     
     override func viewDidLoad() {
         
@@ -304,7 +308,6 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         navigationBar.delegate = self
         let navigationItem = UINavigationItem()
         let searchButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Search, target: self, action: "SearchCity:")
-        let menuButton = UIButton()
         //set image for button
         menuButton.frame = CGRectMake(20, 35, 35, 35)
         menuButton.setImage(UIImage(named: "icon-menu-narrow-white"), forState: .Normal)
@@ -596,15 +599,15 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
     }
     
     func menuButtonPressed(sender: UIBarButtonItem) {
+       
+        sideBar.viewModel = self.viewModel
+        let sideBarContainerView = UIView()
         
-       sideBar.viewModel = self.viewModel
-       let sideBarContainerView = UIView()
-       sideBarContainerView.frame = CGRectMake(0, self.view.frame.origin.y, 150, 250)
-       sideBarContainerView.backgroundColor = UIColor.clearColor()
-       sideBarContainerView.clipsToBounds = false
-        
-       self.ForegroundScrollView.addSubview(sideBarContainerView)
-        
+        sideBarContainerView.frame = CGRectMake(0, self.view.frame.origin.y, 150, 250)
+        sideBarContainerView.backgroundColor = UIColor.clearColor()
+        sideBarContainerView.clipsToBounds = false
+            
+        self.ForegroundScrollView.addSubview(sideBarContainerView)
         sideBarTableViewController.delegate = self
         sideBarTableViewController.tableView.frame = sideBarContainerView.bounds
         sideBarTableViewController.tableView.clipsToBounds = false
@@ -615,14 +618,15 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         
         sideBarContainerView.addSubview(sideBarTableViewController.tableView)
         
-        let delay = 8.0 * Double(NSEC_PER_SEC)
+        self.menuButton.enabled = false
+        let delay = 6.0 * Double(NSEC_PER_SEC)
         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
         dispatch_after(time, dispatch_get_main_queue(), {
+            sideBarContainerView.removeFromSuperview()
+            self.menuButton.enabled = true
             
-          sideBarContainerView.removeFromSuperview()
         })
         
-
        
     }
     func SearchCity(sender: UIBarButtonItem) {

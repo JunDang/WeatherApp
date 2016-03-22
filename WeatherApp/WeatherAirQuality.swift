@@ -7,7 +7,7 @@
 //
 import Foundation
 
-struct WeatherAirQuality {
+class WeatherAirQuality{
     let location: String
     let currentIconName: String
     let currentTemperature: String
@@ -43,4 +43,69 @@ struct WeatherAirQuality {
     let recommendationsOutside: String
     let recommendationsSport: String
     
+    init(
+        location: String,
+        currentIconName: String,
+        currentTemperature: String,
+        currentTemperatureHigh: String,
+        currentTemperatureLow: String,
+        feelsLikeTemperature: String,
+        currentSummary: String,
+        dailySummary: String,
+        minutelySummary: String,
+        precipitationProbability:String,
+        precipitationIntensity: String,
+        //precipitationType: precipitationType!,
+        dewPoint: String,
+        humidity: String,
+        //windDirection: windDirection!,
+        windSpeed: String,
+        sunriseTime: String,
+        sunsetTime: String,
+        cloudCover: String,
+        hourlyForecasts: [HourlyForecast],
+        dailyForecasts: [DailyForecast],
+        airQualityDescription: String,
+        dominantPollutantDescription: String,
+        recommendationsChildren: String,
+        recommendationsHealth: String,
+        recommendationsInside: String,
+        recommendationsOutside: String,
+        recommendationsSport: String) {
+            //super.init()
+        self.location = location
+        self.currentIconName = currentIconName
+        self.currentTemperature = currentTemperature
+        self.currentTemperatureHigh = currentTemperatureHigh
+        self.currentTemperatureLow = currentTemperatureLow
+        self.feelsLikeTemperature = feelsLikeTemperature
+        
+        self.currentSummary = currentSummary
+        self.dailySummary = dailySummary
+        self.minutelySummary = minutelySummary
+        
+        self.precipitationProbability = precipitationProbability
+        self.precipitationIntensity = precipitationIntensity
+        self.dewPoint = dewPoint
+        self.humidity = humidity
+        self.windSpeed = windSpeed
+        self.sunriseTime = sunriseTime
+        self.sunsetTime = sunsetTime
+        self.cloudCover = cloudCover
+        
+        //let weeklySummary: String
+        self.hourlyForecasts = hourlyForecasts
+        self.dailyForecasts = dailyForecasts
+        
+        //Air Quality
+        self.airQualityDescription = airQualityDescription
+        self.dominantPollutantDescription = dominantPollutantDescription
+        self.recommendationsChildren = recommendationsChildren
+        self.recommendationsHealth = recommendationsHealth
+        self.recommendationsInside = recommendationsInside
+        self.recommendationsOutside = recommendationsOutside
+        self.recommendationsSport = recommendationsSport
+            
+
+    }
 }
