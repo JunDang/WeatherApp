@@ -256,6 +256,10 @@ class WeatherViewModel: NSObject {
             self.currentTemperatureLow.value = temperatureConvertToCelcius(self.currentTemperatureLow.value)
             self.feelsLikeTemperature.value = temperatureConvertToCelcius(self.feelsLikeTemperature.value)
             let hourlyTemperature = self.hourlyForecasts.value.map({temperatureConvertToCelcius($0.temperature)})
+            self.hourlyForecasts.value.map({$0.temperature}) = self.hourlyForecasts.value.map({temperatureConvertToCelcius($0.temperature)})
+            let hours = self.hourlyForecasts.value.map({$0.time})
+            let hourlyIcon = self.hourlyForecasts.value.map({$0.iconName})
+
           
                 
             
