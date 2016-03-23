@@ -108,10 +108,12 @@ struct WeatherAirQualityService: WeatherAirQualityServiceProtocol {
         //let currentCity = countryCity.componentsSeparatedByString("/")[1]
         
         var weatherAirQualityBuilder = WeatherAirQualityBuilder()
-        let temperature = Temperature(forecastIoDegrees: currentTemp)
-        let temperatureLow = Temperature(forecastIoDegrees: currentMinTemp)
-        let temperatureHigh = Temperature(forecastIoDegrees: currentMaxTemp)
-        let feelsLike = Temperature(forecastIoDegrees: feelsLikeTemperature)
+        let temperature = String(Int(round(currentTemp))) + "\u{00B0}"
+          let temperatureSubstring = temperature.substringToIndex(temperature.endIndex.advancedBy(-1))
+       // print("temstring: \(temperatureSubstring)")
+        let temperatureLow = String(Int(round(currentMinTemp))) + "\u{00B0}"
+        let temperatureHigh = String(Int(round(currentMaxTemp))) + "\u{00B0}"
+        let feelsLike = String(Int(round(feelsLikeTemperature))) + "\u{00B0}"
         // let calculatingWindDirection = windDegreeTowindDirection(windBearing: windBearing)
         let sunRise = TimeDateConversion(sunriseTime).hourTime
         let sunSet = TimeDateConversion(sunsetTime).hourTime
@@ -138,10 +140,10 @@ struct WeatherAirQualityService: WeatherAirQualityServiceProtocol {
         }
         let calculatingWindDirection = windDegreeTowindDirection(windBearing)
         
-        weatherAirQualityBuilder.currentTemperature = temperature.degrees
-        weatherAirQualityBuilder.currentTemperatureLow = temperatureLow.degrees
-        weatherAirQualityBuilder.currentTemperatureHigh = temperatureHigh.degrees
-        weatherAirQualityBuilder.feelsLikeTemperature = feelsLike.degrees
+        weatherAirQualityBuilder.currentTemperature = temperature
+        weatherAirQualityBuilder.currentTemperatureLow = temperatureLow
+        weatherAirQualityBuilder.currentTemperatureHigh = temperatureHigh
+        weatherAirQualityBuilder.feelsLikeTemperature = feelsLike
         if self.cityName == "" {
             weatherAirQualityBuilder.location = "Current Location"
         } else {
@@ -182,12 +184,12 @@ struct WeatherAirQualityService: WeatherAirQualityServiceProtocol {
                 forecastIcon = json["hourly"]["data"][index]["icon"].string else {
                     break
             }
-            let forecastTemperature = Temperature(forecastIoDegrees: forecastTempDegrees)
+            let forecastTemperature = String(Int(round(forecastTempDegrees))) + "\u{00B0}"
             let forecastTimeString = TimeDateConversion(rawDateTime).hourTime
             let forecastWeatherIcon = WeatherIcon().iconMap[forecastIcon]
             let forecast = HourlyForecast(time: forecastTimeString,
                 iconName: forecastWeatherIcon!,
-                temperature: forecastTemperature.degrees)
+                temperature: forecastTemperature)
             
             hourlyForecasts.append(forecast)
             
@@ -203,8 +205,8 @@ struct WeatherAirQualityService: WeatherAirQualityServiceProtocol {
                     break
             }
             
-            let dailyTemperatureHigh = Temperature(forecastIoDegrees: dailyTempDegreesHigh)
-            let dailyTempeartureLow = Temperature(forecastIoDegrees: dailyTempDegreesLow)
+            let dailyTemperatureHigh = String(Int(round(dailyTempDegreesHigh))) + "\u{00B0}"
+            let dailyTempeartureLow = String(Int(round(dailyTempDegreesLow))) + "\u{00B0}"
             
             let dailyTimeString = TimeDateConversion(rawDateTime).weekDay
             let dailyWeatherIcon = WeatherIcon().iconMap[dailyForecastIcon]
@@ -212,8 +214,8 @@ struct WeatherAirQualityService: WeatherAirQualityServiceProtocol {
             
             let dailyForecast = DailyForecast(day: dailyTimeString,
                 dailyIconName: dailyWeatherIcon!,
-                dailyTemperatureHigh: dailyTemperatureHigh.degrees,
-                dailyTemperatureLow: dailyTempeartureLow.degrees)
+                dailyTemperatureHigh: dailyTemperatureHigh,
+                dailyTemperatureLow: dailyTempeartureLow)
             
             dailyForecasts.append(dailyForecast)
         }

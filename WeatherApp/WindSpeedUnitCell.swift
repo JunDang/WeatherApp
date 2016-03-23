@@ -15,25 +15,18 @@ class WindSpeedUnitCell: UITableViewCell {
     @IBOutlet weak var windSpeedUnitSegment: UISegmentedControl!
     var convertToKilometer: Bool?
     var defaults = NSUserDefaults.standardUserDefaults()
-    @IBOutlet weak var saveButton: UIButton!
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        print("wc1")
         convertToKilometer = defaults.objectForKey("convertToKilometer") as? Bool
         print(convertToKilometer)
         if (convertToKilometer == nil) {
             convertToKilometer = false
             defaults.setObject(convertToKilometer, forKey: "convertToKilometer")
         }
-        print(convertToKilometer)
-        // Initialization code
-        //var unitChange: Int? = defaults.objectForKey("unitChange") as! Int?
-        
-        /*if (unitChange == nil) {
-            unitChange = 1
-            defaults.setObject(unitChange, forKey: "convertToKilometer")
-        }*/
+       
         if convertToKilometer == false {
             windSpeedUnitSegment.selectedSegmentIndex = 0
         } else {
@@ -45,29 +38,14 @@ class WindSpeedUnitCell: UITableViewCell {
     
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
-    }
-    
-    
-  /*
-    @IBAction func saveButtonPressed(sender: UIButton) {
-        print("savebuttonPressed")
-        let unitChange = windSpeedUnitSegment.selectedSegmentIndex
-        defaults.setObject(unitChange, forKey: "convertToKilometer")
-        defaults.synchronize()
-        /*defaults.setObject(convertToKilometer, forKey: "convertToKilometer")
-        defaults.synchronize()*/
-        
-        
         
     }
-    */
-       
     
+     
     
     @IBAction func windSpeedUnitSegmentControl(sender: AnyObject) {
         
-        
+         print("wc2")
             switch windSpeedUnitSegment.selectedSegmentIndex
             {
             case 0:

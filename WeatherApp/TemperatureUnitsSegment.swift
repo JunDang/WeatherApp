@@ -16,6 +16,9 @@ import UIKit
 class TemperatureUnitsSegment: UITableViewCell {
 
     @IBOutlet weak var temperatureSegmentedControl: UISegmentedControl!
+    var convertToCelsius: Bool?
+    var userDefaults = NSUserDefaults.standardUserDefaults()
+
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -30,7 +33,23 @@ class TemperatureUnitsSegment: UITableViewCell {
         
     override func awakeFromNib() {
         super.awakeFromNib()
+        print("tc1")
         // Initialization code
+        convertToCelsius = userDefaults.objectForKey("convertToCelsius") as? Bool
+        print(convertToCelsius)
+        
+        if (convertToCelsius == nil) {
+            convertToCelsius = false
+            userDefaults.setObject(convertToCelsius, forKey: "convertToCelsius")
+        }
+     
+        if convertToCelsius == false {
+            temperatureSegmentedControl.selectedSegmentIndex = 0
+        } else {
+            temperatureSegmentedControl.selectedSegmentIndex = 1
+        }
+        
+
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -40,16 +59,18 @@ class TemperatureUnitsSegment: UITableViewCell {
     }
     
     @IBAction func temperatureUnitSegmentedControl(sender: UISegmentedControl) {
-        
+        print("tc2")
         switch temperatureSegmentedControl.selectedSegmentIndex
         {
         case 0:
-            print("°C")
+            convertToCelsius = false
         case 1:
-            print("°F")
+            convertToCelsius = true
         default:
             break
         }
+        userDefaults.setObject(convertToCelsius, forKey: "convertToCelsius")
+        userDefaults.synchronize()
     }
     
  }

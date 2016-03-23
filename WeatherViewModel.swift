@@ -19,10 +19,10 @@ class WeatherViewModel: NSObject {
     
     let location: Observable<String> = Observable("")
     let currentIconName: Observable<String> = Observable("")
-    let currentTemperature: Observable<String> = Observable("")
-    let currentTemperatureHigh: Observable<String> = Observable("")
-    let currentTemperatureLow: Observable<String> = Observable("")
-    let feelsLikeTemperature: Observable<String> = Observable("")
+    var currentTemperature: Observable<String> = Observable("")
+    var currentTemperatureHigh: Observable<String> = Observable("")
+    var currentTemperatureLow: Observable<String> = Observable("")
+    var feelsLikeTemperature: Observable<String> = Observable("")
     let currentSummary: Observable<String> = Observable("")
     let dailySummary: Observable<String> = Observable("")
     let minutelySummary: Observable<String> = Observable("")
@@ -37,8 +37,8 @@ class WeatherViewModel: NSObject {
     let sunsetTime: Observable<String> = Observable("")
     let cloudCover: Observable<String> = Observable("")
     //let weeklySummary: Observable<String>
-    let hourlyForecasts: Observable<[HourlyForecast]> = Observable([])
-    let dailyForecasts: Observable<[DailyForecast]> = Observable([])
+    var hourlyForecasts: Observable<[HourlyForecast]> = Observable([])
+    var dailyForecasts: Observable<[DailyForecast]> = Observable([])
     // air quality
     let airQualityDescription: Observable<String> = Observable("")
     let dominantPollutantDescription: Observable<String> = Observable("")
@@ -90,74 +90,114 @@ class WeatherViewModel: NSObject {
         recommendationsInside = Observable(EmptyString)
         recommendationsOutside = Observable(EmptyString)
         recommendationsSport = Observable(EmptyString)*/
-        
+        print("observer1")
         NSUserDefaults.standardUserDefaults().addObserver(self, forKeyPath: "convertToKilometer", options: NSKeyValueObservingOptions.New, context: nil)
-        print("oberserver1")
+        NSUserDefaults.standardUserDefaults().addObserver(self, forKeyPath: "convertToCelsius", options: NSKeyValueObservingOptions.New, context: nil)
+
         
-       // NSUserDefaults.standardUserDefaults().addObserver(self, forKeyPath: "windSpeedUnitSegment", options: NSKeyValueObservingOptions.New, context: nil)
+       
     }
-   /* override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if keyPath == "convertToKilometer" {
-            print("convertToKilometer")
-        }
-    }*/
+   
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         print("oberserver2")
-       /* let convertToKilometer =  NSUserDefaults.standardUserDefaults().objectForKey("convertToKilometer") as? Bool
-        if convertToKilometer == true {
-             var windSpeedBeforeConversion: CGFloat?
-             if keyPath == "convertToKilometer" {
-             let windString = self.windSpeed.value.componentsSeparatedByString(" ")
-             print(windString)
-             let windDirection = windString[0]
-             let windSpeedString = windString[1]
-             if let n = NSNumberFormatter().numberFromString(windSpeedString) {
-                windSpeedBeforeConversion = CGFloat(n)
-             }
-               let windSpeedAfterConversion = windSpeedBeforeConversion! * 1.609
-             
-               self.windSpeed.value = windDirection + " " + String(windSpeedAfterConversion) + " " + "km/hr"}
-            
-            
-        }*/
-        self.windSpeed.value = windUnitChangeResults(self.windSpeed.value)
+        if keyPath == "convertToKilometer" {
+            let convertToKilometer =  NSUserDefaults.standardUserDefaults().objectForKey("convertToKilometer") as? Bool
+            if convertToKilometer == true {
+                  self.windSpeed.value = windSpeedConvertToKPH(self.windSpeed.value)
+            } else {
+                   self.windSpeed.value = windSpeedConvertToMPH(self.windSpeed.value)
+            }
+        }
+        if keyPath == "convertToCelsius" {
+            let convertToCelsius =  NSUserDefaults.standardUserDefaults().objectForKey("convertToCelsius") as? Bool
+            if convertToCelsius == true {
+                print(currentTemperature)
+                self.currentTemperature.value = temperatureConvertToCelcius(self.currentTemperature.value)
+                self.currentTemperatureHigh.value = temperatureConvertToCelcius(self.currentTemperatureHigh.value)
+                self.currentTemperatureLow.value = temperatureConvertToCelcius(self.currentTemperatureLow.value)
+                self.feelsLikeTemperature.value = temperatureConvertToCelcius(self.feelsLikeTemperature.value)
+                print(currentTemperature)
+            } else {
+                self.currentTemperature.value = temperatureConvertToFarenheit(self.currentTemperature.value)
+                self.currentTemperatureHigh.value = temperatureConvertToFarenheit(self.currentTemperatureHigh.value)
+                self.currentTemperatureLow.value = temperatureConvertToFarenheit(self.currentTemperatureLow.value)
+                self.feelsLikeTemperature.value = temperatureConvertToFarenheit(self.feelsLikeTemperature.value)
+            }
+        }
+       
     }
     deinit {
         NSUserDefaults.standardUserDefaults().removeObserver(self, forKeyPath: "convertToKilometer", context: nil)
-        print("observer3")
+        NSUserDefaults.standardUserDefaults().removeObserver(self, forKeyPath: "convertToCelsius", context: nil)
     }
-    func windUnitChangeResults(windSpeedBefore: String) -> String {
-        var windSpeedBeforeConversion: CGFloat?
+    func windSpeedConvertToKPH(windSpeedBefore: String) -> String {
+        var windSpeedBeforeConversion: Double?
+        var windSpeedAfterConversion: Double?
+        let windString = windSpeedBefore.componentsSeparatedByString(" ")
+         print("windString: \(windString)")
+        let windSpeedUnit = windString[2]
+        let windDirection = windString[0]
+        let windSpeedString = windString[1]
+        windSpeedBeforeConversion = Double(windSpeedString)
+        if windSpeedUnit == "mph" {
+            windSpeedAfterConversion = round(windSpeedBeforeConversion! * 1.609 * 100) / 100
+        } else {
+            windSpeedAfterConversion = windSpeedBeforeConversion!
+        }
+            
+        return (windDirection + " " + String(windSpeedAfterConversion!) + " " + "km/hr")
+    }
+
+    
+    func windSpeedConvertToMPH(windSpeedBefore: String) -> String {
+        var windSpeedBeforeConversion: Double?
+        var windSpeedAfterConversion: Double?
         print(windSpeedBefore)
         let windString = windSpeedBefore.componentsSeparatedByString(" ")
-            print(windString)
-            let windDirection = windString[0]
-            let windSpeedString = windString[1]
-            if let n = NSNumberFormatter().numberFromString(windSpeedString) {
-                windSpeedBeforeConversion = CGFloat(n)
-            }
-            let windSpeedAfterConversion = windSpeedBeforeConversion! * 1.609
+        print(windString)
+        let windSpeedUnit = windString[2]
+        let windDirection = windString[0]
+        let windSpeedString = windString[1]
+        print("wss: \(windSpeedString)")
+        windSpeedBeforeConversion = Double(windSpeedString)
+        print("wbf: \(windSpeedBeforeConversion)")
+         if windSpeedUnit == "km/hr" {
             
-            return (windDirection + " " + String(windSpeedAfterConversion) + " " + "km/hr")
+            windSpeedAfterConversion = round((windSpeedBeforeConversion! / 1.609)*100) / 100
+            
+            //return (windDirection + " " + String(windSpeedAfterConversion) + " " + "mph")
+        } else {
+            windSpeedAfterConversion = windSpeedBeforeConversion
         
-
-    }
-
-    /*func setUserDefaultsListener(){
-        NSUserDefaults.standardUserDefaults().addObserver(self, forKeyPath: "keyPath", options: NSKeyValueObservingOptions.New, context: nil)
-    }
-    
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if keyPath == "keyPath" {
-            //Do something
         }
+      return (windDirection + " " + String(windSpeedAfterConversion!) + " " + "mph")
     }
+    func temperatureConvertToCelcius(temperatureBefore: String) -> String {
+        print("tembeforeF: \(temperatureBefore)")
+        var temperatureBeforeConversion: Double?
+        var temperatureAfterConversion: Double?
+        let temperatureSubstring = temperatureBefore.substringToIndex(temperatureBefore.endIndex.advancedBy(-1))
+        //print(temperatureSubstring)
+        temperatureBeforeConversion = Double(temperatureSubstring)
     
-    deinit {
-        NSUserDefaults.standardUserDefaults().removeObserver(self, forKeyPath: "keyPath")
-    }*/
+        temperatureAfterConversion = round((temperatureBeforeConversion! - 32) / 1.8)
+        print("tempAfterC: \(temperatureAfterConversion)")
+        return (String(Int(temperatureAfterConversion!)) + "\u{00B0}")
     
-    // MARK: - public
+    }
+    func temperatureConvertToFarenheit(temperatureBefore: String) -> String {
+        print("tembeforeC: \(temperatureBefore)")
+        var temperatureBeforeConversion: Double?
+        var temperatureAfterConversion: Double?
+        print(temperatureBefore)
+        let temperatureSubstring = temperatureBefore.substringToIndex(temperatureBefore.endIndex.advancedBy(-1))
+        temperatureBeforeConversion = Double(temperatureSubstring)
+        temperatureAfterConversion = round(temperatureBeforeConversion! * 1.8 + 32)
+         print("tempAfterF: \(temperatureAfterConversion)")
+        return (String(Int(temperatureAfterConversion!)) + "\u{00B0}")
+        
+    }
+        // MARK: - public
     func startLocationService() {
         locationService = LocationService()
         locationService.delegate = self
@@ -193,8 +233,10 @@ class WeatherViewModel: NSObject {
         self.windSpeed.value = weatherAirQuality.windSpeed
         let convertToKilometer =  NSUserDefaults.standardUserDefaults().objectForKey("convertToKilometer") as? Bool
         if convertToKilometer == true {
-          self.windSpeed.value = windUnitChangeResults(self.windSpeed.value)
+            self.windSpeed.value = windSpeedConvertToKPH(self.windSpeed.value)
+            
         }
+        
         self.sunriseTime.value = weatherAirQuality.sunriseTime
         self.sunsetTime.value = weatherAirQuality.sunsetTime
         self.cloudCover.value = weatherAirQuality.cloudCover
@@ -207,6 +249,19 @@ class WeatherViewModel: NSObject {
             return DailyForecast(dailyForecast)
         }*/
         self.dailyForecasts.value = weatherAirQuality.dailyForecasts
+        let convertToCelsius =  NSUserDefaults.standardUserDefaults().objectForKey("convertToCelsius") as? Bool
+        if convertToCelsius == true {
+            self.currentTemperature.value = temperatureConvertToCelcius(self.currentTemperature.value)
+            self.currentTemperatureHigh.value = temperatureConvertToCelcius(self.currentTemperatureHigh.value)
+            self.currentTemperatureLow.value = temperatureConvertToCelcius(self.currentTemperatureLow.value)
+            self.feelsLikeTemperature.value = temperatureConvertToCelcius(self.feelsLikeTemperature.value)
+            let hourlyTemperature = self.hourlyForecasts.value.map({temperatureConvertToCelcius($0.temperature)})
+          
+                
+            
+
+          
+        }
         //air quality
         airQualityDescription.value = weatherAirQuality.airQualityDescription
         dominantPollutantDescription.value = weatherAirQuality.dominantPollutantDescription

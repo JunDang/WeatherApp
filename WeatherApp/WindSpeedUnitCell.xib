@@ -8,14 +8,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="WindSpeedUnitCell" customModule="WeatherApp" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="158" height="44"/>
+            <rect key="frame" x="0.0" y="0.0" width="146" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="158" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="146" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <segmentedControl opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0nf-2f-sC4">
-                        <rect key="frame" x="5" y="8" width="101" height="29"/>
+                        <rect key="frame" x="8" y="8" width="129" height="29"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <segments>
                             <segment title="mph"/>
@@ -26,29 +26,12 @@
                             <action selector="windSpeedUnitSegmentControl:" destination="KGk-i7-Jjw" eventType="valueChanged" id="6Ly-LK-l45"/>
                         </connections>
                     </segmentedControl>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6r4-9R-KbT">
-                        <rect key="frame" x="106" y="9" width="43" height="27"/>
-                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <state key="normal">
-                            <attributedString key="attributedTitle">
-                                <fragment content="Save">
-                                    <attributes>
-                                        <font key="NSFont" size="14" name="HelveticaNeue"/>
-                                    </attributes>
-                                </fragment>
-                            </attributedString>
-                        </state>
-                        <connections>
-                            <action selector="saveButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ULs-ag-My3"/>
-                        </connections>
-                    </button>
                 </subviews>
             </tableViewCellContentView>
             <connections>
-                <outlet property="saveButton" destination="6r4-9R-KbT" id="zHj-Am-b7g"/>
                 <outlet property="windSpeedUnitSegment" destination="0nf-2f-sC4" id="5Wo-dN-gSJ"/>
             </connections>
-            <point key="canvasLocation" x="367" y="265"/>
+            <point key="canvasLocation" x="361" y="265"/>
         </tableViewCell>
     </objects>
 </document>
