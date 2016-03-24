@@ -116,12 +116,14 @@ class WeatherViewModel: NSObject {
                 self.currentTemperatureHigh.value = temperatureConvertToCelcius(self.currentTemperatureHigh.value)
                 self.currentTemperatureLow.value = temperatureConvertToCelcius(self.currentTemperatureLow.value)
                 self.feelsLikeTemperature.value = temperatureConvertToCelcius(self.feelsLikeTemperature.value)
-                print(currentTemperature)
+                self.hourlyForecasts.value = hourlyForecastsTemperatureConvertToCelsius(self.hourlyForecasts.value)
+                
             } else {
                 self.currentTemperature.value = temperatureConvertToFarenheit(self.currentTemperature.value)
                 self.currentTemperatureHigh.value = temperatureConvertToFarenheit(self.currentTemperatureHigh.value)
                 self.currentTemperatureLow.value = temperatureConvertToFarenheit(self.currentTemperatureLow.value)
                 self.feelsLikeTemperature.value = temperatureConvertToFarenheit(self.feelsLikeTemperature.value)
+                self.hourlyForecasts.value = hourlyForecastsTemperatureConvertToFarenheit(self.hourlyForecasts.value)
             }
         }
        
@@ -255,18 +257,11 @@ class WeatherViewModel: NSObject {
             self.currentTemperatureHigh.value = temperatureConvertToCelcius(self.currentTemperatureHigh.value)
             self.currentTemperatureLow.value = temperatureConvertToCelcius(self.currentTemperatureLow.value)
             self.feelsLikeTemperature.value = temperatureConvertToCelcius(self.feelsLikeTemperature.value)
-            let hourlyTemperature = self.hourlyForecasts.value.map({temperatureConvertToCelcius($0.temperature)})
-            self.hourlyForecasts.value.map({$0.temperature}) = self.hourlyForecasts.value.map({temperatureConvertToCelcius($0.temperature)})
-            let hours = self.hourlyForecasts.value.map({$0.time})
-            let hourlyIcon = self.hourlyForecasts.value.map({$0.iconName})
-
-          
-                
+            self.hourlyForecasts.value = hourlyForecastsTemperatureConvertToCelsius(self.hourlyForecasts.value)
             
-
-          
         }
-        //air quality
+            
+            //air quality
         airQualityDescription.value = weatherAirQuality.airQualityDescription
         dominantPollutantDescription.value = weatherAirQuality.dominantPollutantDescription
         recommendationsChildren.value = weatherAirQuality.recommendationsChildren
@@ -276,6 +271,43 @@ class WeatherViewModel: NSObject {
         recommendationsSport.value = weatherAirQuality.recommendationsSport
     
     }
+    func hourlyForecastsTemperatureConvertToCelsius(hourlyForecastValue: [HourlyForecast]) -> [HourlyForecast] {
+        let hours = self.hourlyForecasts.value.map({$0.time})
+        let hourlyIcons = self.hourlyForecasts.value.map({$0.iconName})
+        let hourlyTemperatures = self.hourlyForecasts.value.map({temperatureConvertToCelcius($0.temperature)})
+        var hourlyForecastsAfterConversion: [HourlyForecast] = []
+        for i in 0...24 {
+            let hour = hours[i]
+            let hourlyIcon = hourlyIcons[i]
+            let hourlyTemperature = hourlyTemperatures[i]
+            let hourlyForecastAfterConversion = HourlyForecast(time: hour,
+                iconName: hourlyIcon,
+                temperature: hourlyTemperature)
+            hourlyForecastsAfterConversion.append(hourlyForecastAfterConversion)
+        }
+        
+        return hourlyForecastsAfterConversion
+
+    }
+    func hourlyForecastsTemperatureConvertToFarenheit(hourlyForecastValue: [HourlyForecast]) -> [HourlyForecast] {
+        let hours = self.hourlyForecasts.value.map({$0.time})
+        let hourlyIcons = self.hourlyForecasts.value.map({$0.iconName})
+        let hourlyTemperatures = self.hourlyForecasts.value.map({temperatureConvertToFarenheit($0.temperature)})
+        var hourlyForecastsAfterConversion: [HourlyForecast] = []
+        for i in 0...24 {
+            let hour = hours[i]
+            let hourlyIcon = hourlyIcons[i]
+            let hourlyTemperature = hourlyTemperatures[i]
+            let hourlyForecastAfterConversion = HourlyForecast(time: hour,
+                iconName: hourlyIcon,
+                temperature: hourlyTemperature)
+            hourlyForecastsAfterConversion.append(hourlyForecastAfterConversion)
+        }
+        
+        return hourlyForecastsAfterConversion
+        
+    }
+
     
     private func update(error: Error) {
         self.hasError.value = true
