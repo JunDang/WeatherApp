@@ -44,7 +44,7 @@ class Graphs: UIViewController {
             let dataEntry = ChartDataEntry(value: values[i], xIndex: i)
             dataEntries.append(dataEntry)
         }
-        let lineChartDataSet = LineChartDataSet(yVals: dataEntries, label: "Temperature(°C)")
+        let lineChartDataSet = LineChartDataSet(yVals: dataEntries, label: "Temperature(°)")
         lineChartDataSet.circleRadius = 2.0
         lineChartDataSet.valueFormatter = NSNumberFormatter()
         lineChartDataSet.valueFormatter?.minimumFractionDigits = 0
@@ -103,7 +103,7 @@ class Graphs: UIViewController {
             let dataEntryHighTemperature = ChartDataEntry(value: valuesHighTemperature[i], xIndex: i)
             dataEntriesHighTemperature.append(dataEntryHighTemperature)
         }
-        let highTemperatureSet = LineChartDataSet(yVals: dataEntriesHighTemperature, label: "Temperature High(°C)")
+        let highTemperatureSet = LineChartDataSet(yVals: dataEntriesHighTemperature, label: "Temperature High(°)")
         highTemperatureSet.axisDependency = .Left
         highTemperatureSet.circleRadius = 2.0
         highTemperatureSet.valueFormatter = NSNumberFormatter()
@@ -119,18 +119,13 @@ class Graphs: UIViewController {
             let dataEntryLowTemperature = ChartDataEntry(value: valuesLowTemperature[i], xIndex: i)
             dataEntriesLowTemperature.append(dataEntryLowTemperature)
         }
-        let lowTemperatureSet = LineChartDataSet(yVals: dataEntriesLowTemperature, label: "Temperature Low(°C)")
+        let lowTemperatureSet = LineChartDataSet(yVals: dataEntriesLowTemperature, label: "Temperature Low(°)")
         lowTemperatureSet.axisDependency = .Left
         lowTemperatureSet.circleRadius = 2.0
         lowTemperatureSet.valueFormatter = NSNumberFormatter()
         lowTemperatureSet.valueFormatter?.minimumFractionDigits = 0
         lowTemperatureSet.setColor(UIColor.yellowColor())
         lowTemperatureSet.setCircleColor(UIColor.yellowColor())
-        /*let lineChartDataLowTemperature = LineChartData(xVals: days, dataSet: lineChartDataSetLowTemperature)
-        lineChartDataLowTemperature.setValueFont(UIFont(name: "Avenir", size: 8))
-        lineChartDataLowTemperature.setDrawValues(true)
-        lineChartDataLowTemperature.setValueTextColor(UIColor.whiteColor())*/
-
         //create datasets
         var dataSets : [LineChartDataSet] = [LineChartDataSet]()
         dataSets.append(highTemperatureSet)
@@ -146,7 +141,7 @@ class Graphs: UIViewController {
         xAxis.labelPosition = .Bottom
         xAxis.axisLineColor = UIColor.whiteColor()
         xAxis.labelTextColor = UIColor.whiteColor()
-        //        xAxis.spaceBetweenLabels = 0.0
+        // xAxis.spaceBetweenLabels = 0.0
         xAxis.labelFont = UIFont(name: "Avenir", size: 8)!
         
         xAxis.drawGridLinesEnabled = false
@@ -169,8 +164,6 @@ class Graphs: UIViewController {
         leftAxis.labelFont = UIFont(name: "Avenir", size: 8)!
         //leftAxis.removeAllLimitLines()
         
-        //DailyForecastLineChartView.data = lineChartDataLowTemperature
-        //hourlyForecastLineChartView.rightAxis.enabled = false
         DailyForecastLineChartView.leftAxis.valueFormatter = NSNumberFormatter()
         DailyForecastLineChartView.leftAxis.valueFormatter?.minimumFractionDigits = 0
         

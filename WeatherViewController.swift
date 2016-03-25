@@ -201,8 +201,8 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         ForegroundScrollView.addSubview(temperatureLabel!)
         
         //add minute summary
-        minutelySummary = UILabel(frame: CGRectMake(130, screenHeight-50, 300, 80))
-        let fontLabel = UIFont(name: "HelveticaNeue-Bold", size: 13.0)
+        minutelySummary = UILabel(frame: CGRectMake(132, screenHeight-50, 300, 80))
+        let fontLabel = UIFont(name: "HelveticaNeue-Bold", size: 12.0)
         minutelySummary!.font = fontLabel
         minutelySummary!.backgroundColor = UIColor.clearColor()
         minutelySummary!.textColor = UIColor.whiteColor()
