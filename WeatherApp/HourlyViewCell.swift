@@ -128,7 +128,7 @@ class HourlyViewCell: UITableViewCell, UICollectionViewDataSource,UICollectionVi
         
     }
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(30, 90)
+        return CGSizeMake(39, 90)
     }
     
     func updateWeatherData(hourlyForecasts: [HourlyForecast]){

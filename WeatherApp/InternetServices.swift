@@ -233,13 +233,13 @@ struct WeatherAirQualityService: WeatherAirQualityServiceProtocol {
         var recommendationsSport: String?
         let jsonAirQuality = JSON(response2)
         if jsonAirQuality["data_valid"] == false {
-            airQualityDescription = ""
-            dominantPollutantDescription = ""
-            recommendationsChildren = "Data only available in the USA"
-            recommendationsHealth = "Data only available in the USA"
-            recommendationsInside = "Data only available in the USA"
-            recommendationsOutside = "Data only available in the USA"
-            recommendationsSport = "Data only available in the USA"
+            airQualityDescription = "Data not available in this area"
+            dominantPollutantDescription = "Data not available in this area"
+            recommendationsChildren = "Data not available in this area"
+            recommendationsHealth = "Data not available in this area"
+            recommendationsInside = "Data not available in this area"
+            recommendationsOutside = "Data not available in this area"
+            recommendationsSport = "Data not available in this area"
         } else if jsonAirQuality["data_valid"] == true {
             airQualityDescription = jsonAirQuality["breezometer_description"].string!
             dominantPollutantDescription = jsonAirQuality["dominant_pollutant_description"].string!
@@ -306,7 +306,7 @@ struct Flickr: FlickrServiceProtocol{
                           }
                 let flickrPhoto = FlickrPhoto(photoID: photoID, farm: farm, server: server, secret: secret)
                 let imageURL = flickrPhoto.flickrImageURL()
-                //print(imageURL)
+                print(imageURL)
                 
                 Alamofire.request(.GET, imageURL)
                     .responseData { response in

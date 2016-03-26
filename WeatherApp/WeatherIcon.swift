@@ -13,16 +13,16 @@ struct WeatherIcon {
       
     let iconMap: [String : String] = [
     
-                                     "clear-day" : "weather-clear",
-                             "partly-cloudy-day" : "weather-few",
-                                   "clear-night" : "weather-moon",
-                                         "sleet" : "weather-snow",
-                                         "snow"  : "weather-snow",
-                                           "fog" : "weather-mist",
-                                        "cloudy" : "weather-broken",
-                                          "rain" : "weather-rain",
-                           "partly-cloudy-night" : "weather-few-night",
-                                          "wind" : "wind-night-icon"
+                                     "clear-day" : "sunnyIcon",
+                             "partly-cloudy-day" : "partlyCloudyIcon",
+                                   "clear-night" : "clearNightIcon",
+                                         "sleet" : "sleetIcon",
+                                         "snow"  : "snowIcon",
+                                           "fog" : "fogIcon",
+                                        "cloudy" : "cloudyIcon",
+                                          "rain" : "rainIcon",
+                           "partly-cloudy-night" : "nightPartlyCloudyIcon",
+                                          "wind" : "windIcon"
                                              ]
 
 }

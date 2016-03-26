@@ -19,15 +19,15 @@ class TodayWeaterCollectionViewCell: UICollectionViewCell, UICollectionViewDeleg
         self.backgroundColor = UIColor.clearColor()
         
         //add time label
-        labelTime = UILabel(frame: CGRectMake(0, 0, 29.5, 29.5))
-        labelTime!.font = UIFont(name: labelTime!.font.fontName, size: 10)
+        labelTime = UILabel(frame: CGRectMake(0, 0, 39, 29.5))
+        labelTime!.font = UIFont(name: labelTime!.font.fontName, size: 11)
         labelTime!.backgroundColor = UIColor.clearColor()
         labelTime!.textColor = UIColor.whiteColor()
         labelTime!.textAlignment = NSTextAlignment.Center
         self.contentView.addSubview(labelTime!)
         
         //add iconLabel. only for getting the icon string for the weatherIcon.
-        iconLabel = UILabel(frame: CGRectMake(0, 30, 29.5, 29.5))
+        iconLabel = UILabel(frame: CGRectMake(0, 30, 39, 29.5))
         iconLabel!.font = UIFont(name: labelTime!.font.fontName, size: 10)
         iconLabel!.backgroundColor = UIColor.clearColor()
         iconLabel!.textAlignment = NSTextAlignment.Center
@@ -35,12 +35,12 @@ class TodayWeaterCollectionViewCell: UICollectionViewCell, UICollectionViewDeleg
         self.contentView.addSubview(iconLabel!)
         
         //add imageView on the iconLabel
-        weatherIcon = UIImageView(frame: CGRectMake(0, 30, 29.5, 29.5))
+        weatherIcon = UIImageView(frame: CGRectMake(0, 30, 39, 30))
         self.contentView.addSubview(weatherIcon!)
         
         //add temperature label
-        labelTemperature = UILabel(frame: CGRectMake(0, 60, 29.5, 29.5))
-        labelTemperature!.font = UIFont(name: labelTime!.font.fontName, size: 10)
+        labelTemperature = UILabel(frame: CGRectMake(0, 60, 39, 29.5))
+        labelTemperature!.font = UIFont(name: labelTime!.font.fontName, size: 11)
         labelTemperature!.backgroundColor = UIColor.clearColor()
         labelTemperature!.textColor = UIColor.whiteColor()
         labelTemperature!.textAlignment = NSTextAlignment.Center

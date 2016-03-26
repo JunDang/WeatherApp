@@ -92,7 +92,7 @@ class DailyViewCell: UITableViewCell {
         /*let heightWI = NSLayoutConstraint(item: weatherIcon!, attribute: .Height, relatedBy: .Equal,
             toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 30)*/
         let widthWI = NSLayoutConstraint(item: weatherIcon!, attribute: .Width, relatedBy: .Equal,
-            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 30)
+            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 39)
         weatherIcon!.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activateConstraints([toTopWI, toBottomWI, leadingWI, widthWI])
         

@@ -54,12 +54,12 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         self.view.backgroundColor = UIColor.blackColor()
         //let screenSize: CGRect = UIScreen.mainScreen().bounds
         screenHeight = screenSize.height
-        backgroundImageView = UIImageView(image: UIImage(named: "bg"))
+        backgroundImageView = UIImageView(image: UIImage(named: "background"))
         backgroundImageView?.contentMode = UIViewContentMode.ScaleAspectFill
         //backgroundImageView?.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: screenHeight)
         backgroundImageView?.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: screenHeight*2)
         backgroundImageView!.setNeedsDisplay()
-        
+        print(self.view.frame)
         
         //add background ScrollView
         
@@ -73,12 +73,12 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         
         //blur image view
         
-        blurredImageView = UIImageView(image: UIImage(named: "bg"))
+        blurredImageView = UIImageView(image: UIImage(named: "background"))
         blurredImageView?.contentMode = UIViewContentMode.ScaleAspectFill
         blurredImageView?.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: screenHeight*2)
         //blurredImageView?.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: screenHeight)
         blurredImageView!.alpha = 0
-        blurredImageView?.setImageToBlur(UIImage(named: "bg"), blurRadius: 10, completionBlock: nil)
+        blurredImageView?.setImageToBlur(UIImage(named: "background"), blurRadius: 10, completionBlock: nil)
         blurredImageView.translatesAutoresizingMaskIntoConstraints = false
         blurredImageView!.setNeedsDisplay()
         BackgroundScrollView.addSubview(blurredImageView)
@@ -265,13 +265,13 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         weathericon2Label!.hidden = true
         
         //weathericon2
-        weathericon2 = UIImageView(frame: CGRectMake(13, screenHeight-120, 30, 30))
+        weathericon2 = UIImageView(frame: CGRectMake(13, screenHeight-120, 39, 30))
         weathericon2!.image = UIImage(named: "weather-clear")
        // print(weathericon2Label!.text)
        // weathericon2!.image = UIImage(named: "\(weathericon2Label!.text)")
         self.ForegroundScrollView.addSubview(weathericon2!)
         //add weather description
-        weatherDescription = UILabel(frame: CGRectMake(50, screenHeight-150, 200, 100))
+        weatherDescription = UILabel(frame: CGRectMake(55, screenHeight-150, 200, 100))
         weatherDescription!.backgroundColor = UIColor.clearColor()
         weatherDescription!.textColor = UIColor.whiteColor()
         weatherDescription!.font = UIFont(name: "HelveticaNeue-Bold", size: 15)
@@ -451,7 +451,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
                    self.weathericon2!.image = UIImage(named: "\(self.weathericon2Label!.text!)")
                    //self.weatherDescription!.text = "\(self.weathericon2Label!.text!)"
 
-                    Flickr().searchFlickrForTerm(self.weathericon2Label!.text!) {(backgroundImage, error) -> Void in
+                   Flickr().searchFlickrForTerm(self.weathericon2Label!.text!) {(backgroundImage, error) -> Void in
                         dispatch_async(dispatch_get_main_queue(), {
                           
                             if error != nil {
