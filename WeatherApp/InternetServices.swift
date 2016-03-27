@@ -17,8 +17,8 @@ enum NetworkError: ErrorType {
 }
 
 struct WeatherAirQualityService: WeatherAirQualityServiceProtocol {
-    //private let baseUrl = "https://api.forecast.io/forecast"
-    var convertToKilometer:Bool = false
+  
+
     var cityName = ""
     
     
@@ -84,15 +84,7 @@ struct WeatherAirQualityService: WeatherAirQualityServiceProtocol {
                 completionHandler(nil, error)
                 return
         }
-        // print("currentCityName: countryCity")
-        // print(json)
-        // print(cloudCover)
-        /* let weeklySummary: String?
-        if json["daily"]["data"]["summary"] != nil {
-        weeklySummary = json["daily"]["data"]["summary"].string
-        } else {
-        weeklySummary = ""
-        }*/
+       
         let minutelySummary: String?
         if json["minutely"]["summary"] != nil {
             minutelySummary = json["minutely"]["summary"].string
@@ -105,16 +97,14 @@ struct WeatherAirQualityService: WeatherAirQualityServiceProtocol {
         } else {
             precipitationType = ""
         }
-        //let currentCity = countryCity.componentsSeparatedByString("/")[1]
+  
         
         var weatherAirQualityBuilder = WeatherAirQualityBuilder()
         let temperature = String(Int(round(currentTemp))) + "\u{00B0}"
-          let temperatureSubstring = temperature.substringToIndex(temperature.endIndex.advancedBy(-1))
-       // print("temstring: \(temperatureSubstring)")
+        let temperatureSubstring = temperature.substringToIndex(temperature.endIndex.advancedBy(-1))
         let temperatureLow = String(Int(round(currentMinTemp))) + "\u{00B0}"
         let temperatureHigh = String(Int(round(currentMaxTemp))) + "\u{00B0}"
         let feelsLike = String(Int(round(feelsLikeTemperature))) + "\u{00B0}"
-        // let calculatingWindDirection = windDegreeTowindDirection(windBearing: windBearing)
         let sunRise = TimeDateConversion(sunriseTime).hourTime
         let sunSet = TimeDateConversion(sunsetTime).hourTime
         let precipitationProb: String = String(Int(precipitationProbability * 100)) + " %"
@@ -154,26 +144,13 @@ struct WeatherAirQualityService: WeatherAirQualityServiceProtocol {
         weatherAirQualityBuilder.minutelySummary = minutelySummary
         weatherAirQualityBuilder.precipitationProbability = precipitationProb + " " + precipitationType!
         weatherAirQualityBuilder.precipitationIntensity = precipitation
-        //weatherBuilder.precipitationType = precipitationType
         weatherAirQualityBuilder.dewPoint = dewP
         weatherAirQualityBuilder.humidity = humidityString
-        //weatherBuilder.windDirection = windDirection.windDirection
         weatherAirQualityBuilder.windSpeed = calculatingWindDirection + " " + windSpeedString
         weatherAirQualityBuilder.sunriseTime = sunRise
         weatherAirQualityBuilder.sunsetTime = sunSet
         weatherAirQualityBuilder.cloudCover = cloudCoverString
-        //weatherBuilder.weeklySummary = weeklySummary
-       /* let windString = weatherAirQualityBuilder.windSpeed
-        let arrayS = windString!.componentsSeparatedByString(" ")
-        print(arrayS)
-        let numberString = arrayS[1]
-        print(numberString)*/
-        /*let stringArray = windString!.componentsSeparatedByCharactersInSet(
-            NSCharacterSet.decimalDigitCharacterSet().invertedSet)
-        let newString = stringArray.joinWithSeparator("")*/
-        //print(stringArray)
-        //print(newString)
-
+  
         let weatherIcon = WeatherIcon().iconMap[currentIcon]
         weatherAirQualityBuilder.currentIconName = weatherIcon
         
@@ -223,7 +200,7 @@ struct WeatherAirQualityService: WeatherAirQualityServiceProtocol {
         weatherAirQualityBuilder.dailyForecasts = dailyForecasts
         
         //process air quality data
-        //print (response2)
+    
         var airQualityDescription: String?
         var dominantPollutantDescription: String?
         var recommendationsChildren: String?
@@ -344,7 +321,7 @@ struct Flickr: FlickrServiceProtocol{
         
 
         let URLString = "https://api.flickr.com/services/rest/?accuracy=11&api_key=\(apiKey)&per_page=25&method=flickr.photos.search&sort=interestingness-desc&tags=\(searchTerm),scenic,landscape,flower,tree,nature,insects,water,sea,cloud,leaf,colorful&tagmode=all&format=json&nojsoncallback=1"
-        //print(URLString)
+     
         return NSURL(string: URLString)!
         
         }

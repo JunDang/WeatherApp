@@ -20,7 +20,7 @@ class TodayWeaterCollectionViewCell: UICollectionViewCell, UICollectionViewDeleg
         
         //add time label
         labelTime = UILabel(frame: CGRectMake(0, 0, 39, 29.5))
-        labelTime!.font = UIFont(name: labelTime!.font.fontName, size: 11)
+        labelTime!.font = UIFont(name: labelTime!.font.fontName, size: 12)
         labelTime!.backgroundColor = UIColor.clearColor()
         labelTime!.textColor = UIColor.whiteColor()
         labelTime!.textAlignment = NSTextAlignment.Center
@@ -40,7 +40,7 @@ class TodayWeaterCollectionViewCell: UICollectionViewCell, UICollectionViewDeleg
         
         //add temperature label
         labelTemperature = UILabel(frame: CGRectMake(0, 60, 39, 29.5))
-        labelTemperature!.font = UIFont(name: labelTime!.font.fontName, size: 11)
+        labelTemperature!.font = UIFont(name: labelTime!.font.fontName, size: 12)
         labelTemperature!.backgroundColor = UIColor.clearColor()
         labelTemperature!.textColor = UIColor.whiteColor()
         labelTemperature!.textAlignment = NSTextAlignment.Center

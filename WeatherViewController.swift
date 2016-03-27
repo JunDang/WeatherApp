@@ -39,8 +39,6 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
     var searchCity: SearchCityViewController?
     
     let menuButton:UIButton = UIButton()
-
-    
     var sideBar: SideBar = SideBar()
     var sideBarTableViewController: SideBarTableViewController = SideBarTableViewController()
     var isSideBarExpand: Bool = true
@@ -50,7 +48,6 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         super.viewDidLoad()
         
         //background
-        
         self.view.backgroundColor = UIColor.blackColor()
         //let screenSize: CGRect = UIScreen.mainScreen().bounds
         screenHeight = screenSize.height
@@ -59,8 +56,18 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         //backgroundImageView?.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: screenHeight)
         backgroundImageView?.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: screenHeight*2)
         backgroundImageView!.setNeedsDisplay()
-        print(self.view.frame)
         
+        setUpBackgroundScrollView()
+        setUpForegroundScrollView()
+       
+        viewModel = WeatherViewModel()
+        viewModel?.startLocationService()
+        
+        
+    }
+
+    func setUpBackgroundScrollView() {
+       
         //add background ScrollView
         
         BackgroundScrollView = UIScrollView(frame: view.bounds)
@@ -71,7 +78,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         BackgroundScrollView.addSubview(backgroundImageView!)
         
-        //blur image view
+        //add blur image view
         
         blurredImageView = UIImageView(image: UIImage(named: "background"))
         blurredImageView?.contentMode = UIViewContentMode.ScaleAspectFill
@@ -82,7 +89,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         blurredImageView.translatesAutoresizingMaskIntoConstraints = false
         blurredImageView!.setNeedsDisplay()
         BackgroundScrollView.addSubview(blurredImageView)
-        view.addSubview(BackgroundScrollView)
+        self.view.addSubview(BackgroundScrollView)
         self.BackgroundScrollView.delegate = self
         
         let heightBScrollView = NSLayoutConstraint(item: BackgroundScrollView,
@@ -110,6 +117,19 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
             attribute: .Width, multiplier: 1, constant: 0)
         NSLayoutConstraint.activateConstraints([heightBlurredImageView, widthBlurredImageView])
         
+        //add mask to backgroundScrollView
+        let maskLayer = CALayer()
+        maskLayer.frame = screenSize
+        //maskLayer.contents = UIImage(named: "bg")?.CGImage
+        maskLayer.contentsGravity = kCAGravityCenter
+        maskLayer.backgroundColor = UIColor.blackColor().CGColor
+        maskLayer.opacity = 0.2
+        maskLayer.hidden = false
+        maskLayer.masksToBounds = false
+        BackgroundScrollView.layer.addSublayer(maskLayer)
+        
+    }
+    func setUpForegroundScrollView() {
         //containerView
         let containerSize1 = CGSize(width: view.bounds.width, height: screenHeight)
         containerView1 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: screenHeight + 4), size:containerSize1))
@@ -117,8 +137,8 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         containerView1!.setNeedsDisplay()
         containerView1!.translatesAutoresizingMaskIntoConstraints = false
         let fheight1 = containerView1?.frame.height
-        //let cheight2 = fheight1! + screenHeight + 10
-       
+       //let cheight2 = fheight1! + screenHeight + 10
+    
         let containerSize2 = CGSize(width: view.bounds.width, height: screenHeight)
         containerView2 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: screenHeight + 4), size:containerSize2))
         containerView2?.backgroundColor = UIColor.clearColor()
@@ -130,31 +150,17 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         containerView3?.backgroundColor = UIColor.clearColor()
         containerView3!.setNeedsDisplay()
         containerView3!.translatesAutoresizingMaskIntoConstraints = false
-       // let fheight3 = containerView3?.frame.height
+        // let fheight3 = containerView3?.frame.height
         let containerSize4 = CGSize(width: view.bounds.width, height: screenHeight)
         containerView4 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: screenHeight + 4), size:containerSize4))
         containerView4?.backgroundColor = UIColor.clearColor()
         containerView4!.setNeedsDisplay()
         containerView4!.translatesAutoresizingMaskIntoConstraints = false
-
-       //add mask to backgroundScrollView
-        let maskLayer = CALayer()
-        maskLayer.frame = screenSize
-        //maskLayer.contents = UIImage(named: "bg")?.CGImage
-        maskLayer.contentsGravity = kCAGravityCenter
-        maskLayer.backgroundColor = UIColor.blackColor().CGColor
-        maskLayer.opacity = 0.2
-        maskLayer.hidden = false
-        maskLayer.masksToBounds = false
-        BackgroundScrollView.layer.addSublayer(maskLayer)
-        
-
+    
         // ForegroundScrollView
-        
+    
         ForegroundScrollView = UIScrollView(frame: view.bounds)
         ForegroundScrollView.backgroundColor = UIColor.clearColor()
-        //let fheight2 = containerView2?.frame.height
-       // let foreHeight = fheight1! + fheight2! + screenHeight + 50
         let foreHeight = fheight1!  + screenHeight + 50
         ForegroundScrollView.contentSize = CGSize(width: screenWidth, height: foreHeight)
         ForegroundScrollView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
@@ -167,21 +173,37 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         ForegroundScrollView.addSubview(containerView3!)
         ForegroundScrollView.addSubview(containerView2!)
         ForegroundScrollView.addSubview(containerView1!)
-
+    
         view.addSubview(ForegroundScrollView)
-        
+    
         ForegroundScrollView.delegate = self
-        
+    
         let heightForegroundScrollView = NSLayoutConstraint(item: ForegroundScrollView,
-            attribute: .Height, relatedBy: .Equal, toItem: BackgroundScrollView,
-            attribute: .Height, multiplier: 1, constant: 0)
+             attribute: .Height, relatedBy: .Equal, toItem: BackgroundScrollView,
+             attribute: .Height, multiplier: 1, constant: 0)
         let widthForegroundScrollView = NSLayoutConstraint(item: ForegroundScrollView,
-            attribute: .Width, relatedBy: .Equal, toItem: BackgroundScrollView,
-            attribute: .Width, multiplier: 1, constant: 0)
+             attribute: .Width, relatedBy: .Equal, toItem: BackgroundScrollView,
+             attribute: .Width, multiplier: 1, constant: 0)
         NSLayoutConstraint.activateConstraints([heightForegroundScrollView, widthForegroundScrollView])
-      
-        //let weatherTableViewController: WeatherTableViewController = WeatherTableViewController()
+        addLabelsToForegroundScrollView()
+        addSegmentedControll()
+        //initialize
+        weatherTableViewController = WeatherTableViewController()
+        forecastGraphs = Graphs()
+        forecastSummary = Summary()
+        airQuality = AirQuality()
+        displayContentController(weatherTableViewController!)
+        displayGraphs(forecastGraphs!)
+        displaySummary(forecastSummary!)
+        displayAirQuality(airQuality!)
+       //Navigation bar
+        addNavigationBar()
+        searchCity = SearchCityViewController()
+         //side bar
+        sideBar = SideBar(sourceView: self.ForegroundScrollView)
         
+    }
+    func addLabelsToForegroundScrollView() {
         //add location label
         locationLabel = UILabel(frame: CGRectMake(0, 20, screenWidth, 60))
         let fontLocation = UIFont(name: "HelveticaNeue-Bold", size: 20.0)
@@ -206,7 +228,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         minutelySummary!.font = fontLabel
         minutelySummary!.backgroundColor = UIColor.clearColor()
         minutelySummary!.textColor = UIColor.whiteColor()
-      
+        
         ForegroundScrollView.addSubview(minutelySummary!)
         
         //max temperature description
@@ -216,7 +238,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         maxTemperature.text = "High:"
         maxTemperature.font = UIFont(name: "HelveticaNeue-Bold", size: 10)
         self.ForegroundScrollView.addSubview(maxTemperature)
-
+        
         //low temperature label
         lowLabel = UILabel(frame: CGRectMake(37, screenHeight-117, 80, 80))
         lowLabel!.backgroundColor = UIColor.clearColor()
@@ -232,7 +254,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         minTemperature.text = "Low:"
         minTemperature.font = UIFont(name: "HelveticaNeue-Bold", size: 10)
         self.ForegroundScrollView.addSubview(minTemperature)
-     
+        
         //high temperature label
         hiLabel = UILabel(frame: CGRectMake(97, screenHeight-117, 80, 80))
         hiLabel!.backgroundColor = UIColor.clearColor()
@@ -256,7 +278,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         feelsLikeTemperature!.textColor = UIColor.whiteColor()
         feelsLikeTemperature!.font = UIFont(name: "HelveticaNeue-Bold", size: 15)
         self.ForegroundScrollView.addSubview(feelsLikeTemperature!)
-
+        
         //weathericon2Label
         weathericon2Label = UILabel(frame: CGRectMake(13, screenHeight-120, 30, 30))
         weathericon2Label!.backgroundColor = UIColor.clearColor()
@@ -267,8 +289,6 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         //weathericon2
         weathericon2 = UIImageView(frame: CGRectMake(13, screenHeight-120, 39, 30))
         weathericon2!.image = UIImage(named: "weather-clear")
-       // print(weathericon2Label!.text)
-       // weathericon2!.image = UIImage(named: "\(weathericon2Label!.text)")
         self.ForegroundScrollView.addSubview(weathericon2!)
         //add weather description
         weatherDescription = UILabel(frame: CGRectMake(55, screenHeight-150, 200, 100))
@@ -276,8 +296,11 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         weatherDescription!.textColor = UIColor.whiteColor()
         weatherDescription!.font = UIFont(name: "HelveticaNeue-Bold", size: 15)
         self.ForegroundScrollView.addSubview(weatherDescription!)
-        //add segmented controll
-        // Initialize
+        
+        
+        
+    }
+    func addSegmentedControll() {
         let items = ["Table", "Graph", "Summary", "Air Quality"]
         let segmentedControll = UISegmentedControl(items: items)
         segmentedControll.selectedSegmentIndex = 0
@@ -288,18 +311,10 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         segmentedControll.tintColor = UIColor.whiteColor()
         segmentedControll.addTarget(self, action: "changeDisplay:", forControlEvents: .ValueChanged)
         self.ForegroundScrollView.addSubview(segmentedControll)
-        weatherTableViewController = WeatherTableViewController()
-        forecastGraphs = Graphs()
-        forecastSummary = Summary()
-        airQuality = AirQuality()
-        displayContentController(weatherTableViewController!)
-        displayGraphs(forecastGraphs!)
-        displaySummary(forecastSummary!)
-        displayAirQuality(airQuality!)
+        
 
-        viewModel = WeatherViewModel()
-        viewModel?.startLocationService()
-        //print(screenSize)
+    }
+    func addNavigationBar() {
         //add navigation bar
         let navigationBar = UINavigationBar(frame: CGRectMake(0, 33, self.view.frame.size.width, 40))
         navigationBar.backgroundColor = UIColor.clearColor()
@@ -314,11 +329,9 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         menuButton.addTarget(self, action: Selector("menuButtonPressed:"), forControlEvents: .TouchUpInside)
         //assign button to navigationbar
         let menubarButton = UIBarButtonItem(customView: menuButton)
-        
         navigationItem.leftBarButtonItem = menubarButton
-        //let settingButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: "Settings:")
         navigationItem.rightBarButtonItem = searchButton
-        //navigationItem.leftBarButtonItem = settingButton
+        
         
         // Assign the navigation item to the navigation bar
         navigationBar.items = [navigationItem]
@@ -326,24 +339,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         // Make the navigation bar a subview of the current view controller
         
         self.ForegroundScrollView.addSubview(navigationBar)
-        
-        searchCity = SearchCityViewController()
-       
-        
-        //side bar
-        sideBar = SideBar(sourceView: self.ForegroundScrollView)
-        
-        
-    }
 
-       override func didReceiveMemoryWarning() {
-        
-        super.didReceiveMemoryWarning()
-        
-        // Dispose of any resources that can be recreated.
-        
-        
-        
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -369,7 +365,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
     }
     
     func changeDisplay(sender: UISegmentedControl) {
-        //print("change display handler is called.")
+       
         switch sender.selectedSegmentIndex {
            case 0:
                 self.containerView1!.alpha = 1
@@ -449,7 +445,6 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
                 self.weathericon2Label!.text = $0
                 if  !self.weathericon2Label!.text!.isEmpty {
                    self.weathericon2!.image = UIImage(named: "\(self.weathericon2Label!.text!)")
-                   //self.weatherDescription!.text = "\(self.weathericon2Label!.text!)"
 
                    Flickr().searchFlickrForTerm(self.weathericon2Label!.text!) {(backgroundImage, error) -> Void in
                         dispatch_async(dispatch_get_main_queue(), {
@@ -464,7 +459,6 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
                             
                             //let resizedImage = Flickr().imageResize(backgroundImage!, sizeChange: CGSizeMake(self.screenSize.width, self.screenSize.height))
                             //let resizedImage = Flickr().sizeToFill(backgroundImage!, size: self.screenSize.size)
-                            //print("calledImage")
                             self.backgroundImageView.image = backgroundImage
                             self.backgroundImageView?.contentMode = UIViewContentMode.ScaleAspectFill
                             self.backgroundImageView?.frame = CGRect(x: 0, y: 0, width: self.screenWidth, height: self.screenHeight)
@@ -518,10 +512,6 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
                 [unowned self] in
                 self.forecastSummary!.precipitationIntensity!.text = $0
             }
-           /* viewModel?.precipitationType.observe {
-                [unowned self] in
-                self.forecastSummary!.precipType!.text = $0
-            }*/
             viewModel?.dewPoint.observe {
                 [unowned self] in
                 self.forecastSummary!.dewPoint!.text = $0
@@ -530,10 +520,6 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
                 [unowned self] in
                 self.forecastSummary!.humidity!.text = $0
             }
-            /*viewModel?.windDirection.observe {
-                [unowned self] in
-                self.forecastSummary!.windDirection!.text = $0
-            }*/
             viewModel?.windSpeed.observe {
                 [unowned self] in
                 self.forecastSummary!.windSpeed!.text = $0
@@ -550,10 +536,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
                 [unowned self] in
                 self.forecastSummary!.cloudCover!.text = $0
             }
-           /* viewModel?.weeklySummary.observe {
-                [unowned self] in
-                self.forecastSummary!.weeklySummary!.text = $0
-            }*/
+ 
             viewModel?.dailyForecasts.observe {
                 [unowned self] in
                 self.weatherTableViewController!.updateDailyData($0)
@@ -633,6 +616,22 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         searchCity!.viewModel = self.viewModel
         self.presentViewController(searchCity!, animated: true, completion: nil)
     }
+    
+    override func didReceiveMemoryWarning() {
+        
+        super.didReceiveMemoryWarning()
+        
+        
+    }
+
 }
+
+
+
+
+
+
+
+
    
 

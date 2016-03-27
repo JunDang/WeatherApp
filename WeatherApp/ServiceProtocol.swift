@@ -13,8 +13,8 @@ import CoreLocation
 typealias WeatherAirQualityCompletionHandler = (WeatherAirQuality?, Error?) -> Void
 
 protocol WeatherAirQualityServiceProtocol {
+    
     var cityName:String {get set}
-    var convertToKilometer:Bool {get set}
     func processResponses(response1: AnyObject , response2: AnyObject, completionHandler: WeatherAirQualityCompletionHandler)
     func retrieveWeatherInfo(location: CLLocation, completionHandler: WeatherAirQualityCompletionHandler)
 }
