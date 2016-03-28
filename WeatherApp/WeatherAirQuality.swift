@@ -21,16 +21,13 @@ class WeatherAirQuality{
     
     let precipitationProbability: String
     let precipitationIntensity: String
-    //let precipitationType: String
     let dewPoint: String
     let humidity: String
-    //let windDirection: String
     let windSpeed: String
     let sunriseTime: String
     let sunsetTime: String
     let cloudCover: String
-    
-    //let weeklySummary: String
+
     let hourlyForecasts: [HourlyForecast]
     let dailyForecasts: [DailyForecast]
     
@@ -55,10 +52,8 @@ class WeatherAirQuality{
         minutelySummary: String,
         precipitationProbability:String,
         precipitationIntensity: String,
-        //precipitationType: precipitationType!,
         dewPoint: String,
         humidity: String,
-        //windDirection: windDirection!,
         windSpeed: String,
         sunriseTime: String,
         sunsetTime: String,
@@ -72,7 +67,6 @@ class WeatherAirQuality{
         recommendationsInside: String,
         recommendationsOutside: String,
         recommendationsSport: String) {
-            //super.init()
         self.location = location
         self.currentIconName = currentIconName
         self.currentTemperature = currentTemperature
@@ -93,7 +87,6 @@ class WeatherAirQuality{
         self.sunsetTime = sunsetTime
         self.cloudCover = cloudCover
         
-        //let weeklySummary: String
         self.hourlyForecasts = hourlyForecasts
         self.dailyForecasts = dailyForecasts
         

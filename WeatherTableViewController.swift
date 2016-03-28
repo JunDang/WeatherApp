@@ -19,6 +19,7 @@ class WeatherTableViewController: UITableViewController {
                                            DailyForecast(day: "Monday", dailyIconName: "weather-snow",dailyTemperatureHigh: "0", dailyTemperatureLow: "0" ),
                                            DailyForecast(day: "Monday", dailyIconName: "weather-snow",dailyTemperatureHigh: "0", dailyTemperatureLow: "0" )
                                          ]
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +40,7 @@ class WeatherTableViewController: UITableViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+       
     }
 
     // MARK: - Table view data source
@@ -81,15 +82,7 @@ class WeatherTableViewController: UITableViewController {
         }
         
     }
-    
-    /*override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.row == 1 {
-            return 92.0
-        } else {
-            return UITableViewAutomaticDimension
-        }
-    }*/
-        
+
     func updateDailyData(dailyForecasts : [DailyForecast]) {
         guard dailyForecasts.count > 0 else {
             return

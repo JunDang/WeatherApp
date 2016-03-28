@@ -25,16 +25,6 @@ class HeaderCell: UITableViewCell {
         headerTitle!.textAlignment = NSTextAlignment.Left
         headerTitle!.text = ""
         self.contentView.addSubview(headerTitle!)
-        /*let toTopHeader =  NSLayoutConstraint(item: headerTitle!, attribute: .Top, relatedBy: .Equal,
-            toItem: contentView, attribute: .Top, multiplier: 1.0, constant: 2)
-        let toBottomHeader =  NSLayoutConstraint(item: headerTitle!, attribute: .Bottom, relatedBy: .Equal,
-            toItem: contentView, attribute: .Bottom, multiplier: 1.0, constant: -2)
-        let leadingHeader =  NSLayoutConstraint(item: headerTitle!, attribute: .LeadingMargin, relatedBy: .Equal,
-            toItem: contentView, attribute: .LeadingMargin, multiplier: 1.0, constant: 5)
-        headerTitle!.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activateConstraints([toTopHeader, toBottomHeader, leadingHeader])*/
-        
         
         
     }
@@ -46,7 +36,7 @@ class HeaderCell: UITableViewCell {
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+        
     }
 
 }

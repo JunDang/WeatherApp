@@ -2,8 +2,8 @@
 //  Graphs.swift
 //  WeatherApp
 //
-//  Created by Yuan Yinhuan on 16/2/10.
-//  Copyright © 2016年 Jun Jun. All rights reserved.
+//  Created by Jun Dang on 16/2/10.
+//  Copyright © 2016年 Jun Dang. All rights reserved.
 //
 
 import UIKit
@@ -20,12 +20,12 @@ class Graphs: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.clearColor()
-        //updateHourlyData(hourlyForecastsData)
+       
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+      
        
     }
    
@@ -33,12 +33,12 @@ class Graphs: UIViewController {
         guard hourlyForecastsData.count > 0 else {
             return
         }
-        //let iconsNames = hourlyForecastsData.map({$0.iconName})
+       
         
         let hours = hourlyForecastsData.map({$0.time})
        
         let values = hourlyForecastsData.map({Double($0.temperature.substringToIndex($0.temperature.endIndex.advancedBy(-1)))!})
-       // let hourlyIcon = hourlyForecastsData.map({$0.iconName})
+   
         var dataEntries: [ChartDataEntry] = []
         for i in 0..<hours.count {
             let dataEntry = ChartDataEntry(value: values[i], xIndex: i)
@@ -53,7 +53,7 @@ class Graphs: UIViewController {
         xAxis.labelPosition = .Bottom
         xAxis.axisLineColor = UIColor.whiteColor()
         xAxis.labelTextColor = UIColor.whiteColor()
-//        xAxis.spaceBetweenLabels = 0.0
+        //xAxis.spaceBetweenLabels = 0.0
         xAxis.labelFont = UIFont(name: "Avenir", size: 8)!
         xAxis.labelPosition = .Bottom
         xAxis.drawGridLinesEnabled = false
@@ -88,7 +88,7 @@ class Graphs: UIViewController {
         hourlyForecastLineChartView.notifyDataSetChanged()
         
         }
-    // draw daily forecast graph
+     // draw daily forecast graph
     func updateDailyData(dailyForecastsData : [DailyForecast]) {
         guard dailyForecastsData.count > 0 else {
             return
@@ -113,8 +113,7 @@ class Graphs: UIViewController {
 
         //low tempreature
         let valuesLowTemperature = dailyForecastsData.map({Double($0.dailyTemperatureLow.substringToIndex($0.dailyTemperatureLow.endIndex.advancedBy(-1)))!})
-        print("lowTemperature: \(valuesLowTemperature)")
-        var dataEntriesLowTemperature: [ChartDataEntry] = []
+              var dataEntriesLowTemperature: [ChartDataEntry] = []
         for i in 0..<days.count {
             let dataEntryLowTemperature = ChartDataEntry(value: valuesLowTemperature[i], xIndex: i)
             dataEntriesLowTemperature.append(dataEntryLowTemperature)
@@ -166,9 +165,7 @@ class Graphs: UIViewController {
         
         DailyForecastLineChartView.leftAxis.valueFormatter = NSNumberFormatter()
         DailyForecastLineChartView.leftAxis.valueFormatter?.minimumFractionDigits = 0
-        
-       //print("size " + "\(DailyForecastLineChartView.marker)")
-        
+          
         DailyForecastLineChartView.notifyDataSetChanged()
         
     }

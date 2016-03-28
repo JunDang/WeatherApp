@@ -2,8 +2,8 @@
 //  WeatherIcon.swift
 //  WeatherApp
 //
-//  Created by Yuan Yinhuan on 16/1/6.
-//  Copyright © 2016年 Jun Jun. All rights reserved.
+//  Created by Jun Dang on 16/1/6.
+//  Copyright © 2016年 Jun Dang. All rights reserved.
 //
 
 import Foundation

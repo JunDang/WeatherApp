@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  WeatherApp
 //
-//  Created by Jun Jun on 15/11/26.
-//  Copyright © 2015年 Jun Jun. All rights reserved.
+//  Created by Jun Dang on 15/11/26.
+//  Copyright © 2015年 Jun Dang. All rights reserved.
 //
 
 import UIKit

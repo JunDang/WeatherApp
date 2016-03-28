@@ -2,8 +2,8 @@
 //  WindSpeedUnitCell.swift
 //  WeatherApp
 //
-//  Created by Yuan Yinhuan on 16/3/17.
-//  Copyright © 2016年 Jun Jun. All rights reserved.
+//  Created by Jun Dang on 16/3/17.
+//  Copyright © 2016年 Jun Dang. All rights reserved.
 //
 
 import UIKit
@@ -19,9 +19,7 @@ class WindSpeedUnitCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        print("wc1")
         convertToKilometer = defaults.objectForKey("convertToKilometer") as? Bool
-        print(convertToKilometer)
         if (convertToKilometer == nil) {
             convertToKilometer = false
             defaults.setObject(convertToKilometer, forKey: "convertToKilometer")
@@ -45,14 +43,10 @@ class WindSpeedUnitCell: UITableViewCell {
     
     @IBAction func windSpeedUnitSegmentControl(sender: AnyObject) {
         
-         print("wc2")
             switch windSpeedUnitSegment.selectedSegmentIndex
             {
             case 0:
                  convertToKilometer = false
-                //print(convertToKilometer)
-              
-                
             case 1:
                  convertToKilometer = true
                 

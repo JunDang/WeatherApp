@@ -45,7 +45,7 @@ struct WeatherAirQualityService: WeatherAirQualityServiceProtocol {
         let longitude = location.coordinate.longitude
         
         let breezoMeterPath = "https://api.breezometer.com/baqi/?lat=\(latitude)&lon=\(longitude)&key=db641ef73ece4b81a351ddf133cb2bc7" as URLStringConvertible
-        print(breezoMeterPath)
+
       
         return Promise{ fulfill, reject in
             Alamofire.request(.GET, breezoMeterPath).responseJSON
@@ -283,7 +283,7 @@ struct Flickr: FlickrServiceProtocol{
                           }
                 let flickrPhoto = FlickrPhoto(photoID: photoID, farm: farm, server: server, secret: secret)
                 let imageURL = flickrPhoto.flickrImageURL()
-                print(imageURL)
+          
                 
                 Alamofire.request(.GET, imageURL)
                     .responseData { response in

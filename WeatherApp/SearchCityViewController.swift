@@ -2,7 +2,7 @@
 //  SearchCityViewController.swift
 //  WeatherApp
 //
-//  Created by Yuan Yinhuan on 16/3/4.
+//  Created by Jun Dang on 16/3/4.
 //  Copyright © 2016年 Jun Jun. All rights reserved.
 //
 
@@ -46,7 +46,6 @@ class SearchCityViewController: UIViewController, UISearchBarDelegate, CLLocatio
                 let cityLocation: CLLocation =  CLLocation(latitude: latitudeY, longitude: longitudeX)
                 
                 cityName = json["results"][0]["address_components"][0]["long_name"].string
-                print(cityName)
                 dispatch_async(dispatch_get_main_queue()) {
                     self.viewModel?.searchCityLocation(cityName!,location: cityLocation)
                 }

@@ -2,8 +2,8 @@
 //  SideBar.swift
 //  WeatherApp
 //
-//  Created by Yuan Yinhuan on 16/3/16.
-//  Copyright © 2016年 Jun Jun. All rights reserved.
+//  Created by Jun Dang on 16/3/16.
+//  Copyright © 2016年 Jun Dang. All rights reserved.
 //
 
 import Foundation

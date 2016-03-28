@@ -27,8 +27,4 @@ protocol FlickrServiceProtocol {
 }
 
 
-typealias BreezometerCompletionHandler = (String?, Error?) -> Void
 
-protocol BreezometerServiceProtocol {
-    func searchFlickrForTerm(searchTerm: String, completionHandler: BreezometerCompletionHandler)
-}

@@ -18,7 +18,7 @@ class DailyViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+  
     }
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -33,8 +33,7 @@ class DailyViewCell: UITableViewCell {
         self.contentView.addSubview(dayLabel!)
         let toTopDay =  NSLayoutConstraint(item: dayLabel!, attribute: .Top, relatedBy: .Equal,
             toItem: contentView, attribute: .Top, multiplier: 1.0, constant: 7.5)
-        /*let toBottomDay =  NSLayoutConstraint(item: dayLabel!, attribute: .Bottom, relatedBy: .Equal,
-            toItem: contentView, attribute: .Bottom, multiplier: 1.0, constant: -5)*/
+
         let leadingMarginDay =  NSLayoutConstraint(item: dayLabel!, attribute: .LeadingMargin, relatedBy: .Equal,
             toItem: contentView, attribute: .LeadingMargin, multiplier: 1.0, constant: 5)
         dayLabel!.translatesAutoresizingMaskIntoConstraints = false
@@ -48,12 +47,10 @@ class DailyViewCell: UITableViewCell {
         self.contentView.addSubview(temperatureLow!)
         let toTopTL =  NSLayoutConstraint(item: temperatureLow!, attribute: .Top, relatedBy: .Equal,
             toItem: contentView, attribute: .Top, multiplier: 1.0, constant: 7.5)
-        /*let toBottomTL =  NSLayoutConstraint(item: temperatureLow!, attribute: .Bottom, relatedBy: .Equal,
-            toItem: contentView, attribute: .Bottom, multiplier: 1.0, constant: -5)*/
         let trailingTL =  NSLayoutConstraint(item: temperatureLow!, attribute: .TrailingMargin, relatedBy: .Equal,
             toItem: contentView, attribute: .TrailingMargin, multiplier: 1.0, constant: -2)
         temperatureLow!.translatesAutoresizingMaskIntoConstraints = false
-        //NSLayoutConstraint.activateConstraints([toTopTL, toBottomTL, trailingTL])
+
         NSLayoutConstraint.activateConstraints([toTopTL, trailingTL])
         
         // create temperature high
@@ -64,12 +61,9 @@ class DailyViewCell: UITableViewCell {
         self.contentView.addSubview(temperatureHigh!)
         let toTopTH =  NSLayoutConstraint(item: temperatureHigh!, attribute: .Top, relatedBy: .Equal,
             toItem: contentView, attribute: .Top, multiplier: 1.0, constant: 7.5)
-       /* let toBottomTH =  NSLayoutConstraint(item: temperatureHigh!, attribute: .Bottom, relatedBy: .Equal,
-            toItem: contentView, attribute: .Bottom, multiplier: 1.0, constant: -5)*/
         let trailingTH =  NSLayoutConstraint(item: temperatureHigh!, attribute: .TrailingMargin, relatedBy: .Equal,
             toItem: contentView, attribute: .TrailingMargin, multiplier: 1.0, constant: -60)
         temperatureHigh!.translatesAutoresizingMaskIntoConstraints = false
-        //NSLayoutConstraint.activateConstraints([toTopTH, toBottomTH, trailingTH])
         NSLayoutConstraint.activateConstraints([toTopTH, trailingTH])
         
         
@@ -89,8 +83,6 @@ class DailyViewCell: UITableViewCell {
             toItem: contentView, attribute: .Bottom, multiplier: 1.0, constant: -5)
         let leadingWI = NSLayoutConstraint(item: weatherIcon!, attribute: .LeadingMargin, relatedBy: .Equal,
             toItem: contentView, attribute: .LeadingMargin, multiplier: 1.0, constant: self.frame.width/2)
-        /*let heightWI = NSLayoutConstraint(item: weatherIcon!, attribute: .Height, relatedBy: .Equal,
-            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 30)*/
         let widthWI = NSLayoutConstraint(item: weatherIcon!, attribute: .Width, relatedBy: .Equal,
             toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 39)
         weatherIcon!.translatesAutoresizingMaskIntoConstraints = false

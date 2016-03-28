@@ -2,8 +2,8 @@
 //  SideBarTableViewController.swift
 //  WeatherApp
 //
-//  Created by Yuan Yinhuan on 16/3/16.
-//  Copyright © 2016年 Jun Jun. All rights reserved.
+//  Created by Jun Dang on 16/3/16.
+//  Copyright © 2016年 Jun Dang. All rights reserved.
 //
 
 import UIKit
@@ -15,6 +15,7 @@ class SideBarTableViewController: UITableViewController, UINavigationBarDelegate
     
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         tableView!.registerNib(UINib(nibName: "TemperatureUnitsSegment", bundle: nil), forCellReuseIdentifier: "TemperatureUnitsSegmentCell")
         tableView!.registerNib(UINib(nibName: "WindSpeedUnitCell", bundle: nil), forCellReuseIdentifier: "WindSpeedUnitCell")
@@ -33,18 +34,18 @@ class SideBarTableViewController: UITableViewController, UINavigationBarDelegate
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+       
     }
     
     // MARK: - Table view data source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+  
         return 1
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+
         return 2
     }
     
@@ -53,7 +54,6 @@ class SideBarTableViewController: UITableViewController, UINavigationBarDelegate
        
         if (indexPath.row == 0) {
             let cell: TemperatureUnitsSegment = tableView.dequeueReusableCellWithIdentifier("TemperatureUnitsSegmentCell", forIndexPath: indexPath) as! TemperatureUnitsSegment
-            //cell.textLabel!.text = "I LOVE YOU"
             cell.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
             return cell
             
@@ -74,9 +74,6 @@ class SideBarTableViewController: UITableViewController, UINavigationBarDelegate
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 45.0
     }
-    
-   /* override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        delegate?.sideBarControlDidSelectRow(indexPath)
-    }*/
+  
     
 }

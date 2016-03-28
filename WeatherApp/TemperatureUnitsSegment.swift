@@ -2,8 +2,8 @@
 //  TemperatureUnitsSegment.swift
 //  WeatherApp
 //
-//  Created by Yuan Yinhuan on 16/3/16.
-//  Copyright © 2016年 Jun Jun. All rights reserved.
+//  Created by Jun Dang on 16/3/16.
+//  Copyright © 2016年 Jun Dang. All rights reserved.
 //
 
 import UIKit
@@ -33,10 +33,9 @@ class TemperatureUnitsSegment: UITableViewCell {
         
     override func awakeFromNib() {
         super.awakeFromNib()
-        print("tc1")
         // Initialization code
         convertToCelsius = userDefaults.objectForKey("convertToCelsius") as? Bool
-        print(convertToCelsius)
+
         
         if (convertToCelsius == nil) {
             convertToCelsius = false
@@ -59,7 +58,6 @@ class TemperatureUnitsSegment: UITableViewCell {
     }
     
     @IBAction func temperatureUnitSegmentedControl(sender: UISegmentedControl) {
-        print("tc2")
         switch temperatureSegmentedControl.selectedSegmentIndex
         {
         case 0:

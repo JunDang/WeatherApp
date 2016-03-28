@@ -42,14 +42,13 @@ class HourlyViewCell: UITableViewCell, UICollectionViewDataSource,UICollectionVi
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+      
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
-    }
+     }
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = UITableViewCellSelectionStyle.None
@@ -82,7 +81,7 @@ class HourlyViewCell: UITableViewCell, UICollectionViewDataSource,UICollectionVi
         let widthConstraint = NSLayoutConstraint(item: collectionView,
             attribute: .Width, relatedBy: .Equal, toItem: nil,
             attribute: .NotAnAttribute, multiplier: 1, constant: width)
-        //print("HourlyViewCell: \(toBottom)")
+
    
         NSLayoutConstraint.activateConstraints([toTop, toBottom, heightConstraint,leadingMargin,
             widthConstraint])
