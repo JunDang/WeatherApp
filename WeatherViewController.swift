@@ -309,7 +309,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         segmentedControll.layer.cornerRadius = 5.0  // Don't let background bleed
         segmentedControll.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
         segmentedControll.tintColor = UIColor.whiteColor()
-        segmentedControll.addTarget(self, action: "changeDisplay:", forControlEvents: .ValueChanged)
+        segmentedControll.addTarget(self, action: #selector(WeatherViewController.changeDisplay(_:)), forControlEvents: .ValueChanged)
         self.ForegroundScrollView.addSubview(segmentedControll)
         
 
@@ -322,11 +322,11 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         //navigationBar.translucent = true
         navigationBar.delegate = self
         let navigationItem = UINavigationItem()
-        let searchButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Search, target: self, action: "SearchCity:")
+        let searchButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Search, target: self, action: #selector(WeatherViewController.SearchCity(_:)))
         //set image for button
         menuButton.frame = CGRectMake(20, 35, 35, 35)
         menuButton.setImage(UIImage(named: "icon-menu-narrow-white"), forState: .Normal)
-        menuButton.addTarget(self, action: Selector("menuButtonPressed:"), forControlEvents: .TouchUpInside)
+        menuButton.addTarget(self, action: #selector(WeatherViewController.menuButtonPressed(_:)), forControlEvents: .TouchUpInside)
         //assign button to navigationbar
         let menubarButton = UIBarButtonItem(customView: menuButton)
         navigationItem.leftBarButtonItem = menubarButton

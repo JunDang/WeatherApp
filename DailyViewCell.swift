@@ -78,9 +78,9 @@ class DailyViewCell: UITableViewCell {
         weatherIcon!.image = UIImage(named: "\(weatherIconLabel!.text)")
         self.contentView.addSubview(weatherIcon!)
         let toTopWI =  NSLayoutConstraint(item: weatherIcon!, attribute: .Top, relatedBy: .Equal,
-            toItem: contentView, attribute: .Top, multiplier: 1.0, constant: 5)
+            toItem: contentView, attribute: .Top, multiplier: 1.0, constant: 2)
         let toBottomWI =  NSLayoutConstraint(item: weatherIcon!, attribute: .Bottom, relatedBy: .Equal,
-            toItem: contentView, attribute: .Bottom, multiplier: 1.0, constant: -5)
+            toItem: contentView, attribute: .Bottom, multiplier: 1.0, constant: -2)
         let leadingWI = NSLayoutConstraint(item: weatherIcon!, attribute: .LeadingMargin, relatedBy: .Equal,
             toItem: contentView, attribute: .LeadingMargin, multiplier: 1.0, constant: self.frame.width/2)
         let widthWI = NSLayoutConstraint(item: weatherIcon!, attribute: .Width, relatedBy: .Equal,

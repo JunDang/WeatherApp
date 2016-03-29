@@ -11,11 +11,13 @@ import Charts
 
 class Graphs: UIViewController {
 
-    @IBOutlet weak var hourlyForecastLineChartView: WeatherLineChartView!
+    //@IBOutlet weak var hourlyForecastLineChartView: WeatherLineChartView!
     
-    @IBOutlet weak var DailyForecastLineChartView: WeatherLineChartView!
+//@IBOutlet weak var DailyForecastLineChartView: WeatherLineChartView!
       
+    @IBOutlet weak var hourlyForecastLineChartView: LineChartView!
   
+    @IBOutlet weak var DailyForecastLineChartView: LineChartView!
 
     override func viewDidLoad() {
         super.viewDidLoad()

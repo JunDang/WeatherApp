@@ -37,11 +37,11 @@ class SideBar: NSObject, UITableViewDelegate{
         setupSideBar()
         animator = UIDynamicAnimator(referenceView: originView)
         
-        let showGestureRecognizer: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "handleSwipe:")
+        let showGestureRecognizer: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(SideBar.handleSwipe(_:)))
         showGestureRecognizer.direction = UISwipeGestureRecognizerDirection.Right
         originView.addGestureRecognizer(showGestureRecognizer)
         
-        let hideGestureRecognizer: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "handleSwipe:")
+        let hideGestureRecognizer: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(SideBar.handleSwipe(_:)))
         hideGestureRecognizer.direction = UISwipeGestureRecognizerDirection.Left
         originView.addGestureRecognizer(hideGestureRecognizer)
     }
