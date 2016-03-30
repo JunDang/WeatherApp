@@ -120,7 +120,6 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         //add mask to backgroundScrollView
         let maskLayer = CALayer()
         maskLayer.frame = screenSize
-        //maskLayer.contents = UIImage(named: "bg")?.CGImage
         maskLayer.contentsGravity = kCAGravityCenter
         maskLayer.backgroundColor = UIColor.blackColor().CGColor
         maskLayer.opacity = 0.2

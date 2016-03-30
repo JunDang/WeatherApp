@@ -11,13 +11,13 @@ import UIKit
 
 class WeatherTableViewController: UITableViewController {
     var hourlyForecasts: [HourlyForecast] = []
-    var dailyForecasts: [DailyForecast] = [DailyForecast(day: "Monday", dailyIconName: "weather-snow", dailyTemperatureHigh: "0",      dailyTemperatureLow: "0" ),
-                                           DailyForecast(day: "Monday", dailyIconName: "weather-snow",dailyTemperatureHigh: "0", dailyTemperatureLow: "0" ),DailyForecast(day: "Monday", dailyIconName: "weather-snow",dailyTemperatureHigh: "0", dailyTemperatureLow: "0" ),
-                                           DailyForecast(day: "Monday", dailyIconName: "weather-snow",dailyTemperatureHigh: "0", dailyTemperatureLow: "0" ),
-                                           DailyForecast(day: "Monday", dailyIconName: "weather-snow",dailyTemperatureHigh: "0", dailyTemperatureLow: "0" ),
-                                           DailyForecast(day: "Monday", dailyIconName: "weather-snow",dailyTemperatureHigh: "0", dailyTemperatureLow: "0" ),
-                                           DailyForecast(day: "Monday", dailyIconName: "weather-snow",dailyTemperatureHigh: "0", dailyTemperatureLow: "0" ),
-                                           DailyForecast(day: "Monday", dailyIconName: "weather-snow",dailyTemperatureHigh: "0", dailyTemperatureLow: "0" )
+    var dailyForecasts: [DailyForecast] = [DailyForecast(day: "Monday", dailyIconName: "sunnyIcon", dailyTemperatureHigh: "0",      dailyTemperatureLow: "0" ),
+                                           DailyForecast(day: "Monday", dailyIconName: "sunnyIcon",dailyTemperatureHigh: "0", dailyTemperatureLow: "0" ),DailyForecast(day: "Monday", dailyIconName: "sunnyIcon",dailyTemperatureHigh: "0", dailyTemperatureLow: "0" ),
+                                           DailyForecast(day: "Monday", dailyIconName: "sunnyIcon",dailyTemperatureHigh: "0", dailyTemperatureLow: "0" ),
+                                           DailyForecast(day: "Monday", dailyIconName: "sunnyIcon",dailyTemperatureHigh: "0", dailyTemperatureLow: "0" ),
+                                           DailyForecast(day: "Monday", dailyIconName: "sunnyIcon",dailyTemperatureHigh: "0", dailyTemperatureLow: "0" ),
+                                           DailyForecast(day: "Monday", dailyIconName: "sunnyIcon",dailyTemperatureHigh: "0", dailyTemperatureLow: "0" ),
+                                           DailyForecast(day: "Monday", dailyIconName: "sunnyIcon",dailyTemperatureHigh: "0", dailyTemperatureLow: "0" )
                                          ]
  
     
