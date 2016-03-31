@@ -65,12 +65,9 @@ class WeatherViewModel: NSObject {
  
         NSUserDefaults.standardUserDefaults().addObserver(self, forKeyPath: "convertToKilometer", options: NSKeyValueObservingOptions.New, context: nil)
         NSUserDefaults.standardUserDefaults().addObserver(self, forKeyPath: "convertToCelsius", options: NSKeyValueObservingOptions.New, context: nil)
-        print("initcalled")
 
     }
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        print("willbecalled: \(keyPath)")
-        print(change)
        if keyPath == "convertToKilometer" {
             let convertToKilometer =  NSUserDefaults.standardUserDefaults().objectForKey("convertToKilometer") as? Bool
             if convertToKilometer == true {
@@ -80,22 +77,16 @@ class WeatherViewModel: NSObject {
             }
         }
         if keyPath == "convertToCelsius" {
-            //print("called")
             let convertToCelsius =  NSUserDefaults.standardUserDefaults().objectForKey("convertToCelsius") as? Bool
             if convertToCelsius == true {
-                //print("00: \(self.currentTemperature.value)")
-                self.currentTemperature.value = temperatureConvertToCelcius(self.currentTemperatureString)
-                //print("11: \(self.currentTemperature.value)")
+                 self.currentTemperature.value = temperatureConvertToCelcius(self.currentTemperatureString)
                 self.currentTemperatureHigh.value = temperatureConvertToCelcius(self.currentTemperatureHighString)
                 self.currentTemperatureLow.value = temperatureConvertToCelcius(self.currentTemperatureLowString)
                 self.feelsLikeTemperature.value = temperatureConvertToCelcius(self.feelsLikeTemperatureString)
                 self.hourlyForecasts.value = hourlyForecastsTemperatureConvertToCelsius(self.hourlyForecastsArray)
                 self.dailyForecasts.value = dailyForecastsTemperatureConvertToCelsius(self.dailyForecastsArray)
              } else {
-               // print("1: \(self.currentTemperature.value)")
-                //self.currentTemperature.value = temperatureConvertToFarenheit(self.currentTemperature.value)
                 self.currentTemperature.value = self.currentTemperatureString
-                //print("2: \(self.currentTemperature.value)")
                 self.currentTemperatureHigh.value = self.currentTemperatureHighString
                 self.currentTemperatureLow.value = self.currentTemperatureLowString
                 self.feelsLikeTemperature.value = self.feelsLikeTemperatureString
@@ -108,7 +99,6 @@ class WeatherViewModel: NSObject {
     }
     
     deinit {
-        print("deinitcalled")
         NSUserDefaults.standardUserDefaults().removeObserver(self, forKeyPath: "convertToKilometer", context: nil)
         NSUserDefaults.standardUserDefaults().removeObserver(self, forKeyPath: "convertToCelsius", context: nil)
     }
@@ -117,8 +107,8 @@ class WeatherViewModel: NSObject {
         var windSpeedBeforeConversion: Double?
         var windSpeedAfterConversion: Double?
         guard windSpeedBefore.characters.count > 0 else {
-            print("kphempty")
-            return("data not available")
+            print("empty data")
+            return("nil 0 nil")
         }
         let windString = windSpeedBefore.componentsSeparatedByString(" ")
         let windSpeedUnit = windString[2]
@@ -138,10 +128,9 @@ class WeatherViewModel: NSObject {
     func windSpeedConvertToMPH(windSpeedBefore: String) -> String {
         var windSpeedBeforeConversion: Double?
         var windSpeedAfterConversion: Double?
-        print("windBefore: \(windSpeedBefore)")
         guard windSpeedBefore.characters.count > 0 else {
-           print("kphempty")
-           return("data not available")
+           print("empty data")
+           return("nil 0 nil")
         }
         let windString = windSpeedBefore.componentsSeparatedByString(" ")
        

@@ -195,10 +195,10 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         displayGraphs(forecastGraphs!)
         displaySummary(forecastSummary!)
         displayAirQuality(airQuality!)
-       //Navigation bar
+        //Navigation bar
         addNavigationBar()
         searchCity = SearchCityViewController()
-         //side bar
+        //side bar
         sideBar = SideBar(sourceView: self.ForegroundScrollView)
         
     }
@@ -222,8 +222,8 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         ForegroundScrollView.addSubview(temperatureLabel!)
         
         //add minute summary
-        minutelySummary = UILabel(frame: CGRectMake(132, screenHeight-50, 300, 80))
-        let fontLabel = UIFont(name: "HelveticaNeue-Bold", size: 12.0)
+        minutelySummary = UILabel(frame: CGRectMake(132, screenHeight-60, 350, 100))
+        let fontLabel = UIFont(name: "HelveticaNeue-Bold", size: 15.0)
         minutelySummary!.font = fontLabel
         minutelySummary!.backgroundColor = UIColor.clearColor()
         minutelySummary!.textColor = UIColor.whiteColor()
@@ -231,15 +231,15 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         ForegroundScrollView.addSubview(minutelySummary!)
         
         //max temperature description
-        let maxTemperature = UILabel(frame: CGRectMake(70, screenHeight-117, 80, 80))
+        let maxTemperature = UILabel(frame: CGRectMake(85, screenHeight-117, 80, 80))
         maxTemperature.backgroundColor = UIColor.clearColor()
         maxTemperature.textColor = UIColor.whiteColor()
         maxTemperature.text = "High:"
-        maxTemperature.font = UIFont(name: "HelveticaNeue-Bold", size: 10)
+        maxTemperature.font = UIFont(name: "HelveticaNeue-Bold", size: 15)
         self.ForegroundScrollView.addSubview(maxTemperature)
         
         //low temperature label
-        lowLabel = UILabel(frame: CGRectMake(37, screenHeight-117, 80, 80))
+        lowLabel = UILabel(frame: CGRectMake(49, screenHeight-117, 80, 80))
         lowLabel!.backgroundColor = UIColor.clearColor()
         lowLabel!.textColor = UIColor.whiteColor()
         lowLabel!.text = "20\u{00B0}"
@@ -251,11 +251,11 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         minTemperature.backgroundColor = UIColor.clearColor()
         minTemperature.textColor = UIColor.whiteColor()
         minTemperature.text = "Low:"
-        minTemperature.font = UIFont(name: "HelveticaNeue-Bold", size: 10)
+        minTemperature.font = UIFont(name: "HelveticaNeue-Bold", size: 15)
         self.ForegroundScrollView.addSubview(minTemperature)
         
         //high temperature label
-        hiLabel = UILabel(frame: CGRectMake(97, screenHeight-117, 80, 80))
+        hiLabel = UILabel(frame: CGRectMake(124, screenHeight-117, 80, 80))
         hiLabel!.backgroundColor = UIColor.clearColor()
         hiLabel!.textColor = UIColor.whiteColor()
         //lowLabel!.text = "20\u{00B0}"
@@ -264,15 +264,15 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         
         //Feels like
         
-        let feelsLike = UILabel(frame: CGRectMake(128, screenHeight-117, 80, 80))
+        let feelsLike = UILabel(frame: CGRectMake(162, screenHeight-117, 80, 80))
         feelsLike.backgroundColor = UIColor.clearColor()
         feelsLike.textColor = UIColor.whiteColor()
         feelsLike.text = "Feels like:"
-        feelsLike.font = UIFont(name: "HelveticaNeue-Bold", size: 10)
+        feelsLike.font = UIFont(name: "HelveticaNeue-Bold", size: 15)
         self.ForegroundScrollView.addSubview(feelsLike)
         
         //FeelsLikeTemperature
-        feelsLikeTemperature = UILabel(frame: CGRectMake(179, screenHeight-117, 80, 80))
+        feelsLikeTemperature = UILabel(frame: CGRectMake(236, screenHeight-117, 80, 80))
         feelsLikeTemperature!.backgroundColor = UIColor.clearColor()
         feelsLikeTemperature!.textColor = UIColor.whiteColor()
         feelsLikeTemperature!.font = UIFont(name: "HelveticaNeue-Bold", size: 15)
@@ -290,10 +290,10 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         weathericon2!.image = UIImage(named: "weather-clear")
         self.ForegroundScrollView.addSubview(weathericon2!)
         //add weather description
-        weatherDescription = UILabel(frame: CGRectMake(55, screenHeight-150, 200, 100))
+        weatherDescription = UILabel(frame: CGRectMake(67, screenHeight-150, 200, 100))
         weatherDescription!.backgroundColor = UIColor.clearColor()
         weatherDescription!.textColor = UIColor.whiteColor()
-        weatherDescription!.font = UIFont(name: "HelveticaNeue-Bold", size: 15)
+        weatherDescription!.font = UIFont(name: "HelveticaNeue-Bold", size: 16)
         self.ForegroundScrollView.addSubview(weatherDescription!)
         
         
@@ -304,7 +304,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         let segmentedControll = UISegmentedControl(items: items)
         segmentedControll.selectedSegmentIndex = 0
         segmentedControll.frame = CGRectMake(screenSize.minX + 17, screenHeight + 5,
-            screenSize.width - 18, screenSize.height*0.05)
+            screenSize.width - 18, screenSize.height*0.07)
         segmentedControll.layer.cornerRadius = 5.0  // Don't let background bleed
         segmentedControll.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
         segmentedControll.tintColor = UIColor.whiteColor()

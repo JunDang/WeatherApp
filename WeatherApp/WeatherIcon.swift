@@ -15,6 +15,7 @@ struct WeatherIcon {
     
                                      "clear-day" : "sunnyIcon",
                              "partly-cloudy-day" : "partlyCloudyIcon",
+                             "mostly-cloudy-day" : "mostlyCloudyIcon",
                                    "clear-night" : "clearNightIcon",
                                          "sleet" : "sleetIcon",
                                          "snow"  : "snowIcon",
@@ -22,7 +23,8 @@ struct WeatherIcon {
                                         "cloudy" : "cloudyIcon",
                                           "rain" : "rainIcon",
                            "partly-cloudy-night" : "nightPartlyCloudyIcon",
-                                          "wind" : "windIcon"
+                                          "wind" : "windIcon",
+                                       "drizzle" : "drizzleIcon"
                                              ]
 
 }

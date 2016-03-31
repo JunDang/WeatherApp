@@ -84,7 +84,7 @@ struct WeatherAirQualityService: WeatherAirQualityServiceProtocol {
                 completionHandler(nil, error)
                 return
         }
-       
+
         let minutelySummary: String?
         if json["minutely"]["summary"] != nil {
             minutelySummary = json["minutely"]["summary"].string
@@ -151,7 +151,7 @@ struct WeatherAirQualityService: WeatherAirQualityServiceProtocol {
         weatherAirQualityBuilder.sunsetTime = sunSet
         weatherAirQualityBuilder.cloudCover = cloudCoverString
   
-        let weatherIcon = WeatherIcon().iconMap[currentIcon]
+        let weatherIcon = CurrentWeatherIcon().iconMap[currentIcon]
         weatherAirQualityBuilder.currentIconName = weatherIcon
         
         var hourlyForecasts: [HourlyForecast] = []
