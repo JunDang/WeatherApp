@@ -12,10 +12,11 @@ class HourlyViewCell: UITableViewCell, UICollectionViewDataSource,UICollectionVi
     
     var collectionView: UICollectionView!
     
-    var hourlyForecasts: [HourlyForecast] = [HourlyForecast(time: "8:00", iconName: "sunnyIcon", temperature: "1"),
+    var hourlyForecasts: [HourlyForecast] = [HourlyForecast(time: "8:00", iconName: "sunnyIcon", temperature: "0"),
         HourlyForecast(time: "9:00", iconName: "sunnyIcon", temperature: "0"),
         HourlyForecast(time: "10:00", iconName: "sunnyIcon", temperature: "0"),
         HourlyForecast(time: "11:00", iconName: "sunnyIcon", temperature: "0"),
+        HourlyForecast(time: "8:00", iconName: "sunnyIcon", temperature: "0"),
         HourlyForecast(time: "8:00", iconName: "sunnyIcon", temperature: "0"),
         HourlyForecast(time: "8:00", iconName: "sunnyIcon", temperature: "0"),
         HourlyForecast(time: "8:00", iconName: "sunnyIcon", temperature: "0"),

@@ -2,7 +2,7 @@
 //  DataManager.swift
 //  AreaDistanceCal
 //
-//  Created by Yuan Yinhuan on 15/11/6.
+//  Created by Jun Dang on 15/11/6.
 //  Copyright (c) 2015年 Jun Dang. All rights reserved.
 //
 
@@ -16,8 +16,7 @@ class DataManager {
         let addressURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyBdTOGf2Apyxjck8RxFk2ffcYTnGU7btk8"
         let urlString = addressURL.stringByAddingPercentEncodingWithAllowedCharacters( NSCharacterSet.URLQueryAllowedCharacterSet())
         let url = NSURL(string: urlString!)
-        print("url: \(url)")
-        
+              
         if url != nil {
             loadDataFromURL(url!, completion: { (data, error) -> Void in
                 if let urlData = data {
@@ -35,11 +34,9 @@ class DataManager {
         let latitude = coordinate.latitude
         let longitude = coordinate.longitude
         let passedLatlng = String(latitude) + "," + String(longitude)
-        print(passedLatlng)
         let reverseGeocodingURL = "https://maps.googleapis.com/maps/api/geocode/json?latlng=\(passedLatlng)&key=AIzaSyBdTOGf2Apyxjck8RxFk2ffcYTnGU7btk8"
         let urlString = reverseGeocodingURL.stringByAddingPercentEncodingWithAllowedCharacters( NSCharacterSet.URLQueryAllowedCharacterSet())
         let url = NSURL(string: urlString!)
-        print("url: \(url)")
         
         if url != nil {
             loadDataFromURL(url!, completion: { (data, error) -> Void in

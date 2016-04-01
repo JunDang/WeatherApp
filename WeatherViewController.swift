@@ -42,6 +42,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
     var sideBar: SideBar = SideBar()
     var sideBarTableViewController: SideBarTableViewController = SideBarTableViewController()
     var isSideBarExpand: Bool = true
+    var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {
         
@@ -222,8 +223,9 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         ForegroundScrollView.addSubview(temperatureLabel!)
         
         //add minute summary
-        minutelySummary = UILabel(frame: CGRectMake(132, screenHeight-60, 350, 100))
-        let fontLabel = UIFont(name: "HelveticaNeue-Bold", size: 15.0)
+        minutelySummary = UILabel(frame: CGRectMake(132, screenHeight-90, 225, 150))
+        let fontLabel = UIFont(name: "HelveticaNeue-Bold", size: 13.0)
+        minutelySummary!.numberOfLines = 2
         minutelySummary!.font = fontLabel
         minutelySummary!.backgroundColor = UIColor.clearColor()
         minutelySummary!.textColor = UIColor.whiteColor()

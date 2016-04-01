@@ -174,7 +174,7 @@ struct WeatherAirQualityService: WeatherAirQualityServiceProtocol {
         weatherAirQualityBuilder.hourlyForecasts = hourlyForecasts
         
         var dailyForecasts: [DailyForecast] = []
-        for index in 0...8 {
+        for index in 0...7 {
             guard let dailyTempDegreesHigh = json["daily"]["data"][index]["temperatureMax"].double,
                 dailyTempDegreesLow = json["daily"]["data"][index]["temperatureMin"].double,
                 rawDateTime = json["daily"]["data"][index]["time"].double,
@@ -195,9 +195,10 @@ struct WeatherAirQualityService: WeatherAirQualityServiceProtocol {
                 dailyTemperatureLow: dailyTempeartureLow)
             
             dailyForecasts.append(dailyForecast)
-        }
+         }
         
         weatherAirQualityBuilder.dailyForecasts = dailyForecasts
+        //print("dailyForecasts: \(weatherAirQualityBuilder.dailyForecasts)")
         
         //process air quality data
     

@@ -18,10 +18,51 @@ class Graphs: UIViewController {
     @IBOutlet weak var hourlyForecastLineChartView: LineChartView!
   
     @IBOutlet weak var DailyForecastLineChartView: LineChartView!
+    var hourlyForecasts: [HourlyForecast] = [HourlyForecast(time: "8:00", iconName: "sunnyIcon", temperature: "0°"),
+                                             HourlyForecast(time: "9:00", iconName: "sunnyIcon", temperature: "0°"),
+                                             HourlyForecast(time: "10:00", iconName: "sunnyIcon", temperature: "0°"),
+                                             HourlyForecast(time: "11:00", iconName: "sunnyIcon", temperature: "0°"),
+                                             HourlyForecast(time: "8:00", iconName: "sunnyIcon", temperature: "0°"),
+                                             HourlyForecast(time: "8:00", iconName: "sunnyIcon", temperature: "0°"),
+                                             HourlyForecast(time: "8:00", iconName: "sunnyIcon", temperature: "0°"),
+                                             HourlyForecast(time: "8:00", iconName: "sunnyIcon", temperature: "0°"),
+                                             HourlyForecast(time: "8:00", iconName: "sunnyIcon", temperature: "0°"),
+                                             HourlyForecast(time: "8:00", iconName: "sunnyIcon", temperature: "0°"),
+                                             HourlyForecast(time: "8:00", iconName: "sunnyIcon", temperature: "0°"),
+                                             HourlyForecast(time: "8:00", iconName: "sunnyIcon", temperature: "0°"),
+                                             HourlyForecast(time: "8:00", iconName: "sunnyIcon", temperature: "0°"),
+                                             HourlyForecast(time: "8:00", iconName: "sunnyIcon", temperature: "0°"),
+                                             HourlyForecast(time: "8:00", iconName: "sunnyIcon", temperature: "0°"),
+                                             HourlyForecast(time: "8:00", iconName: "sunnyIcon", temperature: "0°"),
+                                             HourlyForecast(time: "8:00", iconName: "sunnyIcon", temperature: "0°"),
+                                             HourlyForecast(time: "8:00", iconName: "sunnyIcon", temperature: "0°"),
+                                             HourlyForecast(time: "8:00", iconName: "sunnyIcon", temperature: "0°"),
+                                             HourlyForecast(time: "8:00", iconName: "sunnyIcon", temperature: "0°"),
+                                             HourlyForecast(time: "8:00", iconName: "sunnyIcon", temperature: "0°"),
+                                             HourlyForecast(time: "8:00", iconName: "sunnyIcon", temperature: "0°"),
+                                             HourlyForecast(time: "8:00", iconName: "sunnyIcon", temperature: "0°"),
+                                             HourlyForecast(time: "8:00", iconName: "sunnyIcon", temperature: "0°"),
+                                             HourlyForecast(time: "8:00", iconName: "sunnyIcon", temperature: "0°")
+        
+    ]
+
+    var dailyForecasts: [DailyForecast] = [DailyForecast(day: "Monday", dailyIconName: "sunnyIcon", dailyTemperatureHigh: "0°",      dailyTemperatureLow: "0°" ),
+                                           DailyForecast(day: "Monday", dailyIconName: "sunnyIcon",dailyTemperatureHigh: "0°", dailyTemperatureLow: "0°" ),
+                                           DailyForecast(day: "Monday", dailyIconName: "sunnyIcon",dailyTemperatureHigh: "0°", dailyTemperatureLow: "0°" ),
+                                           DailyForecast(day: "Monday", dailyIconName: "sunnyIcon",dailyTemperatureHigh: "0°", dailyTemperatureLow: "0°" ),
+                                           DailyForecast(day: "Monday", dailyIconName: "sunnyIcon",dailyTemperatureHigh: "0°", dailyTemperatureLow: "0°" ),
+                                           DailyForecast(day: "Monday", dailyIconName: "sunnyIcon",dailyTemperatureHigh: "0°", dailyTemperatureLow: "0°" ),
+                                           DailyForecast(day: "Monday", dailyIconName: "sunnyIcon",dailyTemperatureHigh: "0°", dailyTemperatureLow: "0°" ),
+                                           DailyForecast(day: "Monday", dailyIconName: "sunnyIcon",dailyTemperatureHigh: "0°", dailyTemperatureLow: "0°" )
+                                          
+    ]
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.clearColor()
+        updateHourlyData(hourlyForecasts)
+        updateDailyData(dailyForecasts)
        
     }
     
@@ -93,18 +134,20 @@ class Graphs: UIViewController {
      // draw daily forecast graph
     func updateDailyData(dailyForecastsData : [DailyForecast]) {
         guard dailyForecastsData.count > 0 else {
+            print("dataIsempty")
             return
         }
-        
         let days = dailyForecastsData.map({$0.day})
       
         //high temperature
         let valuesHighTemperature = dailyForecastsData.map({Double($0.dailyTemperatureHigh.substringToIndex($0.dailyTemperatureHigh.endIndex.advancedBy(-1)))!})
+        print("High: \(valuesHighTemperature)")
         var dataEntriesHighTemperature: [ChartDataEntry] = []
         for i in 0..<days.count {
             let dataEntryHighTemperature = ChartDataEntry(value: valuesHighTemperature[i], xIndex: i)
             dataEntriesHighTemperature.append(dataEntryHighTemperature)
         }
+      
         let highTemperatureSet = LineChartDataSet(yVals: dataEntriesHighTemperature, label: "Temperature High(°)")
         highTemperatureSet.axisDependency = .Left
         highTemperatureSet.circleRadius = 2.0
@@ -112,10 +155,18 @@ class Graphs: UIViewController {
         highTemperatureSet.valueFormatter?.minimumFractionDigits = 0
         highTemperatureSet.setColor(UIColor.redColor())
         highTemperatureSet.setCircleColor(UIColor.redColor())
-
+       
         //low tempreature
-        let valuesLowTemperature = dailyForecastsData.map({Double($0.dailyTemperatureLow.substringToIndex($0.dailyTemperatureLow.endIndex.advancedBy(-1)))!})
-              var dataEntriesLowTemperature: [ChartDataEntry] = []
+        var valuesLowTemperature:[Double] = []
+        for i in 0..<dailyForecastsData.count {
+            let valueLowTemperatureString = dailyForecastsData[i].dailyTemperatureLow.substringToIndex(dailyForecastsData[i].dailyTemperatureLow.endIndex.advancedBy(-1))
+            let valueLowTemperature = Double(valueLowTemperatureString)
+            print("valueLow: \(valueLowTemperature)")
+            valuesLowTemperature.append(valueLowTemperature!)
+        }
+       /* let valuesLowTemperature = dailyForecastsData.map({Double($0.dailyTemperatureLow.substringToIndex($0.dailyTemperatureLow.endIndex.advancedBy(-1)))!})*/
+    
+        var dataEntriesLowTemperature: [ChartDataEntry] = []
         for i in 0..<days.count {
             let dataEntryLowTemperature = ChartDataEntry(value: valuesLowTemperature[i], xIndex: i)
             dataEntriesLowTemperature.append(dataEntryLowTemperature)

@@ -92,6 +92,7 @@ class WeatherViewModel: NSObject {
                 self.feelsLikeTemperature.value = self.feelsLikeTemperatureString
                 self.hourlyForecasts.value = self.hourlyForecastsArray
                 self.dailyForecasts.value = self.dailyForecastsArray
+                print("modelDaily1: \(self.dailyForecasts.value)")
             }
         
         }
@@ -104,8 +105,8 @@ class WeatherViewModel: NSObject {
     }
     
     func windSpeedConvertToKPH(windSpeedBefore: String) -> String {
-        var windSpeedBeforeConversion: Double?
-        var windSpeedAfterConversion: Double?
+        var windSpeedBeforeConversion: Double = 0.0
+        var windSpeedAfterConversion: Double = 0.0
         guard windSpeedBefore.characters.count > 0 else {
             print("empty data")
             return("nil 0 nil")
@@ -114,20 +115,20 @@ class WeatherViewModel: NSObject {
         let windSpeedUnit = windString[2]
         let windDirection = windString[0]
         let windSpeedString = windString[1]
-        windSpeedBeforeConversion = Double(windSpeedString)
+        windSpeedBeforeConversion = Double(windSpeedString)!
         if windSpeedUnit == "mph" {
-            windSpeedAfterConversion = round(windSpeedBeforeConversion! * 1.609 * 100) / 100
+            windSpeedAfterConversion = round(windSpeedBeforeConversion * 1.609 * 100) / 100
         } else {
-            windSpeedAfterConversion = windSpeedBeforeConversion!
+            windSpeedAfterConversion = windSpeedBeforeConversion
         }
             
-        return (windDirection + " " + String(windSpeedAfterConversion!) + " " + "km/hr")
+        return (windDirection + " " + String(windSpeedAfterConversion) + " " + "km/hr")
     }
 
     
     func windSpeedConvertToMPH(windSpeedBefore: String) -> String {
-        var windSpeedBeforeConversion: Double?
-        var windSpeedAfterConversion: Double?
+        var windSpeedBeforeConversion: Double = 0.0
+        var windSpeedAfterConversion: Double = 0.0
         guard windSpeedBefore.characters.count > 0 else {
            print("empty data")
            return("nil 0 nil")
@@ -138,17 +139,17 @@ class WeatherViewModel: NSObject {
         let windDirection = windString[0]
         let windSpeedString = windString[1]
 
-        windSpeedBeforeConversion = Double(windSpeedString)
+        windSpeedBeforeConversion = Double(windSpeedString)!
         if windSpeedUnit == "km/hr" {
           
-            windSpeedAfterConversion = round((windSpeedBeforeConversion! / 1.609)*100) / 100
+            windSpeedAfterConversion = round((windSpeedBeforeConversion / 1.609)*100) / 100
             
            } else {
             windSpeedAfterConversion = windSpeedBeforeConversion
         
            }
         
-        return (windDirection + " " + String(windSpeedAfterConversion!) + " " + "mph")
+        return (windDirection + " " + String(windSpeedAfterConversion) + " " + "mph")
     }
     
     func temperatureConvertToCelcius(temperatureBefore: String) -> String {
@@ -228,6 +229,7 @@ class WeatherViewModel: NSObject {
         //daily forecast
         self.dailyForecasts.value = weatherAirQuality.dailyForecasts
         self.dailyForecastsArray = weatherAirQuality.dailyForecasts
+        print("dailyForecastsArray: \(dailyForecastsArray)")
         let convertToCelsius =  NSUserDefaults.standardUserDefaults().objectForKey("convertToCelsius") as? Bool
         if convertToCelsius == true {
             self.currentTemperature.value = temperatureConvertToCelcius(self.currentTemperature.value)
@@ -254,7 +256,7 @@ class WeatherViewModel: NSObject {
         let hourlyIcons = hourlyForecastValue.map({$0.iconName})
         let hourlyTemperatures = hourlyForecastValue.map({temperatureConvertToCelcius($0.temperature)})
         var hourlyForecastsAfterConversion: [HourlyForecast] = []
-        for i in 0...(hourlyForecastValue.count-1) {
+        for i in 0..<hourlyForecastValue.count {
             let hour = hours[i]
             let hourlyIcon = hourlyIcons[i]
             let hourlyTemperature = hourlyTemperatures[i]
@@ -272,7 +274,7 @@ class WeatherViewModel: NSObject {
         let hourlyIcons = hourlyForecastValue.map({$0.iconName})
         let hourlyTemperatures = hourlyForecastValue.map({temperatureConvertToCelcius($0.temperature)})
         var hourlyForecastsAfterConversion: [HourlyForecast] = []
-        for i in 0...(hourlyForecastValue.count-1) {
+        for i in 0..<hourlyForecastValue.count {
             let hour = hours[i]
             let hourlyIcon = hourlyIcons[i]
             let hourlyTemperature = hourlyTemperatures[i]
@@ -292,7 +294,7 @@ class WeatherViewModel: NSObject {
         let dailyLowTemperatures = dailyForecastValue.map({temperatureConvertToCelcius($0.dailyTemperatureLow)})
    
         var dailyForecastsAfterConversion: [DailyForecast] = []
-        for i in 0...(dailyForecastValue.count - 1) {
+        for i in 0..<dailyForecastValue.count {
             let day = days[i]
             let dailyIcon = dailyIcons[i]
             let dailyHighTemperature = dailyHighTemperatures[i]
@@ -316,7 +318,7 @@ class WeatherViewModel: NSObject {
         let dailyLowTemperatures = dailyForecastValue.map({temperatureConvertToFarenheit($0.dailyTemperatureLow)})
         
         var dailyForecastsAfterConversion: [DailyForecast] = []
-        for i in 0...(dailyForecastValue.count - 1) {
+        for i in 0..<dailyForecastValue.count {
             let day = days[i]
             let dailyIcon = dailyIcons[i]
             let dailyHighTemperature = dailyHighTemperatures[i]
