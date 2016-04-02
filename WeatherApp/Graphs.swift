@@ -134,14 +134,12 @@ class Graphs: UIViewController {
      // draw daily forecast graph
     func updateDailyData(dailyForecastsData : [DailyForecast]) {
         guard dailyForecastsData.count > 0 else {
-            print("dataIsempty")
-            return
+             return
         }
         let days = dailyForecastsData.map({$0.day})
       
         //high temperature
         let valuesHighTemperature = dailyForecastsData.map({Double($0.dailyTemperatureHigh.substringToIndex($0.dailyTemperatureHigh.endIndex.advancedBy(-1)))!})
-        print("High: \(valuesHighTemperature)")
         var dataEntriesHighTemperature: [ChartDataEntry] = []
         for i in 0..<days.count {
             let dataEntryHighTemperature = ChartDataEntry(value: valuesHighTemperature[i], xIndex: i)
@@ -157,14 +155,8 @@ class Graphs: UIViewController {
         highTemperatureSet.setCircleColor(UIColor.redColor())
        
         //low tempreature
-        var valuesLowTemperature:[Double] = []
-        for i in 0..<dailyForecastsData.count {
-            let valueLowTemperatureString = dailyForecastsData[i].dailyTemperatureLow.substringToIndex(dailyForecastsData[i].dailyTemperatureLow.endIndex.advancedBy(-1))
-            let valueLowTemperature = Double(valueLowTemperatureString)
-            print("valueLow: \(valueLowTemperature)")
-            valuesLowTemperature.append(valueLowTemperature!)
-        }
-       /* let valuesLowTemperature = dailyForecastsData.map({Double($0.dailyTemperatureLow.substringToIndex($0.dailyTemperatureLow.endIndex.advancedBy(-1)))!})*/
+     
+       let valuesLowTemperature = dailyForecastsData.map({Double($0.dailyTemperatureLow.substringToIndex($0.dailyTemperatureLow.endIndex.advancedBy(-1)))!})
     
         var dataEntriesLowTemperature: [ChartDataEntry] = []
         for i in 0..<days.count {

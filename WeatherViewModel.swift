@@ -92,7 +92,7 @@ class WeatherViewModel: NSObject {
                 self.feelsLikeTemperature.value = self.feelsLikeTemperatureString
                 self.hourlyForecasts.value = self.hourlyForecastsArray
                 self.dailyForecasts.value = self.dailyForecastsArray
-                print("modelDaily1: \(self.dailyForecasts.value)")
+
             }
         
         }
@@ -198,6 +198,7 @@ class WeatherViewModel: NSObject {
         self.errorMessage.value = nil
         self.location.value = weatherAirQuality.location
         self.currentIconName.value = weatherAirQuality.currentIconName
+        print("currentIcon: \(self.currentIconName.value)")
         self.currentTemperature.value = weatherAirQuality.currentTemperature
         self.currentTemperatureString = weatherAirQuality.currentTemperature
         self.currentTemperatureHigh.value = weatherAirQuality.currentTemperatureHigh
@@ -229,7 +230,6 @@ class WeatherViewModel: NSObject {
         //daily forecast
         self.dailyForecasts.value = weatherAirQuality.dailyForecasts
         self.dailyForecastsArray = weatherAirQuality.dailyForecasts
-        print("dailyForecastsArray: \(dailyForecastsArray)")
         let convertToCelsius =  NSUserDefaults.standardUserDefaults().objectForKey("convertToCelsius") as? Bool
         if convertToCelsius == true {
             self.currentTemperature.value = temperatureConvertToCelcius(self.currentTemperature.value)
@@ -397,9 +397,29 @@ class WeatherViewModel: NSObject {
                 self.update(unwrappedWeather)
             })
         }
+        
        
     }
-    
+    func refreshLocation(location: CLLocation) {
+        print("refreshLocationCalled")
+        
+        weatherAirQualityService.retrieveWeatherInfo(location) { (weatherAirQuality, error) -> Void in
+            dispatch_async(dispatch_get_main_queue(), {
+                if let unwrappedError = error {
+                    print(unwrappedError)
+                    self.update(unwrappedError)
+                    return
+                }
+                
+                guard let unwrappedWeather = weatherAirQuality else {
+                    return
+                }
+                self.update(unwrappedWeather)
+            })
+        }
+
+        
+    }
 
 
 }

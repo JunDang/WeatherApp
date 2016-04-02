@@ -151,7 +151,7 @@ struct WeatherAirQualityService: WeatherAirQualityServiceProtocol {
         weatherAirQualityBuilder.sunsetTime = sunSet
         weatherAirQualityBuilder.cloudCover = cloudCoverString
   
-        let weatherIcon = CurrentWeatherIcon().iconMap[currentIcon]
+        let weatherIcon = WeatherIcon().iconMap[currentIcon]
         weatherAirQualityBuilder.currentIconName = weatherIcon
         
         var hourlyForecasts: [HourlyForecast] = []
@@ -284,6 +284,7 @@ struct Flickr: FlickrServiceProtocol{
                           }
                 let flickrPhoto = FlickrPhoto(photoID: photoID, farm: farm, server: server, secret: secret)
                 let imageURL = flickrPhoto.flickrImageURL()
+                print(imageURL)
           
                 
                 Alamofire.request(.GET, imageURL)

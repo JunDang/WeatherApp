@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreLocation
 
-class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableViewDelegate, UINavigationBarDelegate {
+class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableViewDelegate, UINavigationBarDelegate, LocationServiceDelegate {
     
     var BackgroundScrollView: UIScrollView!
     var ForegroundScrollView: UIScrollView!
@@ -43,6 +44,8 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
     var sideBarTableViewController: SideBarTableViewController = SideBarTableViewController()
     var isSideBarExpand: Bool = true
     var refreshControl: UIRefreshControl!
+    private var locationService: LocationService!
+    var dateFormatter = NSDateFormatter()
     
     override func viewDidLoad() {
         
@@ -63,6 +66,9 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
        
         viewModel = WeatherViewModel()
         viewModel?.startLocationService()
+        // add refresh time
+        self.dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
+        self.dateFormatter.timeStyle = NSDateFormatterStyle.LongStyle
         
         
     }
@@ -132,7 +138,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
     func setUpForegroundScrollView() {
         //containerView
         let containerSize1 = CGSize(width: view.bounds.width, height: screenHeight)
-        containerView1 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: screenHeight + 4), size:containerSize1))
+        containerView1 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: screenHeight + 8), size:containerSize1))
         containerView1?.backgroundColor = UIColor.clearColor()
         containerView1!.setNeedsDisplay()
         containerView1!.translatesAutoresizingMaskIntoConstraints = false
@@ -140,19 +146,19 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
        //let cheight2 = fheight1! + screenHeight + 10
     
         let containerSize2 = CGSize(width: view.bounds.width, height: screenHeight)
-        containerView2 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: screenHeight + 4), size:containerSize2))
+        containerView2 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: screenHeight + 8), size:containerSize2))
         containerView2?.backgroundColor = UIColor.clearColor()
         containerView2!.setNeedsDisplay()
         containerView2!.translatesAutoresizingMaskIntoConstraints = false
         //let fheight2 = containerView2?.frame.height
         let containerSize3 = CGSize(width: view.bounds.width, height: screenHeight)
-        containerView3 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: screenHeight + 4), size:containerSize3))
+        containerView3 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: screenHeight + 8), size:containerSize3))
         containerView3?.backgroundColor = UIColor.clearColor()
         containerView3!.setNeedsDisplay()
         containerView3!.translatesAutoresizingMaskIntoConstraints = false
         // let fheight3 = containerView3?.frame.height
         let containerSize4 = CGSize(width: view.bounds.width, height: screenHeight)
-        containerView4 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: screenHeight + 4), size:containerSize4))
+        containerView4 = UIView(frame: CGRect(origin: CGPoint(x: 0, y: screenHeight + 8), size:containerSize4))
         containerView4?.backgroundColor = UIColor.clearColor()
         containerView4!.setNeedsDisplay()
         containerView4!.translatesAutoresizingMaskIntoConstraints = false
@@ -201,6 +207,8 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         searchCity = SearchCityViewController()
         //side bar
         sideBar = SideBar(sourceView: self.ForegroundScrollView)
+        //pull to refresh
+        pullToRefresh()
         
     }
     func addLabelsToForegroundScrollView() {
@@ -224,7 +232,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         
         //add minute summary
         minutelySummary = UILabel(frame: CGRectMake(132, screenHeight-90, 225, 150))
-        let fontLabel = UIFont(name: "HelveticaNeue-Bold", size: 13.0)
+        let fontLabel = UIFont(name: "HelveticaNeue-Bold", size: 14.0)
         minutelySummary!.numberOfLines = 2
         minutelySummary!.font = fontLabel
         minutelySummary!.backgroundColor = UIColor.clearColor()
@@ -281,21 +289,21 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         self.ForegroundScrollView.addSubview(feelsLikeTemperature!)
         
         //weathericon2Label
-        weathericon2Label = UILabel(frame: CGRectMake(13, screenHeight-120, 30, 30))
+        weathericon2Label = UILabel(frame: CGRectMake(13, screenHeight-150, 30, 30))
         weathericon2Label!.backgroundColor = UIColor.clearColor()
         weathericon2Label!.textColor = UIColor.clearColor()
         //weathericon2Label!.text = "weather-clear"
         weathericon2Label!.hidden = true
         
         //weathericon2
-        weathericon2 = UIImageView(frame: CGRectMake(13, screenHeight-120, 39, 30))
+        weathericon2 = UIImageView(frame: CGRectMake(13, screenHeight-150, 78, 60))
         weathericon2!.image = UIImage(named: "weather-clear")
         self.ForegroundScrollView.addSubview(weathericon2!)
         //add weather description
-        weatherDescription = UILabel(frame: CGRectMake(67, screenHeight-150, 200, 100))
+        weatherDescription = UILabel(frame: CGRectMake(110, screenHeight-175, 200, 100))
         weatherDescription!.backgroundColor = UIColor.clearColor()
         weatherDescription!.textColor = UIColor.whiteColor()
-        weatherDescription!.font = UIFont(name: "HelveticaNeue-Bold", size: 16)
+        weatherDescription!.font = UIFont(name: "HelveticaNeue-Bold", size: 18)
         self.ForegroundScrollView.addSubview(weatherDescription!)
         
         
@@ -342,7 +350,15 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         self.ForegroundScrollView.addSubview(navigationBar)
 
     }
-    
+    func pullToRefresh() {
+        // pull to refresh
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.addTarget(self, action: #selector(WeatherViewController.pullToRefresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        self.ForegroundScrollView.addSubview(self.refreshControl)
+
+    }
+   
     func scrollViewDidScroll(scrollView: UIScrollView) {
       
         let height = scrollView.bounds.size.height
@@ -396,8 +412,8 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
     
     func displayContentController(weatherTableViewController: WeatherTableViewController) {
         
-        //containerView1!.frame.size.height = weatherTableViewController.tableView.frame.height
-        //containerView1!.frame.size.width = weatherTableViewController.tableView.frame.width
+        containerView1!.frame.size.height = weatherTableViewController.tableView.frame.height
+        containerView1!.frame.size.width = weatherTableViewController.tableView.frame.width
         self.addChildViewController(weatherTableViewController)
         self.containerView1!.addSubview(weatherTableViewController.tableView)
         weatherTableViewController.didMoveToParentViewController(self)
@@ -446,7 +462,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
                 self.weathericon2Label!.text = $0
                 if  !self.weathericon2Label!.text!.isEmpty {
                    self.weathericon2!.image = UIImage(named: "\(self.weathericon2Label!.text!)")
-
+               
                    Flickr().searchFlickrForTerm(self.weathericon2Label!.text!) {(backgroundImage, error) -> Void in
                         dispatch_async(dispatch_get_main_queue(), {
                           
@@ -579,7 +595,6 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
                 self.airQuality!.recommendationsSport!.text = $0
             }
         }
-           
     }
     
     func menuButtonPressed(sender: UIBarButtonItem) {
@@ -610,21 +625,72 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
             self.menuButton.enabled = true
             
         })
-        
-       
     }
     func SearchCity(sender: UIBarButtonItem) {
         searchCity!.viewModel = self.viewModel
         self.presentViewController(searchCity!, animated: true, completion: nil)
     }
     
-    override func didReceiveMemoryWarning() {
+    func pullToRefresh(sender:AnyObject){
+        print(self.locationLabel!.text!)
+        if self.locationLabel!.text! == "Current Location" {
+            locationService = LocationService()
+            locationService.delegate = self
+            locationService.requestLocation()
+        } else {
+            print("cityCalled")
+            DataManager.getLocationFromGoogle(self.locationLabel!.text!, success: {(LocationData) -> Void in
+                let json = JSON(data: LocationData)
+                if json["status"] == "OK" {
+                    let longitudeX = json["results"][0]["geometry"]["location"]["lng"].double!
+                    let latitudeY = json["results"][0]["geometry"]["location"]["lat"].double!
+                    let cityLocation: CLLocation =  CLLocation(latitude: latitudeY, longitude: longitudeX)
+                    
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.viewModel?.searchCityLocation(self.locationLabel!.text!,location: cityLocation)
+                    }
+                } else {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        let myAlert = UIAlertController(title: nil, message: "Address not found", preferredStyle: .Alert)
+                        let action = UIAlertAction(
+                            title: "OK",
+                            style: .Default, handler: nil)
+                        myAlert.addAction(action)
+                        self.presentViewController(myAlert, animated: true, completion: nil)
+                    }
+                }
+            })
+            // update "last updated" title for refresh control
+            let now = NSDate()
+            let updateString = "Last Updated at " + self.dateFormatter.stringFromDate(now)
+            self.refreshControl.attributedTitle = NSAttributedString(string: updateString)
+            if self.refreshControl.refreshing {
+                self.refreshControl.endRefreshing()
+            }
+        }
+    }
+    
+    func locationDidUpdate(service: LocationService, location: CLLocation) {
+        print("locationservicecalled2")
+        print("location: \(location)")
         
-        super.didReceiveMemoryWarning()
+        // update "last updated" title for refresh control
+        let now = NSDate()
+        let updateString = "Last Updated at " + self.dateFormatter.stringFromDate(now)
+        self.refreshControl.attributedTitle = NSAttributedString(string: updateString)
         
-        
+        if self.refreshControl.refreshing {
+            self.refreshControl.endRefreshing()
+            
+        }
+         viewModel?.refreshLocation(location)
     }
 
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        
+    }
 }
 
 
