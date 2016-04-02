@@ -198,7 +198,6 @@ class WeatherViewModel: NSObject {
         self.errorMessage.value = nil
         self.location.value = weatherAirQuality.location
         self.currentIconName.value = weatherAirQuality.currentIconName
-        print("currentIcon: \(self.currentIconName.value)")
         self.currentTemperature.value = weatherAirQuality.currentTemperature
         self.currentTemperatureString = weatherAirQuality.currentTemperature
         self.currentTemperatureHigh.value = weatherAirQuality.currentTemperatureHigh
@@ -390,7 +389,6 @@ class WeatherViewModel: NSObject {
                     self.update(unwrappedError)
                     return
                 }
-                
                 guard let unwrappedWeather = weatherAirQuality else {
                     return
                 }
@@ -401,7 +399,6 @@ class WeatherViewModel: NSObject {
        
     }
     func refreshLocation(location: CLLocation) {
-        print("refreshLocationCalled")
         
         weatherAirQualityService.retrieveWeatherInfo(location) { (weatherAirQuality, error) -> Void in
             dispatch_async(dispatch_get_main_queue(), {
@@ -410,8 +407,7 @@ class WeatherViewModel: NSObject {
                     self.update(unwrappedError)
                     return
                 }
-                
-                guard let unwrappedWeather = weatherAirQuality else {
+                 guard let unwrappedWeather = weatherAirQuality else {
                     return
                 }
                 self.update(unwrappedWeather)

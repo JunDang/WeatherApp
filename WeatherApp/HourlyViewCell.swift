@@ -108,8 +108,9 @@ class HourlyViewCell: UITableViewCell, UICollectionViewDataSource,UICollectionVi
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
         let cell: TodayWeaterCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell", forIndexPath: indexPath) as! TodayWeaterCollectionViewCell
-        //let hourlyForecast = hourlyForecasts[indexPath.row]
+
         if indexPath.row == 0 {
             cell.labelTime!.text = "Now"
             cell.labelTemperature?.text = hourlyForecasts[0].temperature

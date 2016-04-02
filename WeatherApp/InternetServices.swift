@@ -108,7 +108,7 @@ struct WeatherAirQualityService: WeatherAirQualityServiceProtocol {
         let sunRise = TimeDateConversion(sunriseTime).hourTime
         let sunSet = TimeDateConversion(sunsetTime).hourTime
         let precipitationProb: String = String(Int(precipitationProbability * 100)) + " %"
-        let precipitation: String = String(precipitationIntensity) + " cm"
+        let precipitation: String = String(precipitationIntensity) + " inch"
         let dewP: String = String(dewPoint)
         let humidityString: String = String(Int(humidity * 100)) + " %"
              
@@ -198,10 +198,8 @@ struct WeatherAirQualityService: WeatherAirQualityServiceProtocol {
          }
         
         weatherAirQualityBuilder.dailyForecasts = dailyForecasts
-        //print("dailyForecasts: \(weatherAirQualityBuilder.dailyForecasts)")
         
         //process air quality data
-    
         var airQualityDescription: String?
         var dominantPollutantDescription: String?
         var recommendationsChildren: String?
@@ -271,9 +269,7 @@ struct Flickr: FlickrServiceProtocol{
                     print("Request failed with error")
                     return
                 }
-                //print(data)
                 let flickrJson = JSON(data)
-                //print(flickrJson)
                 let index = Int(arc4random_uniform(24))
                 guard let farm = flickrJson["photos"]["photo"][index]["farm"].int,
                           server = flickrJson["photos"]["photo"][index]["server"].string,
@@ -284,8 +280,6 @@ struct Flickr: FlickrServiceProtocol{
                           }
                 let flickrPhoto = FlickrPhoto(photoID: photoID, farm: farm, server: server, secret: secret)
                 let imageURL = flickrPhoto.flickrImageURL()
-                print(imageURL)
-          
                 
                 Alamofire.request(.GET, imageURL)
                     .responseData { response in

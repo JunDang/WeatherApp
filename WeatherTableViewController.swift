@@ -11,14 +11,14 @@ import UIKit
 
 class WeatherTableViewController: UITableViewController {
     var hourlyForecasts: [HourlyForecast] = []
-    var dailyForecasts: [DailyForecast] = [DailyForecast(day: "Monday", dailyIconName: "snowIcon", dailyTemperatureHigh: "33°", dailyTemperatureLow: "19°"),
-                                           DailyForecast(day: "Monday", dailyIconName: "snowIcon", dailyTemperatureHigh: "33°", dailyTemperatureLow: "19°"),
-                                           DailyForecast(day: "Monday", dailyIconName: "snowIcon", dailyTemperatureHigh: "33°", dailyTemperatureLow: "19°" ),
-                                           DailyForecast(day: "Monday", dailyIconName: "snowIcon", dailyTemperatureHigh: "33°", dailyTemperatureLow: "19°" ),
-                                           DailyForecast(day: "Monday", dailyIconName: "snowIcon", dailyTemperatureHigh: "33°", dailyTemperatureLow: "19°"),
-                                           DailyForecast(day: "Monday", dailyIconName: "snowIcon", dailyTemperatureHigh: "33°", dailyTemperatureLow: "19°"),
-                                           DailyForecast(day: "Monday", dailyIconName: "snowIcon", dailyTemperatureHigh: "33°", dailyTemperatureLow: "19°" ),
-                                           DailyForecast(day: "Monday", dailyIconName: "snowIcon", dailyTemperatureHigh: "33°", dailyTemperatureLow: "19°" )
+    var dailyForecasts: [DailyForecast] = [DailyForecast(day: "Monday", dailyIconName: "sunnyIcon", dailyTemperatureHigh: "33°", dailyTemperatureLow: "19°"),
+                                           DailyForecast(day: "Monday", dailyIconName: "sunnyIcon", dailyTemperatureHigh: "33°", dailyTemperatureLow: "19°"),
+                                           DailyForecast(day: "Monday", dailyIconName: "sunnyIcon", dailyTemperatureHigh: "33°", dailyTemperatureLow: "19°" ),
+                                           DailyForecast(day: "Monday", dailyIconName: "sunnyIcon", dailyTemperatureHigh: "33°", dailyTemperatureLow: "19°" ),
+                                           DailyForecast(day: "Monday", dailyIconName: "sunnyIcon", dailyTemperatureHigh: "33°", dailyTemperatureLow: "19°"),
+                                           DailyForecast(day: "Monday", dailyIconName: "sunnyIcon", dailyTemperatureHigh: "33°", dailyTemperatureLow: "19°"),
+                                           DailyForecast(day: "Monday", dailyIconName: "sunnyIcon", dailyTemperatureHigh: "33°", dailyTemperatureLow: "19°" ),
+                                           DailyForecast(day: "Monday", dailyIconName: "sunnyIcon", dailyTemperatureHigh: "33°", dailyTemperatureLow: "19°" )
                                           
                                          ]
  
@@ -58,28 +58,28 @@ class WeatherTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             
-           let cell: HeaderCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell", forIndexPath: indexPath) as! HeaderCell
-           cell.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
-           return cell
+                let cell: HeaderCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell", forIndexPath: indexPath) as! HeaderCell
+                cell.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
+                return cell
             
         } else if indexPath.row == 1 {
             
-               let cell: HourlyViewCell = tableView.dequeueReusableCellWithIdentifier("HourlyViewCell", forIndexPath: indexPath) as! HourlyViewCell
-               cell.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
-               cell.updateWeatherData(hourlyForecasts)
-               return cell
+                let cell: HourlyViewCell = tableView.dequeueReusableCellWithIdentifier("HourlyViewCell", forIndexPath: indexPath) as! HourlyViewCell
+                cell.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
+                cell.updateWeatherData(hourlyForecasts)
+                return cell
             
           } else {
             
-              let cell: DailyViewCell = tableView.dequeueReusableCellWithIdentifier("DailyViewCell", forIndexPath: indexPath) as! DailyViewCell
-              cell.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
-              let dailyForecast = dailyForecasts[indexPath.row - 2]
+                let cell: DailyViewCell = tableView.dequeueReusableCellWithIdentifier("DailyViewCell", forIndexPath: indexPath) as! DailyViewCell
+                cell.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
+                let dailyForecast = dailyForecasts[indexPath.row - 2]
                 cell.dayLabel!.text = dailyForecast.day
                 cell.temperatureLow?.text = dailyForecast.dailyTemperatureLow
                 cell.temperatureHigh?.text = dailyForecast.dailyTemperatureHigh
                 cell.weatherIconLabel?.text = dailyForecast.dailyIconName
                 cell.weatherIcon!.image = UIImage(named: "\(cell.weatherIconLabel!.text!)")
-            return cell
+                return cell
             
         }
         

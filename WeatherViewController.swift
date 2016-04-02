@@ -13,7 +13,6 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
     
     var BackgroundScrollView: UIScrollView!
     var ForegroundScrollView: UIScrollView!
-    //var horizontalScrollView: UIScrollView!
     var backgroundImageView: UIImageView!
     var screenHeight: CGFloat!
     var blurredImageView: UIImageView!
@@ -38,7 +37,6 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
     var forecastSummary: Summary?
     var airQuality: AirQuality?
     var searchCity: SearchCityViewController?
-    
     let menuButton:UIButton = UIButton()
     var sideBar: SideBar = SideBar()
     var sideBarTableViewController: SideBarTableViewController = SideBarTableViewController()
@@ -213,8 +211,8 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
     }
     func addLabelsToForegroundScrollView() {
         //add location label
-        locationLabel = UILabel(frame: CGRectMake(0, 20, screenWidth, 60))
-        let fontLocation = UIFont(name: "HelveticaNeue-Bold", size: 20.0)
+        locationLabel = UILabel(frame: CGRectMake(0, 20, screenWidth, 65))
+        let fontLocation = UIFont(name: "HelveticaNeue-Bold", size: 22.0)
         locationLabel!.font = fontLocation
         locationLabel!.backgroundColor = UIColor.clearColor()
         locationLabel!.textColor = UIColor.whiteColor()
@@ -222,8 +220,8 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         ForegroundScrollView.addSubview(locationLabel!)
         
         //add temperature label
-        temperatureLabel = UILabel(frame: CGRectMake(13, screenHeight-130, 200, 200))
-        let fontTemperatureLabel = UIFont(name: "HelveticaNeue", size: 80.0)
+        temperatureLabel = UILabel(frame: CGRectMake(13, screenHeight-137, 200, 200))
+        let fontTemperatureLabel = UIFont(name: "HelveticaNeue", size: 85.0)
         temperatureLabel!.font = fontTemperatureLabel
         temperatureLabel!.backgroundColor = UIColor.clearColor()
         temperatureLabel!.textColor = UIColor.whiteColor()
@@ -231,8 +229,8 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         ForegroundScrollView.addSubview(temperatureLabel!)
         
         //add minute summary
-        minutelySummary = UILabel(frame: CGRectMake(132, screenHeight-90, 225, 150))
-        let fontLabel = UIFont(name: "HelveticaNeue-Bold", size: 14.0)
+        minutelySummary = UILabel(frame: CGRectMake(132, screenHeight-120, 250, 200))
+        let fontLabel = UIFont(name: "HelveticaNeue-Bold", size: 16.0)
         minutelySummary!.numberOfLines = 2
         minutelySummary!.font = fontLabel
         minutelySummary!.backgroundColor = UIColor.clearColor()
@@ -241,76 +239,76 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         ForegroundScrollView.addSubview(minutelySummary!)
         
         //max temperature description
-        let maxTemperature = UILabel(frame: CGRectMake(85, screenHeight-117, 80, 80))
+        let maxTemperature = UILabel(frame: CGRectMake(98, screenHeight-125, 80, 80))
         maxTemperature.backgroundColor = UIColor.clearColor()
         maxTemperature.textColor = UIColor.whiteColor()
         maxTemperature.text = "High:"
-        maxTemperature.font = UIFont(name: "HelveticaNeue-Bold", size: 15)
+        maxTemperature.font = UIFont(name: "HelveticaNeue-Bold", size: 18)
         self.ForegroundScrollView.addSubview(maxTemperature)
         
         //low temperature label
-        lowLabel = UILabel(frame: CGRectMake(49, screenHeight-117, 80, 80))
+        lowLabel = UILabel(frame: CGRectMake(56, screenHeight-125, 80, 80))
         lowLabel!.backgroundColor = UIColor.clearColor()
         lowLabel!.textColor = UIColor.whiteColor()
         lowLabel!.text = "20\u{00B0}"
-        lowLabel!.font = UIFont(name: "HelveticaNeue-Bold", size: 15)
+        lowLabel!.font = UIFont(name: "HelveticaNeue-Bold", size: 18)
         ForegroundScrollView.addSubview(lowLabel!)
         
         //min temperature description
-        let minTemperature = UILabel(frame: CGRectMake(12, screenHeight-117, 80, 80))
+        let minTemperature = UILabel(frame: CGRectMake(12, screenHeight-125, 80, 80))
         minTemperature.backgroundColor = UIColor.clearColor()
         minTemperature.textColor = UIColor.whiteColor()
         minTemperature.text = "Low:"
-        minTemperature.font = UIFont(name: "HelveticaNeue-Bold", size: 15)
+        minTemperature.font = UIFont(name: "HelveticaNeue-Bold", size: 18)
         self.ForegroundScrollView.addSubview(minTemperature)
         
         //high temperature label
-        hiLabel = UILabel(frame: CGRectMake(124, screenHeight-117, 80, 80))
+        hiLabel = UILabel(frame: CGRectMake(146, screenHeight-125, 80, 80))
         hiLabel!.backgroundColor = UIColor.clearColor()
         hiLabel!.textColor = UIColor.whiteColor()
-        //lowLabel!.text = "20\u{00B0}"
-        hiLabel!.font = UIFont(name: "HelveticaNeue-Bold", size: 15)
+        hiLabel!.text = "20\u{00B0}"
+        hiLabel!.font = UIFont(name: "HelveticaNeue-Bold", size: 18)
         self.ForegroundScrollView.addSubview(hiLabel!)
         
         //Feels like
         
-        let feelsLike = UILabel(frame: CGRectMake(162, screenHeight-117, 80, 80))
+        let feelsLike = UILabel(frame: CGRectMake(187, screenHeight-125, 95, 80))
         feelsLike.backgroundColor = UIColor.clearColor()
         feelsLike.textColor = UIColor.whiteColor()
         feelsLike.text = "Feels like:"
-        feelsLike.font = UIFont(name: "HelveticaNeue-Bold", size: 15)
+        feelsLike.font = UIFont(name: "HelveticaNeue-Bold", size: 18)
         self.ForegroundScrollView.addSubview(feelsLike)
         
         //FeelsLikeTemperature
-        feelsLikeTemperature = UILabel(frame: CGRectMake(236, screenHeight-117, 80, 80))
+        feelsLikeTemperature = UILabel(frame: CGRectMake(276, screenHeight-125, 80, 80))
         feelsLikeTemperature!.backgroundColor = UIColor.clearColor()
         feelsLikeTemperature!.textColor = UIColor.whiteColor()
-        feelsLikeTemperature!.font = UIFont(name: "HelveticaNeue-Bold", size: 15)
+        feelsLikeTemperature!.font = UIFont(name: "HelveticaNeue-Bold", size: 18)
         self.ForegroundScrollView.addSubview(feelsLikeTemperature!)
         
         //weathericon2Label
-        weathericon2Label = UILabel(frame: CGRectMake(13, screenHeight-150, 30, 30))
+        weathericon2Label = UILabel(frame: CGRectMake(13, screenHeight-155, 30, 30))
         weathericon2Label!.backgroundColor = UIColor.clearColor()
         weathericon2Label!.textColor = UIColor.clearColor()
-        //weathericon2Label!.text = "weather-clear"
         weathericon2Label!.hidden = true
         
         //weathericon2
-        weathericon2 = UIImageView(frame: CGRectMake(13, screenHeight-150, 78, 60))
+        weathericon2 = UIImageView(frame: CGRectMake(13, screenHeight-160, 78, 60))
         weathericon2!.image = UIImage(named: "weather-clear")
         self.ForegroundScrollView.addSubview(weathericon2!)
+        
         //add weather description
-        weatherDescription = UILabel(frame: CGRectMake(110, screenHeight-175, 200, 100))
+        weatherDescription = UILabel(frame: CGRectMake(110, screenHeight-180, 200, 100))
         weatherDescription!.backgroundColor = UIColor.clearColor()
         weatherDescription!.textColor = UIColor.whiteColor()
-        weatherDescription!.font = UIFont(name: "HelveticaNeue-Bold", size: 18)
+        weatherDescription!.font = UIFont(name: "HelveticaNeue-Bold", size: 19)
         self.ForegroundScrollView.addSubview(weatherDescription!)
         
         
         
     }
     func addSegmentedControll() {
-        let items = ["Table", "Graph", "Summary", "Air Quality"]
+        let items = ["Weather Table", "Weather Graph", "Summary", "Air Quality"]
         let segmentedControll = UISegmentedControl(items: items)
         segmentedControll.selectedSegmentIndex = 0
         segmentedControll.frame = CGRectMake(screenSize.minX + 17, screenHeight + 5,
@@ -341,12 +339,10 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         navigationItem.leftBarButtonItem = menubarButton
         navigationItem.rightBarButtonItem = searchButton
         
-        
         // Assign the navigation item to the navigation bar
         navigationBar.items = [navigationItem]
         
         // Make the navigation bar a subview of the current view controller
-        
         self.ForegroundScrollView.addSubview(navigationBar)
 
     }
@@ -601,11 +597,9 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
        
         sideBar.viewModel = self.viewModel
         let sideBarContainerView = UIView()
-        
-        sideBarContainerView.frame = CGRectMake(0, self.view.frame.origin.y, 150, 250)
+                sideBarContainerView.frame = CGRectMake(0, self.view.frame.origin.y, 150, 250)
         sideBarContainerView.backgroundColor = UIColor.clearColor()
         sideBarContainerView.clipsToBounds = false
-            
         self.ForegroundScrollView.addSubview(sideBarContainerView)
         sideBarTableViewController.delegate = self
         sideBarTableViewController.tableView.frame = sideBarContainerView.bounds
@@ -632,13 +626,12 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
     }
     
     func pullToRefresh(sender:AnyObject){
-        print(self.locationLabel!.text!)
+ 
         if self.locationLabel!.text! == "Current Location" {
             locationService = LocationService()
             locationService.delegate = self
             locationService.requestLocation()
         } else {
-            print("cityCalled")
             DataManager.getLocationFromGoogle(self.locationLabel!.text!, success: {(LocationData) -> Void in
                 let json = JSON(data: LocationData)
                 if json["status"] == "OK" {
@@ -671,8 +664,6 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
     }
     
     func locationDidUpdate(service: LocationService, location: CLLocation) {
-        print("locationservicecalled2")
-        print("location: \(location)")
         
         // update "last updated" title for refresh control
         let now = NSDate()
