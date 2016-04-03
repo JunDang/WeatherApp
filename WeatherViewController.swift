@@ -298,7 +298,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         self.ForegroundScrollView.addSubview(weathericon2!)
         
         //add weather description
-        weatherDescription = UILabel(frame: CGRectMake(110, screenHeight-180, 200, 100))
+        weatherDescription = UILabel(frame: CGRectMake(110, screenHeight-180, 300, 100))
         weatherDescription!.backgroundColor = UIColor.clearColor()
         weatherDescription!.textColor = UIColor.whiteColor()
         weatherDescription!.font = UIFont(name: "HelveticaNeue-Bold", size: 19)
@@ -308,7 +308,7 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         
     }
     func addSegmentedControll() {
-        let items = ["Weather Table", "Weather Graph", "Summary", "Air Quality"]
+        let items = ["Table", "Graph", "Summary", "Air Quality"]
         let segmentedControll = UISegmentedControl(items: items)
         segmentedControll.selectedSegmentIndex = 0
         segmentedControll.frame = CGRectMake(screenSize.minX + 17, screenHeight + 5,
