@@ -16,7 +16,6 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
     var backgroundImageView: UIImageView!
     var screenHeight: CGFloat!
     var blurredImageView: UIImageView!
-    var collectionView1: UICollectionView!
     var containerView1: UIView?
     var containerView2: UIView?
     var containerView3: UIView?
@@ -40,7 +39,6 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
     let menuButton:UIButton = UIButton()
     var sideBar: SideBar = SideBar()
     var sideBarTableViewController: SideBarTableViewController = SideBarTableViewController()
-    var isSideBarExpand: Bool = true
     var refreshControl: UIRefreshControl!
     private var locationService: LocationService!
     var dateFormatter = NSDateFormatter()
@@ -51,12 +49,11 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         
         //background
         self.view.backgroundColor = UIColor.blackColor()
-        //let screenSize: CGRect = UIScreen.mainScreen().bounds
         screenHeight = screenSize.height
         backgroundImageView = UIImageView(image: UIImage(named: "background"))
         backgroundImageView?.contentMode = UIViewContentMode.ScaleAspectFill
-        //backgroundImageView?.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: screenHeight)
-        backgroundImageView?.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: screenHeight*2)
+        backgroundImageView?.clipsToBounds = true
+       // backgroundImageView?.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: screenHeight*2)
         backgroundImageView!.setNeedsDisplay()
         
         setUpBackgroundScrollView()
@@ -626,8 +623,10 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
     }
     
     func pullToRefresh(sender:AnyObject){
- 
-        if self.locationLabel!.text! == "Current Location" {
+        
+        if self.locationLabel!.text! == "" {
+            viewModel?.startLocationService()
+        } else if self.locationLabel!.text! == "Current Location" || self.locationLabel!.text! == "" {
             locationService = LocationService()
             locationService.delegate = self
             locationService.requestLocation()

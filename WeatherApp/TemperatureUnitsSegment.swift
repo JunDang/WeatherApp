@@ -62,10 +62,8 @@ class TemperatureUnitsSegment: UITableViewCell {
         {
         case 0:
             convertToCelsius = false
-            print("calledF")
-        case 1:
+         case 1:
             convertToCelsius = true
-            print("calledC")
         default:
             break
         }
