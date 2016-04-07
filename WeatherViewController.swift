@@ -53,7 +53,6 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
         backgroundImageView = UIImageView(image: UIImage(named: "background"))
         backgroundImageView?.contentMode = UIViewContentMode.ScaleAspectFill
         backgroundImageView?.clipsToBounds = true
-       // backgroundImageView?.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: screenHeight*2)
         backgroundImageView!.setNeedsDisplay()
         
         setUpBackgroundScrollView()
@@ -652,14 +651,15 @@ class WeatherViewController: UIViewController , UIScrollViewDelegate, UITableVie
                     }
                 }
             })
-            // update "last updated" title for refresh control
-            let now = NSDate()
-            let updateString = "Last Updated at " + self.dateFormatter.stringFromDate(now)
-            self.refreshControl.attributedTitle = NSAttributedString(string: updateString)
-            if self.refreshControl.refreshing {
-                self.refreshControl.endRefreshing()
-            }
         }
+        let now = NSDate()
+        let updateString = "Last Updated at " + self.dateFormatter.stringFromDate(now)
+        self.refreshControl.attributedTitle = NSAttributedString(string: updateString)
+        if self.refreshControl.refreshing {
+        self.refreshControl.endRefreshing()
+         
+        }
+    
     }
     
     func locationDidUpdate(service: LocationService, location: CLLocation) {

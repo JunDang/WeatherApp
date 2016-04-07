@@ -8,10 +8,7 @@
 
 import UIKit
 
-/*enum TemperatureType: Int{
-    case Celsius = 0
-    case Farenheit
-}*/
+
 
 class TemperatureUnitsSegment: UITableViewCell {
 
